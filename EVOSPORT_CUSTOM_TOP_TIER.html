@@ -513,46 +513,95 @@
 
       </div>
 
-      <!-- ПРАВАЯ КОЛОНКА: СТЕКЛЯННОЕ ТАБЛО МЕНЮ С ЦЕНАМИ И БРЕНДИНГОМ -->
-      <div style="background:rgba(9,13,26,0.85); backdrop-filter:blur(16px); border:1px solid rgba(200,255,61,0.3); border-radius:24px; padding:30px; box-shadow:0 20px 60px rgba(0,0,0,0.8), 0 0 30px rgba(200,255,61,0.1);">
+      <!-- ПРАВАЯ КОЛОНКА: УЛЬТРА-ПРЕМИАЛЬНОЕ СТЕКЛЯННОЕ ТАБЛО МЕНЮ -->
+      <div class="evo-card" style="background:linear-gradient(135deg, rgba(13,18,36,0.92) 0%, rgba(7,10,20,0.97) 100%); backdrop-filter:blur(20px); border:1.5px solid rgba(200,255,61,0.4); border-radius:26px; padding:32px 28px; box-shadow:0 25px 70px rgba(0,0,0,0.85), 0 0 35px rgba(200,255,61,0.15); display:flex; flex-direction:column; justify-content:space-between;">
         
-        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:14px; margin-bottom:18px;">
-          <div style="font-family:'Unbounded'; font-size:15px; font-weight:900; color:#fff; text-transform:uppercase;">
-            EVOSPORT <span style="color:var(--lime);">MENU</span>
+        <!-- HEADER БАРА -->
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(255,255,255,0.12); padding-bottom:16px; margin-bottom:20px;">
+            <div>
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+                <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--lime); box-shadow:0 0 10px var(--lime);"></span>
+                <span style="font-size:11px; font-family:'Unbounded'; font-weight:800; color:var(--lime); text-transform:uppercase; letter-spacing:0.08em;">BAR & NUTRITION</span>
+              </div>
+              <div style="font-family:'Unbounded'; font-size:17px; font-weight:900; color:#ffffff; text-transform:uppercase;">
+                EVOSPORT <span style="color:var(--lime);">CAFÉ</span>
+              </div>
+            </div>
+            <div style="text-align:right;">
+              <span style="background:linear-gradient(90deg, rgba(255,45,120,0.9), rgba(255,45,120,0.7)); color:#ffffff; font-size:10.5px; font-weight:900; font-family:'Unbounded'; padding:6px 14px; border-radius:100px; text-transform:uppercase; letter-spacing:0.05em; box-shadow:0 4px 15px rgba(255,45,120,0.4);">
+                TODAY'S SPECIAL
+              </span>
+            </div>
           </div>
-          <span style="background:var(--pink); color:#fff; font-size:10px; font-weight:900; font-family:'Unbounded'; padding:4px 10px; border-radius:100px; text-transform:uppercase;">TODAY'S SPECIAL</span>
+
+          <!-- 2 СЕКЦИИ: КОФЕ И СПОРТИВНЫЕ НАПИТКИ -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+            
+            <!-- СЕКЦИЯ: COFFEE -->
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(200,255,61,0.18); border-radius:18px; padding:16px 14px;">
+              <div style="display:flex; align-items:center; gap:6px; color:var(--lime); font-family:'Unbounded'; font-size:11.5px; font-weight:800; text-transform:uppercase; margin-bottom:12px; border-bottom:1px solid rgba(200,255,61,0.15); padding-bottom:6px;">
+                <span>☕</span> СПЕШЕЛТИ КОФЕ
+              </div>
+              
+              <div style="display:flex; flex-direction:column; gap:9px; font-size:13px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="color:#ffffff; font-weight:500;">Espresso</span>
+                  <span style="background:rgba(200,255,61,0.12); color:var(--lime); font-weight:800; font-family:'Unbounded'; font-size:11.5px; padding:2px 8px; border-radius:6px; border:1px solid rgba(200,255,61,0.25);">120 ₽</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="color:#ffffff; font-weight:500;">Americano</span>
+                  <span style="background:rgba(200,255,61,0.12); color:var(--lime); font-weight:800; font-family:'Unbounded'; font-size:11.5px; padding:2px 8px; border-radius:6px; border:1px solid rgba(200,255,61,0.25);">140 ₽</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="color:#ffffff; font-weight:500;">Cappuccino</span>
+                  <span style="background:rgba(200,255,61,0.12); color:var(--lime); font-weight:800; font-family:'Unbounded'; font-size:11.5px; padding:2px 8px; border-radius:6px; border:1px solid rgba(200,255,61,0.25);">160 ₽</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="color:#ffffff; font-weight:500;">Flat White / Latte</span>
+                  <span style="background:rgba(200,255,61,0.12); color:var(--lime); font-weight:800; font-family:'Unbounded'; font-size:11.5px; padding:2px 8px; border-radius:6px; border:1px solid rgba(200,255,61,0.25);">160 ₽</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- СЕКЦИЯ: HEALTHY DRINKS -->
+            <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(0,242,254,0.18); border-radius:18px; padding:16px 14px;">
+              <div style="display:flex; align-items:center; gap:6px; color:var(--cyan); font-family:'Unbounded'; font-size:11.5px; font-weight:800; text-transform:uppercase; margin-bottom:12px; border-bottom:1px solid rgba(0,242,254,0.15); padding-bottom:6px;">
+                <span>🥤</span> ДЕТОКС & ПРОТЕИН
+              </div>
+              
+              <div style="display:flex; flex-direction:column; gap:9px; font-size:13px;">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="color:#ffffff; font-weight:500;">Protein Shake</span>
+                  <span style="background:rgba(0,242,254,0.12); color:var(--cyan); font-weight:800; font-family:'Unbounded'; font-size:11.5px; padding:2px 8px; border-radius:6px; border:1px solid rgba(0,242,254,0.25);">180 ₽</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="color:#ffffff; font-weight:500;">Detox Juice</span>
+                  <span style="background:rgba(0,242,254,0.12); color:var(--cyan); font-weight:800; font-family:'Unbounded'; font-size:11.5px; padding:2px 8px; border-radius:6px; border:1px solid rgba(0,242,254,0.25);">150 ₽</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="color:#ffffff; font-weight:500;">BCAA Lemonade</span>
+                  <span style="background:rgba(0,242,254,0.12); color:var(--cyan); font-weight:800; font-family:'Unbounded'; font-size:11.5px; padding:2px 8px; border-radius:6px; border:1px solid rgba(0,242,254,0.25);">150 ₽</span>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="color:#ffffff; font-weight:500;">Berry Smoothie</span>
+                  <span style="background:rgba(0,242,254,0.12); color:var(--cyan); font-weight:800; font-family:'Unbounded'; font-size:11.5px; padding:2px 8px; border-radius:6px; border:1px solid rgba(0,242,254,0.25);">200 ₽</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        <!-- 2 КОЛОНКИ МЕНЮ -->
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; font-size:13px;">
-          
-          <!-- COFFEE -->
+        <!-- НИЖНЯЯ ПАНЕЛЬ СНЕКОВ -->
+        <div style="margin-top:20px; padding:12px 18px; background:rgba(255,255,255,0.04); border:1px dashed rgba(255,255,255,0.2); border-radius:14px; display:flex; justify-content:space-between; align-items:center;">
           <div>
-            <div style="color:var(--lime); font-family:'Unbounded'; font-size:11px; font-weight:800; text-transform:uppercase; margin-bottom:8px;">COFFEE</div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#ddd;"><span>Espresso</span><b>120 ₽</b></div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#ddd;"><span>Americano</span><b>140 ₽</b></div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#ddd;"><span>Cappuccino</span><b>160 ₽</b></div>
-            <div style="display:flex; justify-content:space-between; color:#ddd;"><span>Latte / Flat</span><b>160 ₽</b></div>
+            <div style="font-size:11px; color:#8e9bb0; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:2px;">ЗДОРОВЫЕ ПЕРЕКУСЫ & БОУЛЫ</div>
+            <div style="font-weight:700; color:#ffffff; font-size:13.5px;">Авокадо-тосты · Протеин-бары · Ягодные боулы</div>
           </div>
-
-          <!-- HEALTHY DRINKS -->
-          <div>
-            <div style="color:var(--cyan); font-family:'Unbounded'; font-size:11px; font-weight:800; text-transform:uppercase; margin-bottom:8px;">HEALTHY DRINKS</div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#ddd;"><span>Protein Shake</span><b>180 ₽</b></div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#ddd;"><span>Detox Juice</span><b>150 ₽</b></div>
-            <div style="display:flex; justify-content:space-between; margin-bottom:6px; color:#ddd;"><span>Lemonade</span><b>150 ₽</b></div>
-            <div style="display:flex; justify-content:space-between; color:#ddd;"><span>Smoothie</span><b>200 ₽</b></div>
-          </div>
-
-        </div>
-
-        <!-- SNACKS BANNER -->
-        <div style="margin-top:20px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center;">
-          <div>
-            <div style="font-size:11.5px; color:var(--text-sub);">Спортивное питание и перекусы</div>
-            <div style="font-weight:700; color:#fff; font-size:13px;">Protein Bar · Fruit Bowl · Toast</div>
-          </div>
-          <span style="color:var(--lime); font-weight:800; font-size:14px;">от 150 ₽</span>
+          <span style="font-family:'Unbounded'; color:var(--lime); font-weight:900; font-size:14px; background:rgba(200,255,61,0.15); padding:6px 12px; border-radius:100px; border:1px solid rgba(200,255,61,0.3);">
+            от 150 ₽
+          </span>
         </div>
 
       </div>
