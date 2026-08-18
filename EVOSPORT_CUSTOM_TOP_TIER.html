@@ -860,16 +860,23 @@
 </section>
 
 
-<!-- Слайд 17 Тарифы и цены -->
-<section id="prices" class="section">
+<!-- Слайд 17 Тарифы и цены (ПО ЦЕНТРУ) -->
+<section id="prices" class="section" style="padding:95px 0;">
   <div class="wrap">
-    <div style="max-width:760px; margin-bottom:40px;">
-      <h2 style="font-size:clamp(28px, 4vw, 48px); text-transform:uppercase; margin-bottom:14px;">Стоимость аренды <span style="color:var(--lime);">кортов</span></h2>
-      <p style="color:var(--text-sub); font-size:16px; line-height:1.6;">Выберите вид спорта и нажмите на удобный временной слот, чтобы сразу перейти к бронированию.</p>
+    
+    <!-- ЗАГОЛОВОК И ОПИСАНИЕ ПО ЦЕНТРУ -->
+    <div style="text-align:center; max-width:800px; margin:0 auto 36px;">
+      <div style="font-size:12px; font-weight:800; color:var(--lime); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">ТАРИФЫ И СЛОТЫ</div>
+      <h2 style="font-family:'Unbounded'; font-size:clamp(26px, 3.8vw, 44px); text-transform:uppercase; margin-bottom:14px; font-weight:900; line-height:1.18;">
+        СТОИМОСТЬ АРЕНДЫ <span style="color:var(--lime);">КОРТОВ</span>
+      </h2>
+      <p style="color:var(--text-sub); font-size:16px; line-height:1.6;">
+        Выберите вид спорта и нажмите на удобный временной слот, чтобы сразу перейти к бронированию.
+      </p>
     </div>
 
-    <!-- TABS -->
-    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;" id="priceSportTabs">
+    <!-- TABS ПО ЦЕНТРУ -->
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px; justify-content:center;" id="priceSportTabs">
       <button class="pill-tab active" onclick="switchPriceSport(this, 'padel');">Падел</button>
       <button class="pill-tab" onclick="switchPriceSport(this, 'pickleball');">Пиклбол</button>
       <button class="pill-tab" onclick="switchPriceSport(this, 'tennis');">Большой теннис</button>
