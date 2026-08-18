@@ -97,6 +97,92 @@
     .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr !important; }
     .section { padding: 60px 0; }
   }
+
+/* ========================================================
+   ОНЛАЙН-ВИДЖЕТ БРОНИРОВАНИЯ (СТИЛИ КНОПОК И ПОЛЕЙ)
+======================================================== */
+.sport-select-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 14px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+.sport-select-btn:hover {
+  border-color: var(--lime);
+  color: var(--lime);
+  background: rgba(200, 255, 61, 0.08);
+  transform: translateY(-2px);
+}
+.sport-select-btn.active {
+  background: var(--lime) !important;
+  color: #05070e !important;
+  border-color: var(--lime) !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 20px rgba(200, 255, 61, 0.4) !important;
+}
+
+.slot-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.slot-btn:hover {
+  border-color: var(--lime);
+  color: var(--lime);
+  background: rgba(200, 255, 61, 0.08);
+  transform: translateY(-2px);
+}
+.slot-btn.active {
+  background: var(--lime) !important;
+  color: #05070e !important;
+  border-color: var(--lime) !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 18px rgba(200, 255, 61, 0.4) !important;
+}
+
+.booking-input {
+  width: 100% !important;
+  background: #070a14 !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  color: #ffffff !important;
+  padding: 15px 18px !important;
+  border-radius: 12px !important;
+  font-size: 14.5px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  outline: none !important;
+  color-scheme: dark !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+.booking-input:focus {
+  border-color: var(--lime) !important;
+  box-shadow: 0 0 15px rgba(200, 255, 61, 0.25) !important;
+}
+
 </style>
 
 <!-- Слайд 1 Главный экран HERO (ТЕМНЫЙ АТМОСФЕРНЫЙ НЕОНОВЫЙ ФАСАД С БЕЛЫМ EVO И ЛАЙМОВЫМ SPORT) -->
@@ -927,38 +1013,43 @@
   </div>
 </section>
 
-<!-- ОНЛАЙН-ВИДЖЕТ БРОНИРОВАНИЯ КОРТА -->
-<section id="booking-widget" class="section" style="background:#070a14; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+<!-- ОНЛАЙН-ВИДЖЕТ БРОНИРОВАНИЯ КОРТА (ПРЕМИУМ ДИЗАЙН) -->
+<section id="booking-widget" class="section" style="background:#070a14; padding:95px 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
   <div class="wrap" style="max-width:860px;">
     
     <div style="text-align:center; margin-bottom:36px;">
-      <div style="font-size:12px; font-weight:700; color:var(--lime); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Быстрое бронирование в 1 клик</div>
-      <h2 style="font-size:clamp(26px, 3.5vw, 42px); text-transform:uppercase; margin-bottom:12px;">Забронировать корт онлайн</h2>
-      <p style="color:var(--text-sub); font-size:15.5px;">Выберите параметры игры, система мгновенно рассчитает стоимость и зафиксирует слот</p>
+      <div style="font-size:12px; font-weight:800; color:var(--lime); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:8px;">БЫСТРОЕ БРОНИРОВАНИЕ В 1 КЛИК</div>
+      <h2 style="font-family:'Unbounded'; font-size:clamp(26px, 3.8vw, 42px); text-transform:uppercase; margin-bottom:14px; font-weight:900; line-height:1.18;">
+        ЗАБРОНИРОВАТЬ КОРТ <span style="color:var(--lime);">ОНЛАЙН</span>
+      </h2>
+      <p style="color:var(--text-sub); font-size:15.5px; line-height:1.6;">
+        Выберите параметры игры, система мгновенно рассчитает стоимость и зафиксирует слот.
+      </p>
     </div>
 
-    <div style="background:#0d1222; border:1px solid var(--line); border-radius:28px; padding:40px; box-shadow:0 25px 60px rgba(0,0,0,0.7);">
+    <div style="background:#0d1222; border:1px solid rgba(255,255,255,0.12); border-radius:28px; padding:40px; box-shadow:0 25px 60px rgba(0,0,0,0.7);">
       
       <form id="courtBookingForm" onsubmit="handleBookingSubmit(event)">
-        <!-- SPORT SELECTOR -->
-        <div style="margin-bottom:24px;">
-          <label style="display:block; font-family:'Unbounded'; font-size:12px; font-weight:700; color:var(--text-sub); text-transform:uppercase; margin-bottom:10px;">1. Вид спорта</label>
-          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px;" class="grid-3">
+        
+        <!-- 1. SPORT SELECTOR -->
+        <div style="margin-bottom:28px;">
+          <label style="display:block; font-family:'Unbounded'; font-size:12px; font-weight:800; color:var(--text-sub); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:12px;">1. Вид спорта</label>
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px;" class="grid-3">
             <button type="button" class="sport-select-btn active" onclick="setBookingSport(this, 'padel', 2400)">Падел</button>
             <button type="button" class="sport-select-btn" onclick="setBookingSport(this, 'pickleball', 1600)">Пиклбол</button>
             <button type="button" class="sport-select-btn" onclick="setBookingSport(this, 'tennis', 3000)">Большой теннис</button>
           </div>
         </div>
 
-        <!-- DATE & DURATION -->
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px;" class="grid-2">
+        <!-- 2. DATE & DURATION -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:28px;" class="grid-2">
           <div>
-            <label style="display:block; font-family:'Unbounded'; font-size:12px; font-weight:700; color:var(--text-sub); text-transform:uppercase; margin-bottom:10px;">2. Дата игры</label>
-            <input type="date" id="bookDate" required style="width:100%; background:#070a14; border:1px solid var(--line); color:#fff; padding:14px 16px; border-radius:12px; font-size:14px; outline:none;">
+            <label style="display:block; font-family:'Unbounded'; font-size:12px; font-weight:800; color:var(--text-sub); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:12px;">2. Дата игры</label>
+            <input type="date" id="bookDate" required class="booking-input">
           </div>
           <div>
-            <label style="display:block; font-family:'Unbounded'; font-size:12px; font-weight:700; color:var(--text-sub); text-transform:uppercase; margin-bottom:10px;">Длительность</label>
-            <select id="bookDuration" onchange="updateBookingTotal()" style="width:100%; background:#070a14; border:1px solid var(--line); color:#fff; padding:14px 16px; border-radius:12px; font-size:14px; outline:none;">
+            <label style="display:block; font-family:'Unbounded'; font-size:12px; font-weight:800; color:var(--text-sub); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:12px;">Длительность</label>
+            <select id="bookDuration" onchange="updateBookingTotal()" class="booking-input" style="cursor:pointer;">
               <option value="1">1 час игры</option>
               <option value="1.5">1.5 часа игры (+50%)</option>
               <option value="2" selected>2 часа игры (х2)</option>
@@ -967,10 +1058,10 @@
           </div>
         </div>
 
-        <!-- TIME SLOTS -->
-        <div style="margin-bottom:24px;">
-          <label style="display:block; font-family:'Unbounded'; font-size:12px; font-weight:700; color:var(--text-sub); text-transform:uppercase; margin-bottom:10px;">3. Выберите время начала</label>
-          <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:8px;" class="grid-6">
+        <!-- 3. TIME SLOTS -->
+        <div style="margin-bottom:28px;">
+          <label style="display:block; font-family:'Unbounded'; font-size:12px; font-weight:800; color:var(--text-sub); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:12px;">3. Выберите время начала</label>
+          <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:10px;" class="grid-6">
             <button type="button" class="slot-btn" onclick="selectSlot(this, '08:00')">08:00</button>
             <button type="button" class="slot-btn" onclick="selectSlot(this, '10:30')">10:30</button>
             <button type="button" class="slot-btn" onclick="selectSlot(this, '13:00')">13:00</button>
@@ -980,21 +1071,33 @@
           </div>
         </div>
 
-        <!-- CONTACT DETAILS -->
+        <!-- 4. CONTACT DETAILS -->
         <div style="margin-bottom:28px;">
-          <label style="display:block; font-family:'Unbounded'; font-size:12px; font-weight:700; color:var(--text-sub); text-transform:uppercase; margin-bottom:12px;">4. Ваши контакты</label>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;" class="grid-2">
-            <input type="text" id="bookName" placeholder="Ваше имя" required style="width:100%; background:#070a14; border:1px solid var(--line); color:#fff; padding:15px 18px; border-radius:12px; font-size:14px; outline:none;">
-            <input type="tel" id="bookPhone" placeholder="+7 (___) ___-__-__" required style="width:100%; background:#070a14; border:1px solid var(--line); color:#fff; padding:15px 18px; border-radius:12px; font-size:14px; outline:none;">
+          <label style="display:block; font-family:'Unbounded'; font-size:12px; font-weight:800; color:var(--text-sub); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:12px;">4. Ваши контакты</label>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;" class="grid-2">
+            <input type="text" id="bookName" placeholder="Ваше имя" required class="booking-input">
+            <input type="tel" id="bookPhone" placeholder="+7 (___) ___-__-__" required class="booking-input">
           </div>
         </div>
 
-        <button type="submit" class="btn-evo btn-evo-lime" style="width:100%; padding:18px;">Подтвердить бронирование корта</button>
+        <!-- РАСЧЕТ СТОИМОСТИ -->
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:16px 22px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:14px; margin-bottom:28px;">
+          <div>
+            <span style="color:var(--text-sub); font-size:13px;">Расчётная стоимость:</span>
+            <div id="bookingSummaryDetails" style="font-size:12.5px; color:var(--text-dim); margin-top:3px;">Падел / 2 часа / 19:00</div>
+          </div>
+          <div style="font-family:'Unbounded'; font-size:26px; font-weight:900; color:var(--lime);" id="bookingTotalCalc">4 800 ₽</div>
+        </div>
+
+        <button type="submit" class="btn-evo btn-evo-lime" style="width:100%; padding:18px; font-size:14px; letter-spacing:0.04em;">Подтвердить бронирование корта</button>
       </form>
 
       <div id="bookingSuccess" style="display:none; text-align:center; padding:30px 0;">
-        <h3 style="font-size:24px; text-transform:uppercase; color:var(--lime); margin-bottom:12px; font-family:'Unbounded';">Корт успешно забронирован!</h3>
-        <p id="bookingSuccessText" style="color:var(--text-sub); font-size:16px; margin-bottom:24px;"></p>
+        <div style="width:60px; height:60px; border-radius:50%; background:rgba(200,255,61,0.15); border:2px solid var(--lime); display:flex; align-items:center; justify-content:center; margin:0 auto 20px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--lime)" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <h3 style="font-size:24px; text-transform:uppercase; color:var(--lime); margin-bottom:12px; font-family:'Unbounded'; font-weight:900;">Корт успешно забронирован!</h3>
+        <p id="bookingSuccessText" style="color:var(--text-sub); font-size:16px; margin-bottom:24px; line-height:1.6;"></p>
         <button class="btn-evo btn-evo-outline" onclick="resetBookingForm()">Забронировать еще один слот</button>
       </div>
     </div>
@@ -1323,38 +1426,81 @@
   var selectedSlotTime = '19:00';
   var baseHourRate = 2400;
 
-  function setBookingSport(btn, sport, rate) {
-    selectedBookingSport = sport;
-    baseHourRate = rate;
-    document.querySelectorAll('.sport-select-btn').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-  }
+  
+// ==========================================
+// ЛОГИКА ОНЛАЙН-ВИДЖЕТА БРОНИРОВАНИЯ
+// ==========================================
+let currentBookingSport = 'Падел';
+let currentBookingRate = 2400;
+let currentBookingTime = '19:00';
 
-  function selectSlot(btn, time) {
-    selectedSlotTime = time;
-    document.querySelectorAll('.slot-btn').forEach(function(b) { b.classList.remove('active'); });
-    btn.classList.add('active');
-  }
+function setBookingSport(btn, sport, rate) {
+  document.querySelectorAll('.sport-select-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentBookingSport = (sport === 'padel') ? 'Падел' : (sport === 'pickleball') ? 'Пиклбол' : 'Большой теннис';
+  currentBookingRate = rate;
+  updateBookingTotal();
+}
 
-  function handleBookingSubmit(e) {
-    e.preventDefault();
-    var name = document.getElementById('bookName').value;
-    var phone = document.getElementById('bookPhone').value;
-    var date = document.getElementById('bookDate').value;
-    var dur = document.getElementById('bookDuration').value;
+function selectSlot(btn, time) {
+  document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentBookingTime = time;
+  updateBookingTotal();
+}
 
-    document.getElementById('courtBookingForm').style.display = 'none';
-    var succ = document.getElementById('bookingSuccess');
-    succ.style.display = 'block';
-    document.getElementById('bookingSuccessText').innerText = 
-      'Спасибо, ' + name + '! Корт на ' + date + ' в ' + selectedSlotTime + ' (' + dur + ' ч) успешно забронирован. Мы отправили SMS-подтверждение на ' + phone;
+function updateBookingTotal() {
+  const durSelect = document.getElementById('bookDuration');
+  const dur = durSelect ? parseFloat(durSelect.value) : 1;
+  const total = Math.round(currentBookingRate * dur);
+  
+  const totalEl = document.getElementById('bookingTotalCalc');
+  if (totalEl) {
+    totalEl.textContent = total.toLocaleString('ru-RU') + ' ₽';
   }
+  
+  const summaryEl = document.getElementById('bookingSummaryDetails');
+  if (summaryEl) {
+    const durText = dur === 1 ? '1 час' : dur === 1.5 ? '1.5 часа' : dur === 2 ? '2 часа' : '3 часа';
+    summaryEl.textContent = `${currentBookingSport} / ${durText} / ${currentBookingTime}`;
+  }
+}
 
-  function resetBookingForm() {
-    document.getElementById('courtBookingForm').reset();
-    document.getElementById('courtBookingForm').style.display = 'block';
-    document.getElementById('bookingSuccess').style.display = 'none';
+function handleBookingSubmit(e) {
+  e.preventDefault();
+  const date = document.getElementById('bookDate').value || 'Сегодня';
+  const name = document.getElementById('bookName').value;
+  const phone = document.getElementById('bookPhone').value;
+  const durSelect = document.getElementById('bookDuration');
+  const dur = durSelect ? durSelect.options[durSelect.selectedIndex].text : '2 часа игры';
+  
+  document.getElementById('courtBookingForm').style.display = 'none';
+  const successEl = document.getElementById('bookingSuccess');
+  const successText = document.getElementById('bookingSuccessText');
+  
+  if (successEl && successText) {
+    successText.innerHTML = `Спасибо, <strong>${name}</strong>!<br>Корт забронирован на <strong>${date}</strong> в <strong>${currentBookingTime}</strong> (${currentBookingSport}, ${dur}).<br>Подтверждение и QR-код отправлены на <strong>${phone}</strong>.`;
+    successEl.style.display = 'block';
   }
+}
+
+function resetBookingForm() {
+  document.getElementById('courtBookingForm').reset();
+  document.getElementById('courtBookingForm').style.display = 'block';
+  document.getElementById('bookingSuccess').style.display = 'none';
+  updateBookingTotal();
+}
+
+// Установить сегодняшнюю дату по умолчанию
+document.addEventListener('DOMContentLoaded', () => {
+  const dateInput = document.getElementById('bookDate');
+  if (dateInput) {
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.value = today;
+  }
+  updateBookingTotal();
+});
+
 
   // МОДАЛЬНОЕ ОКНО
   function openLeadModal(target) {
