@@ -1733,127 +1733,136 @@
   <!-- ==========================================================================
        3. ВСЕ НАШИ КЛУБЫ И АДРЕСА (СЛАЙД 3)
        ========================================================================== -->
+    <!-- ==========================================================================
+       3. НАШИ КЛУБЫ (SLIDE 3: EXACT 1-TO-1 MATCH)
+       ========================================================================== -->
   <section class="clubs-section" id="clubs">
-    <div class="container">
-      <div class="section-tag">Наши клубы</div>
-      <h2 class="section-title">ВСЕ НАШИ КЛУБЫ И АДРЕСА</h2>
-      <p class="section-desc">
-        4 современных спортивных хаба в Краснодарском крае. Выбирайте клуб и стройте удобный маршрут.
-      </p>
+    <div class="clubs-header">
+      <h2 class="clubs-title">НАШИ КЛУБЫ</h2>
+      <div class="clubs-subtitle-row">
+        <span class="clubs-subtitle">Все наши клубы и адреса</span>
+        <div class="clubs-sub-line"></div>
+      </div>
+    </div>
 
-      <div class="clubs-grid">
-        <div class="clubs-sidebar">
-          <div class="clubs-controls">
-            <div class="search-input-wrap">
-              <span class="control-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-              </span>
-              <input type="text" id="clubSearchInput" class="search-input" placeholder="Поиск по городу" oninput="filterClubs()">
-            </div>
+    <!-- Filter & Search Controls -->
+    <div class="clubs-filter-bar">
+      <div class="clubs-search-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="clubs-search-input" id="clubSearchInput" placeholder="Поиск по городу" oninput="filterClubs()">
+      </div>
 
-            <div class="filter-select-wrap">
-              <span class="control-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              </span>
-              <select id="clubCitySelect" class="filter-select" onchange="filterClubs()">
-                <option value="all">Все города</option>
-                <option value="крымск">Крымск</option>
-                <option value="новороссийск">Новороссийск</option>
-                <option value="краснодар">Краснодар</option>
-              </select>
-            </div>
+      <div class="clubs-dropdown-box">
+        <div class="clubs-dropdown-btn" id="cityDropdownBtn" onclick="toggleCityDropdown()">
+          <span id="selectedCityLabel">📍 Выберите город</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="clubs-dropdown-menu" id="cityDropdownMenu">
+          <div class="clubs-dropdown-item active" onclick="selectCity('all', 'Все города')">Все города</div>
+          <div class="clubs-dropdown-item" onclick="selectCity('krymsk', 'Крымск')">Крымск</div>
+          <div class="clubs-dropdown-item" onclick="selectCity('novoross', 'Новороссийск')">Новороссийск</div>
+          <div class="clubs-dropdown-item" onclick="selectCity('krd', 'Краснодар')">Краснодар</div>
+          <div class="clubs-dropdown-item" style="color: #64748b;" onclick="selectCity('other', 'Другие города (скоро)')">Другие города (скоро)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-Column: Cards List & Interactive Map -->
+    <div class="clubs-layout-grid">
+      <!-- Left Column: 4 Club Cards -->
+      <div class="clubs-list-col" id="clubsListContainer">
+        <!-- 1. Крымск -->
+        <div class="club-card-slide card-krymsk active" data-city="krymsk" onclick="focusClub(0)">
+          <div class="club-thumb-wrap">
+            <img src="images/exact_club_krymsk.jpg" alt="Крымск">
           </div>
-
-          <div class="clubs-list" id="clubsListContainer">
-            <div class="club-card border-lime" data-city="крымск" data-lat="44.9282" data-lng="37.9922" onclick="focusMap(44.9282, 37.9922, 'Крымск, ул. Синева, 25')">
-              <div class="club-thumb">
-                <img src="images/exact_club_krymsk.jpg" alt="EVOSPORT Крымск">
-              </div>
-              <div class="club-info">
-                <h4>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  Крымск
-                </h4>
-                <p>ул. Синева, 25</p>
-                <div class="club-time">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  Ежедневно 07:00 – 23:00
-                </div>
-                <a href="https://yandex.ru/maps/?text=Крымск+ул.+Синева+25" target="_blank" class="club-route-btn" onclick="event.stopPropagation()">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-                  Построить маршрут
-                </a>
-              </div>
+          <div class="club-info-wrap">
+            <div class="club-city-row">
+              <svg viewBox="0 0 24 24" fill="#c8ff3d" stroke="#c8ff3d" stroke-width="1"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span class="club-city-name">Крымск</span>
             </div>
-
-            <div class="club-card border-pink" data-city="новороссийск" data-lat="44.7239" data-lng="37.7687" onclick="focusMap(44.7239, 37.7687, 'Новороссийск, ул. Энгельса, 17')">
-              <div class="club-thumb">
-                <img src="images/exact_club_novoross.jpg" alt="EVOSPORT Новороссийск">
-              </div>
-              <div class="club-info">
-                <h4>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  Новороссийск
-                </h4>
-                <p>ул. Энгельса, 17</p>
-                <div class="club-time">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  Ежедневно 07:00 – 23:00
-                </div>
-                <a href="https://yandex.ru/maps/?text=Новороссийск+ул.+Энгельса+17" target="_blank" class="club-route-btn" onclick="event.stopPropagation()">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-                  Построить маршрут
-                </a>
-              </div>
+            <div class="club-address-text">ул. Синева, 25</div>
+            <div class="club-hours-text">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Ежедневно 07:00 – 23:00
             </div>
-
-            <div class="club-card border-blue" data-city="краснодар" data-lat="45.0645" data-lng="39.0215" onclick="focusMap(45.0645, 39.0215, 'Краснодар, ул. 1 Мая, 439')">
-              <div class="club-thumb">
-                <img src="images/exact_club_krd1.jpg" alt="EVOSPORT Краснодар 1 Мая">
-              </div>
-              <div class="club-info">
-                <h4>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  Краснодар
-                </h4>
-                <p>ул. 1 Мая, 439</p>
-                <div class="club-time">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  Ежедневно 07:00 – 23:00
-                </div>
-                <a href="https://yandex.ru/maps/?text=Краснодар+ул.+1+Мая+439" target="_blank" class="club-route-btn" onclick="event.stopPropagation()">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-                  Построить маршрут
-                </a>
-              </div>
-            </div>
-
-            <div class="club-card border-blue" data-city="краснодар" data-lat="45.0298" data-lng="39.0435" onclick="focusMap(45.0298, 39.0435, 'Краснодар, ул. Уральская, 77 (ТЦ Галактика)')">
-              <div class="club-thumb">
-                <img src="images/exact_club_krd_gal.jpg" alt="EVOSPORT Краснодар ТЦ Галактика">
-              </div>
-              <div class="club-info">
-                <h4>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  Краснодар
-                </h4>
-                <p>ул. Уральская, 77 (ТЦ Галактика)</p>
-                <div class="club-time">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  Ежедневно 07:00 – 23:00
-                </div>
-                <a href="https://yandex.ru/maps/?text=Краснодар+ул.+Уральская+77" target="_blank" class="club-route-btn" onclick="event.stopPropagation()">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
-                  Построить маршрут
-                </a>
-              </div>
-            </div>
+            <a href="https://yandex.ru/maps/?rtext=~44.9276,37.9942" target="_blank" class="btn-route" onclick="event.stopPropagation()">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              ПОСТРОИТЬ МАРШРУТ
+            </a>
           </div>
         </div>
 
-        <div class="map-box">
-          <div id="evosportMap"></div>
+        <!-- 2. Новороссийск -->
+        <div class="club-card-slide card-novoross" data-city="novoross" onclick="focusClub(1)">
+          <div class="club-thumb-wrap">
+            <img src="images/exact_club_novoross.jpg" alt="Новороссийск">
+          </div>
+          <div class="club-info-wrap">
+            <div class="club-city-row">
+              <svg viewBox="0 0 24 24" fill="#ff2d78" stroke="#ff2d78" stroke-width="1"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span class="club-city-name">Новороссийск</span>
+            </div>
+            <div class="club-address-text">ул. Энгельса, 17</div>
+            <div class="club-hours-text">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Ежедневно 07:00 – 23:00
+            </div>
+            <a href="https://yandex.ru/maps/?rtext=~44.7244,37.7675" target="_blank" class="btn-route" onclick="event.stopPropagation()">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              ПОСТРОИТЬ МАРШРУТ
+            </a>
+          </div>
         </div>
+
+        <!-- 3. Краснодар (1 Мая) -->
+        <div class="club-card-slide card-krd" data-city="krd" onclick="focusClub(2)">
+          <div class="club-thumb-wrap">
+            <img src="images/exact_club_krd1.jpg" alt="Краснодар">
+          </div>
+          <div class="club-info-wrap">
+            <div class="club-city-row">
+              <svg viewBox="0 0 24 24" fill="#00b4d8" stroke="#00b4d8" stroke-width="1"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span class="club-city-name">Краснодар</span>
+            </div>
+            <div class="club-address-text">ул. 1 Мая, 439</div>
+            <div class="club-hours-text">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Ежедневно 07:00 – 23:00
+            </div>
+            <a href="https://yandex.ru/maps/?rtext=~45.0682,39.0185" target="_blank" class="btn-route" onclick="event.stopPropagation()">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              ПОСТРОИТЬ МАРШРУТ
+            </a>
+          </div>
+        </div>
+
+        <!-- 4. Краснодар (Уральская) -->
+        <div class="club-card-slide card-krd" data-city="krd" onclick="focusClub(3)">
+          <div class="club-thumb-wrap">
+            <img src="images/exact_club_krd_gal.jpg" alt="Краснодар">
+          </div>
+          <div class="club-info-wrap">
+            <div class="club-city-row">
+              <svg viewBox="0 0 24 24" fill="#00b4d8" stroke="#00b4d8" stroke-width="1"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              <span class="club-city-name">Краснодар</span>
+            </div>
+            <div class="club-address-text">ул. Уральская, 77 (ТЦ Галактика)</div>
+            <div class="club-hours-text">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Ежедневно 07:00 – 23:00
+            </div>
+            <a href="https://yandex.ru/maps/?rtext=~45.0315,39.0835" target="_blank" class="btn-route" onclick="event.stopPropagation()">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              ПОСТРОИТЬ МАРШРУТ
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive Map with Custom Pins -->
+      <div class="clubs-map-col">
+        <div id="clubs-interactive-map"></div>
       </div>
     </div>
   </section>
@@ -2537,72 +2546,110 @@
     }
 
     /* Leaflet Dark Satellite Map */
-    let map;
-    const markers = [];
+    
+    // Clubs Data & Map Initialization
+    const clubsData = [
+      { city: 'Крымск', name: 'Крымск, ул. Синева, 25', lat: 44.9276, lng: 37.9942, color: '#c8ff3d', tag: 'krymsk' },
+      { city: 'Новороссийск', name: 'Новороссийск, ул. Энгельса, 17', lat: 44.7244, lng: 37.7675, color: '#ff2d78', tag: 'novoross' },
+      { city: 'Краснодар', name: 'Краснодар, ул. 1 Мая, 439', lat: 45.0682, lng: 39.0185, color: '#00b4d8', tag: 'krd' },
+      { city: 'Краснодар', name: 'Краснодар, ул. Уральская, 77', lat: 45.0315, lng: 39.0835, color: '#00b4d8', tag: 'krd' }
+    ];
 
-    document.addEventListener('DOMContentLoaded', function() {
-      const mapContainer = document.getElementById('evosportMap');
-      if (!mapContainer) return;
+    let clubsMap = null;
+    let markers = [];
 
-      map = L.map('evosportMap', {
-        center: [44.90, 38.45],
-        zoom: 9,
-        zoomControl: true,
-        attributionControl: false
+    function initClubsMap() {
+      const mapContainer = document.getElementById('clubs-interactive-map');
+      if (!mapContainer || typeof L === 'undefined') return;
+
+      clubsMap = L.map('clubs-interactive-map', {
+        center: [44.95, 38.4],
+        zoom: 8.5,
+        zoomControl: true
       });
 
+      // Dark Matter Map Tiles
       L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; CartoDB &copy; OpenStreetMap',
+        subdomains: 'abcd',
         maxZoom: 19
-      }).addTo(map);
+      }).addTo(clubsMap);
 
-      const clubsData = [
-        { name: 'Крымск', address: 'ул. Синева, 25', lat: 44.9282, lng: 37.9922, color: '#c8ff3d' },
-        { name: 'Новороссийск', address: 'ул. Энгельса, 17', lat: 44.7239, lng: 37.7687, color: '#ff2d78' },
-        { name: 'Краснодар (1 Мая)', address: 'ул. 1 Мая, 439', lat: 45.0645, lng: 39.0215, color: '#00b4d8' },
-        { name: 'Краснодар (Галактика)', address: 'ул. Уральская, 77', lat: 45.0298, lng: 39.0435, color: '#00b4d8' }
-      ];
+      // Create Custom Glowing Pins
+      clubsData.forEach((club, idx) => {
+        const pinHtml = `
+          <div class="neon-map-pin">
+            <svg width="32" height="42" viewBox="0 0 24 32" fill="none">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 9 12 20 12 20s12-11 12-20c0-6.63-5.37-12-12-12z" fill="${club.color}" filter="drop-shadow(0 0 8px ${club.color})"/>
+              <circle cx="12" cy="11" r="4.5" fill="#05070e"/>
+            </svg>
+            <div class="pin-label">${club.city}</div>
+          </div>
+        `;
 
-      clubsData.forEach(c => {
         const customIcon = L.divIcon({
-          className: 'custom-map-marker',
-          html: `<div style="background-color: ${c.color}; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 14px ${c.color};"></div>`,
-          iconSize: [16, 16],
-          iconAnchor: [8, 8]
+          className: '',
+          html: pinHtml,
+          iconSize: [32, 42],
+          iconAnchor: [16, 42]
         });
 
-        const m = L.marker([c.lat, c.lng], { icon: customIcon }).addTo(map);
-        m.bindPopup(`<strong style="color:#000;">${c.name}</strong><br><span style="color:#444;">${c.address}</span>`);
-        markers.push({ ...c, marker: m });
+        const marker = L.marker([club.lat, club.lng], { icon: customIcon }).addTo(clubsMap);
+        marker.on('click', () => focusClub(idx));
+        markers.push(marker);
       });
-    });
+    }
 
-    function focusMap(lat, lng, name) {
-      if (map) {
-        map.flyTo([lat, lng], 13, { duration: 1.2 });
-        const target = markers.find(m => m.lat === lat && m.lng === lng);
-        if (target) target.marker.openPopup();
+    function focusClub(idx) {
+      const cards = document.querySelectorAll('.club-card-slide');
+      cards.forEach((c, i) => c.classList.toggle('active', i === idx));
+
+      if (clubsMap && clubsData[idx]) {
+        clubsMap.flyTo([clubsData[idx].lat, clubsData[idx].lng], 12, { duration: 1.2 });
+      }
+    }
+
+    function toggleCityDropdown() {
+      const menu = document.getElementById('cityDropdownMenu');
+      menu.classList.toggle('active');
+    }
+
+    function selectCity(cityKey, label) {
+      document.getElementById('selectedCityLabel').innerText = '📍 ' + label;
+      document.querySelectorAll('.clubs-dropdown-item').forEach(item => {
+        item.classList.toggle('active', item.innerText === label);
+      });
+      document.getElementById('cityDropdownMenu').classList.remove('active');
+
+      const cards = document.querySelectorAll('.club-card-slide');
+      let firstMatch = -1;
+
+      cards.forEach((card, idx) => {
+        const match = (cityKey === 'all' || card.dataset.city === cityKey);
+        card.style.display = match ? 'flex' : 'none';
+        if (match && firstMatch === -1) firstMatch = idx;
+      });
+
+      if (cityKey === 'all' && clubsMap) {
+        clubsMap.flyTo([44.95, 38.4], 8.5, { duration: 1.2 });
+      } else if (firstMatch !== -1) {
+        focusClub(firstMatch);
       }
     }
 
     function filterClubs() {
-      const search = document.getElementById('clubSearchInput').value.toLowerCase();
-      const city = document.getElementById('clubCitySelect').value.toLowerCase();
-      const cards = document.querySelectorAll('.club-card');
-
+      const query = document.getElementById('clubSearchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.club-card-slide');
       cards.forEach(card => {
-        const cardCity = card.getAttribute('data-city').toLowerCase();
         const text = card.innerText.toLowerCase();
-
-        const matchCity = (city === 'all' || cardCity === city);
-        const matchSearch = (search === '' || text.includes(search));
-
-        if (matchCity && matchSearch) {
-          card.style.display = 'grid';
-        } else {
-          card.style.display = 'none';
-        }
+        card.style.display = text.includes(query) ? 'flex' : 'none';
       });
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(initClubsMap, 300);
+    });
+
   </script>
 </div>
 </body>
