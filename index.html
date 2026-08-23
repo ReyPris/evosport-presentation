@@ -330,46 +330,55 @@
     }
 
     /* 5 Benefit Badges with vertical separators like Slide 1 */
+    
     .hero-benefits-row {
       display: flex;
-      align-items: stretch;
-      margin-bottom: 28px;
-      max-width: 480px;
+      align-items: flex-start;
+      margin: 24px 0 30px;
     }
-
     .hero-benefit-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 8px;
-      padding: 0 12px;
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0 14px;
+      position: relative;
       flex: 1;
     }
-    .hero-benefit-item:first-child {
-      padding-left: 0;
+    .hero-benefit-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 5%;
+      height: 90%;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.22);
     }
-    .hero-benefit-item:last-child {
-      border-right: none;
-      padding-right: 0;
+    .hero-benefit-icon-box {
+      width: 46px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
     }
-
-    .hero-benefit-item svg {
-      width: 24px;
-      height: 24px;
+    .hero-benefit-icon-box img {
+      height: 38px !important;
+      width: auto !important;
+      max-width: 46px !important;
+      object-fit: contain;
+      display: block;
     }
-
     .hero-benefit-label {
-      font-size: 8.5px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10.5px;
       font-weight: 700;
+      color: #ffffff;
       text-transform: uppercase;
       letter-spacing: 0.3px;
       line-height: 1.25;
-      color: #cbd5e1;
     }
 
-    /* 2 Slide 1 Action Buttons */
     .hero-buttons-row {
       display: flex;
       align-items: center;
