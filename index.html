@@ -2814,777 +2814,490 @@
     /* ==========================================================================
        RESPONSIVE
        ========================================================================== */
-    @media (max-width: 1024px) {
-      .hero-court-backdrop { width: 100%; opacity: 0.3; mask-image: none; -webkit-mask-image: none; }
-      
-    .sports-bar-exact-box {
-      position: relative;
-      z-index: 2;
-      border-radius: 18px;
-      background: #05070e;
-      padding: 12px 14px;
-      border: 1.5px solid transparent;
-      background-image: linear-gradient(#05070e, #05070e), linear-gradient(90deg, #00b4d8 0%, #ff2d78 28%, #c8ff3d 52%, #00b4d8 78%, #ff2d78 100%);
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
-      box-shadow: 0 0 25px rgba(0, 180, 216, 0.2), 0 10px 40px rgba(0, 0, 0, 0.8);
-    }
-
-    .sports-bar-clickable-grid {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      z-index: 3;
-    }
-    .sports-bar-clickable-grid a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      transition: background 0.2s ease;
-    }
-    .sports-bar-clickable-grid a:hover {
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .sports-bar { grid-template-columns: repeat(3, 1fr); }
-      .games-grid-top { grid-template-columns: repeat(2, 1fr); }
-      .games-grid-bot { grid-template-columns: 1fr; }
-      .clubs-grid { grid-template-columns: 1fr; }
-      .pricing-dual-grid { grid-template-columns: 1fr; }
-      .pricing-cards-row { grid-template-columns: repeat(2, 1fr); }
-      .audience-grid { grid-template-columns: repeat(3, 1fr); }
-      .night-hero-grid { grid-template-columns: 1fr; }
-      .night-cards-row { grid-template-columns: repeat(3, 1fr); }
-      .market-grid { grid-template-columns: repeat(3, 1fr); }
-      .china-grid { grid-template-columns: 1fr; }
-      .china-contacts-card { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 768px) {
-      .nav-links, .header-actions .header-btn { display: none; }
-      .burger-btn { display: flex; }
-      .hero-title { font-size: 36px; }
-      .section-title { font-size: 28px; }
-      .hero-benefits-row { flex-wrap: wrap; gap: 14px; }
-      
-    .sports-bar-exact-box {
-      position: relative;
-      z-index: 2;
-      border-radius: 18px;
-      background: #05070e;
-      padding: 12px 14px;
-      border: 1.5px solid transparent;
-      background-image: linear-gradient(#05070e, #05070e), linear-gradient(90deg, #00b4d8 0%, #ff2d78 28%, #c8ff3d 52%, #00b4d8 78%, #ff2d78 100%);
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
-      box-shadow: 0 0 25px rgba(0, 180, 216, 0.2), 0 10px 40px rgba(0, 0, 0, 0.8);
-    }
-
-    .sports-bar-clickable-grid {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      z-index: 3;
-    }
-    .sports-bar-clickable-grid a {
-      display: block;
-      width: 100%;
-      height: 100%;
-      transition: background 0.2s ease;
-    }
-    .sports-bar-clickable-grid a:hover {
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .sports-bar { grid-template-columns: 1fr; gap: 10px; }
-      .sports-bar-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px; }
-      .games-grid-top { grid-template-columns: 1fr; }
-      .pricing-cards-row { grid-template-columns: 1fr; }
-      .audience-grid { grid-template-columns: 1fr; }
-      .night-icons-row { grid-template-columns: repeat(2, 1fr); }
-      .night-cards-row { grid-template-columns: 1fr; }
-      .market-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .map-box { height: 380px; }
-      .screen-splash-left, .screen-splash-right { display: none; }
-    }
-  
-
+    
     /* ==========================================================================
-       8. МАРКЕТ EVOSPORT (EXACT 1-TO-1 MATCH WITH REFERENCE)
+       MASTER MOBILE RESPONSIVE 1-TO-1 (MATCHING MOBILE PDF SPECIFICATION)
        ========================================================================== */
-    .market-section {
-      background-color: #05070e;
-      padding: 60px 20px 70px;
-      max-width: 1200px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .market-header-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 36px;
-    }
-
-    /* Centered Header Logo */
-    .market-brand-logo {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-bottom: 14px;
-    }
-    .market-brand-bars {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-    .market-brand-bar {
-      width: 22px;
-      height: 3px;
-      border-radius: 1.5px;
-    }
-    .market-brand-bar.b-cyan { background: #00b4d8; }
-    .market-brand-bar.b-pink { background: #ff2d78; }
-    .market-brand-bar.b-lime { background: #c8ff3d; }
-    .market-brand-text {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      line-height: 1.1;
-    }
-    .market-brand-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 13px;
-      font-weight: 900;
-      color: #ffffff;
-      letter-spacing: 0.5px;
-    }
-    .market-brand-sub {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 9px;
-      font-weight: 700;
-      color: #9ca3af;
-      letter-spacing: 0.5px;
-    }
-
-    .market-main-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 42px;
-      font-weight: 900;
-      font-style: italic;
-      text-transform: uppercase;
-      line-height: 1.1;
-      letter-spacing: 0.5px;
-      margin-bottom: 12px;
-    }
-    .market-main-title .txt-grad-red {
-      background: linear-gradient(135deg, #ff0055 0%, #ff2d78 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
-    }
-    .market-main-title .txt-grad-lime {
-      background: linear-gradient(135deg, #e6ff00 0%, #c8ff3d 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: inline-block;
-    }
-
-    .market-sub-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      color: #cbd5e1;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    /* 5 Market Cards Grid */
-    .market-5-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      text-align: center;
-    }
-
-    .market-exact-card {
-      background: #060913;
-      border-radius: 16px;
-      padding: 24px 12px 18px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 490px;
-      box-sizing: border-box;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .market-exact-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .market-exact-card.card-lime {
-      border: 1px solid rgba(200, 255, 61, 0.35);
-    }
-    .market-exact-card.card-lime:hover {
-      box-shadow: 0 0 20px rgba(200, 255, 61, 0.2);
-    }
-
-    .market-exact-card.card-pink {
-      border: 1px solid rgba(255, 45, 120, 0.35);
-    }
-    .market-exact-card.card-pink:hover {
-      box-shadow: 0 0 20px rgba(255, 45, 120, 0.2);
-    }
-
-    .market-exact-card.card-cyan {
-      border: 1px solid rgba(0, 180, 216, 0.35);
-    }
-    .market-exact-card.card-cyan:hover {
-      box-shadow: 0 0 20px rgba(0, 180, 216, 0.2);
-    }
-
-    .market-exact-card.card-orange {
-      border: 1px solid rgba(255, 136, 0, 0.35);
-    }
-    .market-exact-card.card-orange:hover {
-      box-shadow: 0 0 20px rgba(255, 136, 0, 0.2);
-    }
-
-    .market-card-top-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-
-    .market-card-vector-icon {
-      width: 60px;
-      height: 46px;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .market-card-vector-icon img {
-      height: 42px !important;
-      width: auto !important;
-      max-width: 58px !important;
-      object-fit: contain;
-      display: block;
-    }
-
-    .market-card-header-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 13.5px;
-      font-weight: 800;
-      font-style: italic;
-      text-transform: uppercase;
-      line-height: 1.15;
-      min-height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .market-card-img-box {
-      width: 100%;
-      height: 220px;
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 16px 0 20px;
-      background: #020307;
-    }
-    .market-card-img-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-    .market-exact-card:hover .market-card-img-box img {
-      transform: scale(1.04);
-    }
-
-    .market-card-btn {
-      width: 100%;
-      padding: 13px 0;
-      border-radius: 8px;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 11.5px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: #ffffff;
-      background: #060913;
-      cursor: pointer;
-      text-decoration: none;
-      display: block;
-      box-sizing: border-box;
-      transition: all 0.2s ease;
-    }
-
-    .btn-border-lime {
-      border: 1.5px solid rgba(200, 255, 61, 0.6);
-    }
-    .btn-border-lime:hover {
-      background: rgba(200, 255, 61, 0.15);
-      box-shadow: 0 0 14px rgba(200, 255, 61, 0.35);
-    }
-
-    .btn-border-pink {
-      border: 1.5px solid rgba(255, 45, 120, 0.6);
-    }
-    .btn-border-pink:hover {
-      background: rgba(255, 45, 120, 0.15);
-      box-shadow: 0 0 14px rgba(255, 45, 120, 0.35);
-    }
-
-    .btn-border-cyan {
-      border: 1.5px solid rgba(0, 180, 216, 0.6);
-    }
-    .btn-border-cyan:hover {
-      background: rgba(0, 180, 216, 0.15);
-      box-shadow: 0 0 14px rgba(0, 180, 216, 0.35);
-    }
-
-    .btn-border-orange {
-      border: 1.5px solid rgba(255, 136, 0, 0.6);
-    }
-    .btn-border-orange:hover {
-      background: rgba(255, 136, 0, 0.15);
-      box-shadow: 0 0 14px rgba(255, 136, 0, 0.35);
-    }
-
-
-
+    
     /* ==========================================================================
-       9. ПРОИЗВОДСТВО EVOSPORT В КИТАЕ (EXACT 1-TO-1 MATCH WITH REFERENCE)
+       FLAWLESS 1-TO-1 MOBILE RESPONSIVE ENGINE (MOBILE PDF PERFECT FIT)
        ========================================================================== */
-    .china-section {
-      background-color: #05070e;
-      padding: 60px 20px 70px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+    
+    /* ==========================================================================
+       PERFECTED 1-TO-1 MOBILE ENGINE (MATCHING EVOSPORT_Презентация_Мобильная.pdf)
+       ========================================================================== */
+    
+    /* ==========================================================================
+       ULTRA-POLISHED 1-TO-1 MOBILE RESPONSIVE ENGINE
+       ========================================================================== */
+    @media screen and (max-width: 768px) {
+      /* Global Viewport Resets */
+      html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+      }
+      section, .hero-section, .games-section, .clubs-section, 
+      .pricing-section, .about-section, .night-section, .market-section, .china-section {
+        max-width: 100% !important;
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+        padding-top: 32px !important;
+        padding-bottom: 36px !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+      }
 
-    .china-layout-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap: 40px;
-      align-items: flex-start;
-    }
-
-    .china-title-main {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 38px;
-      font-weight: 900;
-      font-style: italic;
-      line-height: 1.12;
-      text-transform: uppercase;
-      margin: 12px 0 20px;
-      color: #ffffff;
-    }
-    .china-title-main .txt-pink {
-      color: #ff2d78;
-      display: block;
-    }
-
-    .china-desc-p {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 12.5px;
-      line-height: 1.6;
-      color: #9ca3af;
-      margin-bottom: 14px;
-    }
-
-    .china-quote-lime {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #c8ff3d;
-      line-height: 1.45;
-      margin: 18px 0 24px;
-    }
-
-    .china-features-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .china-feature-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-    }
-    .china-feat-icon-box {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      background: rgba(200, 255, 61, 0.08);
-      border: 1px solid rgba(200, 255, 61, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .china-feat-icon-box svg {
-      width: 18px;
-      height: 18px;
-      display: block;
-    }
-    .china-feat-h {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 11.5px;
-      font-weight: 800;
-      color: #c8ff3d;
-      text-transform: uppercase;
-      margin-bottom: 3px;
-      letter-spacing: 0.3px;
-    }
-    .china-feat-p {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11.5px;
-      color: #9ca3af;
-      line-height: 1.4;
-    }
-
-    /* Right Collage */
-    .china-collage-wrap {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .china-img-hero {
-      width: 100%;
-      height: 255px;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: #020307;
-    }
-    .china-img-hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .china-img-sub-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .china-img-sub {
-      height: 155px;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      background: #020307;
-    }
-    .china-img-sub img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* Bottom Contact Card */
-    .china-bottom-contact-card {
-      background: #060913;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 22px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 36px;
-    }
-    .china-contact-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .china-contact-pin-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(200, 255, 61, 0.1);
-      border: 1px solid rgba(200, 255, 61, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .china-company-name {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 13.5px;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 4px;
-    }
-    .china-company-addr {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 11.5px;
-      color: #9ca3af;
-    }
-
-    .china-contact-right-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 12px;
-      color: #cbd5e1;
-    }
-    .china-contact-line {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .china-contact-line svg {
-      width: 15px;
-      height: 15px;
-      display: block;
-    }
-    .china-contact-line strong {
-      color: #ffffff;
-    }
-
-
-
-    /* Hero Benefits Row with Dividers */
-    .hero-benefits-row {
-      display: flex;
-      align-items: flex-start;
-      margin: 24px 0 30px;
-    }
-    .hero-benefit-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0 14px;
-      position: relative;
-      flex: 1;
-    }
-    .hero-benefit-item:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 5%;
-      height: 90%;
-      width: 1px;
-      background: rgba(255, 255, 255, 0.22);
-    }
-    .hero-benefit-icon-box {
-      width: 48px;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 8px;
-    }
-    .hero-benefit-icon-box img {
-      height: 40px !important;
-      width: auto !important;
-      max-width: 48px !important;
-      object-fit: contain;
-      display: block;
-    }
-    .hero-benefit-label {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 10.5px;
-      font-weight: 700;
-      color: #ffffff;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      line-height: 1.25;
-    }
-
-    /* Interactive Leaflet Map Styling */
-    .clubs-map-col {
-      width: 100%;
-      height: 480px;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(0, 180, 216, 0.35);
-      box-shadow: 0 0 25px rgba(0, 180, 216, 0.15);
-      position: relative;
-      background: #060913;
-      z-index: 1;
-    }
-    #interactiveLeafletMap {
-      width: 100%;
-      height: 100%;
-      background: #060913;
-    }
-
-    /* Custom Neon Marker Styles with Side Labels */
-    .custom-neon-marker {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-    }
-    .custom-neon-marker.layout-bottom {
-      flex-direction: column;
-      transform: translate(-14px, -28px);
-    }
-    .custom-neon-marker.layout-right {
-      flex-direction: row;
-      gap: 7px;
-      transform: translate(-14px, -14px);
-    }
-
-    .marker-pin-head {
-      width: 26px;
-      height: 26px;
-      border-radius: 50% 50% 50% 0;
-      transform: rotate(-45deg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .marker-pin-inner {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #060913;
-      transform: rotate(45deg);
-    }
-    .marker-pin-label {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 10px;
-      font-weight: 800;
-      color: #ffffff;
-      background: rgba(6, 9, 19, 0.9);
-      padding: 3px 8px;
-      border-radius: 5px;
-      white-space: nowrap;
-      letter-spacing: 0.3px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    }
-
-    .pin-lime .marker-pin-head {
-      background: #c8ff3d;
-      box-shadow: 0 0 14px #c8ff3d, inset 0 0 5px #ffffff;
-    }
-    .pin-lime .marker-pin-label {
-      color: #c8ff3d;
-      border-color: rgba(200, 255, 61, 0.4);
-    }
-
-    .pin-pink .marker-pin-head {
-      background: #ff2d78;
-      box-shadow: 0 0 14px #ff2d78, inset 0 0 5px #ffffff;
-    }
-    .pin-pink .marker-pin-label {
-      color: #ff2d78;
-      border-color: rgba(255, 45, 120, 0.4);
-    }
-
-    .pin-cyan .marker-pin-head {
-      background: #00b4d8;
-      box-shadow: 0 0 14px #00b4d8, inset 0 0 5px #ffffff;
-    }
-    .pin-cyan .marker-pin-label {
-      color: #00b4d8;
-      border-color: rgba(0, 180, 216, 0.4);
-    }
-
-    .custom-neon-marker:hover .marker-pin-head {
-      transform: rotate(-45deg) scale(1.15);
-    }
-
-    /* Leaflet Dark Popup */
-    .leaflet-popup-content-wrapper {
-      background: #060913 !important;
-      color: #ffffff !important;
-      border: 1px solid rgba(0, 180, 216, 0.5) !important;
-      border-radius: 12px !important;
-      box-shadow: 0 0 20px rgba(0, 180, 216, 0.25) !important;
-      font-family: 'Montserrat', sans-serif !important;
-      padding: 4px !important;
-    }
-    .leaflet-popup-tip {
-      background: #060913 !important;
-      border: 1px solid rgba(0, 180, 216, 0.5) !important;
-    }
-    .leaflet-popup-content {
-      margin: 10px 14px !important;
-      line-height: 1.4 !important;
-    }
-    .popup-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-    .popup-addr {
-      font-size: 11px;
-      color: #9ca3af;
-      margin-bottom: 8px;
-    }
-    .popup-route-btn {
-      display: inline-block;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 10px;
-      font-weight: 800;
-      color: #c8ff3d;
-      text-decoration: none;
-      border: 1px solid rgba(200, 255, 61, 0.5);
-      border-radius: 6px;
-      padding: 4px 10px;
-      transition: all 0.2s ease;
-    }
-    .popup-route-btn:hover {
-      background: rgba(200, 255, 61, 0.15);
-      box-shadow: 0 0 10px rgba(200, 255, 61, 0.3);
-    }
-
-    /* Responsive Mobile Overrides */
-    @media (max-width: 768px) {
+      /* 1. HERO (PAGE 1) */
+      .hero-container {
+        padding: 0 !important;
+        max-width: 100% !important;
+      }
+      .hero-court-backdrop {
+        position: relative !important;
+        height: 200px !important;
+        width: 100% !important;
+        border-radius: 14px !important;
+        margin-bottom: 16px !important;
+        background-size: cover !important;
+        background-position: center !important;
+      }
+      .hero-content {
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+      .hero-title {
+        font-size: 24px !important;
+        line-height: 1.15 !important;
+        letter-spacing: 0 !important;
+        margin-bottom: 10px !important;
+      }
+      .hero-subtext {
+        font-size: 12px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 16px !important;
+      }
       .hero-benefits-row {
         display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
+        grid-template-columns: repeat(5, 1fr) !important;
+        gap: 2px !important;
+        margin: 16px 0 !important;
+        padding: 0 !important;
+      }
+      .hero-benefit-item {
+        padding: 0 !important;
+        flex: auto !important;
       }
       .hero-benefit-item::after {
         display: none !important;
       }
+      .hero-benefit-icon-box {
+        width: 28px !important;
+        height: 26px !important;
+        margin-bottom: 3px !important;
+      }
+      .hero-benefit-icon-box img {
+        height: 22px !important;
+        max-width: 28px !important;
+      }
+      .hero-benefit-label {
+        font-size: 6.5px !important;
+        line-height: 1.15 !important;
+        letter-spacing: 0 !important;
+      }
+      .hero-buttons-row {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        width: 100% !important;
+      }
+      .btn-hero-primary, .btn-hero-secondary {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        justify-content: center !important;
+        padding: 12px 14px !important;
+        font-size: 11.5px !important;
+      }
+      .hero-bottom-container {
+        display: none !important;
+      }
+
+      /* 2. 5 ИГР (PAGE 2) */
+      .games-section .section-title-main {
+        font-size: 24px !important;
+      }
+      .games-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+      }
+      .game-card-exact, .game-card {
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .games-row-bottom {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+      }
+
+      /* 3. НАШИ КЛУБЫ (PAGE 3) */
       .clubs-layout-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 14px !important;
+      }
+      .clubs-list-col {
+        order: 1 !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+      }
+      .club-card-slide {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 10px !important;
+      }
+      .clubs-map-col {
+        order: 2 !important;
+        width: 100% !important;
+        height: 300px !important;
+        box-sizing: border-box !important;
+      }
+
+      /* 4. ИГРЫ И СТОИМОСТЬ + АБОНЕМЕНТЫ (PAGE 4) */
+      .pricing-dual-wrapper {
         display: flex !important;
         flex-direction: column !important;
         gap: 20px !important;
       }
-      .clubs-map-col {
-        height: 380px !important;
-        order: 2 !important;
+      .pricing-panel {
+        width: 100% !important;
+        padding: 14px 12px !important;
+        box-sizing: border-box !important;
       }
-      .clubs-list-col {
-        order: 1 !important;
+      .pricing-panel-title {
+        font-size: 15px !important;
+        margin-bottom: 12px !important;
+        text-align: left !important;
       }
-      .pricing-dual-grid, .night-5-cards-grid, .about-cards-5-grid, .market-5-grid, .china-layout-grid {
+      .games-price-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+      }
+      .price-card-col {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 64px !important;
+        padding: 10px 12px !important;
+        box-sizing: border-box !important;
+        border-radius: 12px !important;
+        background: #060913 !important;
+      }
+      .price-card-col .game-col-img-box {
+        width: 58px !important;
+        height: 50px !important;
+        margin: 0 10px 0 0 !important;
+        border-radius: 8px !important;
+        flex-shrink: 0 !important;
+        overflow: hidden !important;
+      }
+      .price-card-col .game-col-img-box img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
+      .price-card-col .card-head-title-ru {
+        font-size: 13px !important;
+        margin-bottom: 1px !important;
+        text-align: left !important;
+      }
+      .price-card-col .card-head-title-en {
+        font-size: 9px !important;
+        text-align: left !important;
+      }
+      .price-card-col .game-col-players-row {
+        font-size: 9px !important;
+        margin: 1px 0 0 !important;
+        text-align: left !important;
+      }
+      .price-card-col .game-col-price-row {
+        margin: 0 0 0 auto !important;
+        text-align: right !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important;
+      }
+      .price-card-col .price-amount {
+        font-size: 14px !important;
+      }
+      .price-card-col .price-unit {
+        font-size: 8.5px !important;
+      }
+      .price-card-col .btn-book-col {
+        width: auto !important;
+        padding: 5px 12px !important;
+        font-size: 9.5px !important;
+        margin-top: 4px !important;
+      }
+
+      /* Subscriptions */
+      .subs-price-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+      }
+      .sub-card-col {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 64px !important;
+        padding: 10px 12px !important;
+        box-sizing: border-box !important;
+        border-radius: 12px !important;
+        background: #060913 !important;
+      }
+      .sub-card-col .sub-col-icon-box {
+        width: 34px !important;
+        height: 34px !important;
+        margin: 0 10px 0 0 !important;
+        flex-shrink: 0 !important;
+      }
+      .sub-card-col .sub-col-icon-box svg {
+        width: 22px !important;
+        height: 22px !important;
+      }
+      .sub-card-col .sub-head-name {
+        font-size: 13px !important;
+        margin-bottom: 1px !important;
+        text-align: left !important;
+      }
+      .sub-card-col .sub-head-hours {
+        font-size: 9px !important;
+        text-align: left !important;
+      }
+      .sub-card-col .sub-col-features-list {
+        display: none !important;
+      }
+      .sub-card-col .sub-col-price-box {
+        margin: 0 0 0 auto !important;
+        text-align: right !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-end !important;
+      }
+      .sub-card-col .sub-price-val {
+        font-size: 14px !important;
+      }
+      .sub-card-col .sub-price-sub {
+        font-size: 8.5px !important;
+      }
+      .sub-card-col .btn-sub-col {
+        width: auto !important;
+        padding: 5px 12px !important;
+        font-size: 9.5px !important;
+        margin-top: 4px !important;
+      }
+
+      /* 5. О НАС — 5 АУДИТОРИЙ (PAGE 5) */
+      .about-title {
+        font-size: 22px !important;
+        line-height: 1.2 !important;
+      }
+      .about-grid-5 {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+      }
+      .about-col-card {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        min-height: auto !important;
+        height: auto !important;
+        padding: 14px 16px !important;
+        box-sizing: border-box !important;
+        border-radius: 14px !important;
+      }
+      .about-card-img-wrap {
+        display: none !important;
+      }
+      .about-col-card ul, .about-card-list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 5px !important;
+        font-size: 11px !important;
+        line-height: 1.35 !important;
+        margin-top: 6px !important;
+      }
+      .about-list-item {
+        font-size: 11px !important;
+        gap: 6px !important;
+      }
+
+      /* 6. НОЧНЫЕ ИГРЫ (PAGE 6) */
+      .night-main-title {
+        font-size: 24px !important;
+        line-height: 1.15 !important;
+      }
+      .night-hero-banner {
+        padding: 20px 12px !important;
+        min-height: auto !important;
+        border-radius: 14px !important;
+      }
+      .night-hero-bg-img {
+        width: 100% !important;
+        opacity: 0.2 !important;
+      }
+      .night-features-4-row {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 6px !important;
+        margin: 14px 0 !important;
+      }
+      .night-feat-mini-col {
+        padding: 6px !important;
+      }
+      .night-action-bar {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        width: 100% !important;
+      }
+      .night-time-card, .night-btn-book {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        justify-content: center !important;
+        text-align: center !important;
+        padding: 11px 12px !important;
+      }
+      .night-cards-5-grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        margin-top: 14px !important;
+      }
+      .night-feat-card {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 140px !important;
+        padding: 8px !important;
+        box-sizing: border-box !important;
+        border-radius: 10px !important;
+      }
+      .night-feat-img-wrap {
+        height: 80px !important;
+      }
+      .night-feat-title {
+        font-size: 9.5px !important;
+        margin: 5px 0 2px !important;
+      }
+      .night-feat-desc {
+        font-size: 8px !important;
+      }
+
+      /* 7. МАРКЕТ EVOSPORT (PAGE 7) */
+      .market-main-title {
+        font-size: 24px !important;
+      }
+      .market-5-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+      }
+      .market-exact-card {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 85px !important;
+        padding: 12px 14px !important;
+        box-sizing: border-box !important;
+        border-radius: 14px !important;
+        background: #060913 !important;
+      }
+      .market-exact-card.card-lime {
+        border: 1px solid rgba(200, 255, 61, 0.45) !important;
+      }
+      .market-exact-card.card-pink {
+        border: 1px solid rgba(255, 45, 120, 0.45) !important;
+      }
+      .market-exact-card.card-cyan {
+        border: 1px solid rgba(0, 180, 216, 0.45) !important;
+      }
+      .market-exact-card.card-orange {
+        border: 1px solid rgba(255, 136, 0, 0.45) !important;
+      }
+      .market-exact-card .market-card-top-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+      }
+      .market-exact-card .market-card-vector-icon img {
+        height: 32px !important;
+      }
+      .market-exact-card .market-card-header-title {
+        font-size: 13px !important;
+        margin: 0 !important;
+      }
+      .market-exact-card .market-card-btn {
+        width: auto !important;
+        padding: 5px 12px !important;
+        font-size: 9.5px !important;
+        margin: 0 !important;
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+      }
+      .market-exact-card .market-card-img-box {
+        width: 85px !important;
+        height: 70px !important;
+        margin: 0 !important;
+        flex-shrink: 0 !important;
+      }
+      .market-exact-card .market-card-img-box img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+      }
+
+      /* 8. ПРОИЗВОДСТВО В КИТАЕ (PAGE 8) */
+      .china-section > div {
         display: flex !important;
         flex-direction: column !important;
         gap: 16px !important;
       }
+      .china-section h2 {
+        font-size: 24px !important;
+        line-height: 1.15 !important;
+      }
+      .china-section div[style*="repeat(3, 1fr)"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+      }
+      .china-section div[style*="justify-content: space-between"] {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+        align-items: flex-start !important;
+        padding: 14px 12px !important;
+        box-sizing: border-box !important;
+      }
     }
 
-</style>
+  </style>
 </head>
 <body>
 <div class="page-wrapper">
