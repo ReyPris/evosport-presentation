@@ -4,37 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EVOSPORT — Центр ракеточного спорта | Твоя игра. Твои правила.</title>
-  <meta name="description" content="EVOSPORT — премиальный центр ракеточного спорта: Падел, Пиклбол, Турти, Бадминтон, Теннис, Настольный теннис. 4 клуба в Краснодарском крае, ночные игры и маркет оборудования.">
+  <meta name="description" content="EVOSPORT — сеть современных ракеточных клубов. Падел, Пиклбол, Турти, Бадминтон, Теннис, Настольный теннис. Ночные игры и маркет оборудования.">
   
-  <!-- Fonts -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Unbounded:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Unbounded:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   
-  <!-- Leaflet CSS for Map -->
+  <!-- Leaflet Map CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
   <style>
     /* ==========================================================================
-       EVOSPORT MASTER STYLES (1-TO-1 PRESENTATION SLIDES)
+       EVOSPORT MASTER DESIGN SYSTEM (EXACT 1-TO-1 SLIDE MATCH)
        ========================================================================== */
     :root {
       --bg-dark: #05070e;
-      --bg-surface: #0a0e17;
-      --bg-card: rgba(13, 18, 30, 0.75);
-      --bg-card-hover: rgba(20, 27, 45, 0.9);
+      --bg-card: rgba(13, 18, 30, 0.8);
+      --bg-card-hover: rgba(22, 30, 48, 0.95);
       
-      /* Pantone Palette */
-      --blue: #00b4d8;
-      --cyan: #00f2fe;
+      /* Pantone Brand Colors */
+      --cyan: #00b4d8;
+      --neon-cyan: #00f2fe;
       --magenta: #ff2d78;
       --pink: #e024c3;
       --lime: #c8ff3d;
       --orange: #ff8c00;
       --white: #ffffff;
-      --text-muted: #8e9bb0;
+      --text-muted: #9ca3af;
       
-      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-subtle: rgba(255, 255, 255, 0.1);
       --font-heading: 'Unbounded', sans-serif;
       --font-body: 'Inter', sans-serif;
       --container-max: 1240px;
@@ -54,7 +53,6 @@
       line-height: 1.5;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     img {
@@ -75,7 +73,6 @@
       border: none;
       outline: none;
       background: none;
-      transition: all 0.25s ease;
     }
 
     .container {
@@ -86,11 +83,11 @@
       position: relative;
     }
 
-    /* Section Tags & Headers */
+    /* Section Tags & Headings */
     .section-tag {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       font-family: var(--font-heading);
       font-size: 11px;
       font-weight: 700;
@@ -102,9 +99,9 @@
     .section-tag::before {
       content: '';
       display: inline-block;
-      width: 24px;
+      width: 20px;
       height: 3px;
-      background: linear-gradient(90deg, var(--cyan), var(--lime));
+      background: linear-gradient(90deg, var(--neon-cyan), var(--lime));
       border-radius: 2px;
     }
 
@@ -120,7 +117,7 @@
 
     .section-desc {
       color: var(--text-muted);
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.6;
       max-width: 680px;
     }
@@ -139,77 +136,34 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* Buttons */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-family: var(--font-heading);
-      font-size: 12px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 14px 28px;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .btn-gradient {
-      background: linear-gradient(90deg, #ff2d78 0%, #c8ff3d 100%);
-      color: #05070e;
-      box-shadow: 0 4px 20px rgba(255, 45, 120, 0.3);
-    }
-    .btn-gradient:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 28px rgba(200, 255, 61, 0.4);
-    }
-
-    .btn-outline {
-      background: rgba(13, 18, 30, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: var(--white);
-    }
-    .btn-outline:hover {
-      border-color: var(--cyan);
-      background: rgba(0, 242, 254, 0.1);
-      transform: translateY(-2px);
-    }
-
-    .btn-sm {
-      padding: 10px 20px;
-      font-size: 11px;
-    }
-
     /* ==========================================================================
-       0. HEADER (TRANSPARENT / DARK)
+       0. HEADER (EXACT 1-TO-1)
        ========================================================================== */
     .header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(5, 7, 14, 0.9);
+      background: rgba(5, 7, 14, 0.95);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-subtle);
-      padding: 16px 0;
+      padding: 14px 0;
     }
 
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
     }
 
     .brand-logo {
       display: flex;
       align-items: center;
       gap: 12px;
-      text-decoration: none;
     }
 
     .brand-logo svg {
-      height: 38px;
+      height: 36px;
       width: auto;
     }
 
@@ -221,33 +175,31 @@
     }
 
     .nav-links a {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      color: #9ca3af;
+      color: #cbd5e1;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       transition: color 0.2s ease;
     }
     .nav-links a:hover {
       color: var(--white);
     }
 
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
     .header-btn {
-      padding: 10px 18px;
+      padding: 8px 18px;
+      font-family: var(--font-heading);
       font-size: 11px;
-      border: 1px solid var(--magenta);
+      font-weight: 700;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 45, 120, 0.6);
       color: var(--white);
       border-radius: 6px;
       background: rgba(255, 45, 120, 0.08);
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      transition: all 0.25s ease;
     }
     .header-btn:hover {
       background: var(--magenta);
@@ -256,8 +208,8 @@
 
     .burger-btn {
       display: none;
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       flex-direction: column;
       justify-content: center;
       align-items: center;
@@ -267,15 +219,14 @@
     }
     .burger-btn span {
       display: block;
-      width: 22px;
+      width: 20px;
       height: 2px;
       background: var(--white);
-      transition: 0.3s;
     }
 
     .mobile-drawer {
       position: fixed;
-      top: 71px;
+      top: 65px;
       left: 0;
       width: 100%;
       background: rgba(5, 7, 14, 0.98);
@@ -292,172 +243,203 @@
     }
     .mobile-drawer a {
       font-family: var(--font-heading);
-      font-size: 14px;
+      font-size: 13px;
       padding: 10px 0;
       border-bottom: 1px solid var(--border-subtle);
     }
 
     /* ==========================================================================
-       1. HERO SECTION (1-TO-1 FULL-BLEED BACKGROUND & SPLASHES)
+       1. HERO SECTION (SLIDE 1: FULL-BLEED SEAMLESS COURT BG + CORNER SPLASHES)
        ========================================================================== */
     .hero-section {
-      padding: 50px 0 30px;
       position: relative;
-      background: radial-gradient(circle at 80% 40%, rgba(0, 242, 254, 0.08) 0%, transparent 60%), #05070e;
-      overflow: hidden;
-    }
-
-    /* Full background image of the court scene on the right */
-    .hero-scene-wrap {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 30px;
-      align-items: center;
-      min-height: 480px;
-      margin-bottom: 40px;
-      position: relative;
+      background-color: #05070e;
+      background-image: 
+        linear-gradient(to right, #05070e 0%, #05070e 38%, rgba(5, 7, 14, 0.4) 62%, rgba(5, 7, 14, 0) 100%),
+        url('images/hero_court_bg_pristine.jpg');
+      background-position: right center;
+      background-repeat: no-repeat;
+      background-size: auto 100%;
+      min-height: 640px;
+      padding: 60px 0 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .hero-content {
-      z-index: 2;
+      max-width: 580px;
+      position: relative;
+      z-index: 3;
     }
 
-    .hero-content h1 {
+    .hero-title {
       font-family: var(--font-heading);
-      font-size: 54px;
+      font-size: 58px;
       font-weight: 900;
-      line-height: 1.05;
-      margin-bottom: 20px;
+      line-height: 1.02;
+      margin-bottom: 18px;
       text-transform: uppercase;
       letter-spacing: -1px;
     }
 
     .hero-subtext {
       color: #9ca3af;
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 32px;
-      max-width: 500px;
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 28px;
+      font-weight: 400;
     }
 
-    .hero-features-row {
+    /* 5 Benefit Icons with exact slide minimalist style */
+    .hero-benefits-row {
       display: flex;
       align-items: flex-start;
-      gap: 20px;
-      margin-bottom: 36px;
-      flex-wrap: wrap;
+      gap: 22px;
+      margin-bottom: 32px;
     }
 
-    .hero-feature-item {
+    .hero-benefit-item {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 8px;
-      max-width: 90px;
+      max-width: 85px;
     }
 
-    .hero-feature-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid var(--border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .hero-benefit-item svg {
+      width: 26px;
+      height: 26px;
     }
 
-    .hero-feature-title {
-      font-size: 10px;
+    .hero-benefit-label {
+      font-size: 9px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
       line-height: 1.25;
       color: #d1d5db;
     }
 
-    .hero-buttons {
+    /* 2 Slide 1 Action Buttons */
+    .hero-buttons-row {
       display: flex;
+      align-items: center;
       gap: 16px;
+      margin-bottom: 30px;
       flex-wrap: wrap;
-      align-items: center;
     }
 
-    .hero-court-bg {
-      position: relative;
-      height: 100%;
-      min-height: 460px;
+    /* Button 1: Pink-to-Lime gradient with pink square badge */
+    .btn-slide1-primary {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(90deg, #ff2d78 0%, #c8ff3d 100%);
+      border-radius: 8px;
+      padding: 4px 22px 4px 4px;
+      color: #05070e;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      gap: 12px;
+      box-shadow: 0 6px 24px rgba(255, 45, 120, 0.35);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .btn-slide1-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(200, 255, 61, 0.45);
+    }
+
+    .btn-slide1-icon-box {
+      width: 38px;
+      height: 38px;
+      background: #ff2d78;
+      border-radius: 6px;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: center;
+      color: #ffffff;
     }
 
-    .hero-court-img {
-      width: 100%;
-      height: auto;
-      max-height: 460px;
-      object-fit: cover;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), 0 0 50px rgba(0, 242, 254, 0.15);
+    /* Button 2: Dark translucent outline with arrow */
+    .btn-slide1-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(13, 18, 30, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 14px 24px;
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(10px);
+      transition: all 0.25s ease;
+    }
+    .btn-slide1-secondary:hover {
+      border-color: var(--neon-cyan);
+      background: rgba(0, 242, 254, 0.1);
+      transform: translateY(-2px);
     }
 
-    /* Bottom Bar with Cyan and Magenta Brush Splashes */
-    .hero-bottom-wrap {
+    /* Bottom 5 Sports Bar with Corner Splashes */
+    .hero-bottom-container {
       position: relative;
-      margin-top: 10px;
+      margin-top: 20px;
     }
 
-    .splash-brush-left {
+    .splash-left {
       position: absolute;
-      left: -40px;
-      bottom: -20px;
-      width: 220px;
+      left: -28px;
+      bottom: -15px;
+      width: 140px;
       height: auto;
       pointer-events: none;
       z-index: 1;
-      opacity: 0.9;
     }
 
-    .splash-brush-right {
+    .splash-right {
       position: absolute;
-      right: -40px;
-      bottom: -20px;
-      width: 220px;
+      right: -28px;
+      bottom: -15px;
+      width: 140px;
       height: auto;
       pointer-events: none;
       z-index: 1;
-      opacity: 0.9;
     }
 
-    .sports-pill-bar {
+    .sports-bar {
       position: relative;
       z-index: 2;
-      background: rgba(13, 18, 30, 0.92);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(8, 12, 22, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 16px;
-      padding: 18px 24px;
+      padding: 16px 20px;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
       backdrop-filter: blur(16px);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     }
 
-    .sports-pill-item {
+    .sports-bar-item {
       display: flex;
       align-items: center;
-      gap: 14px;
-      padding: 0 12px;
+      gap: 12px;
+      padding: 0 14px;
       border-right: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .sports-pill-item:last-child {
+    .sports-bar-item:last-child {
       border-right: none;
     }
 
-    .sports-pill-icon {
-      width: 38px;
-      height: 38px;
+    .sports-bar-icon {
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -466,7 +448,7 @@
       flex-shrink: 0;
     }
 
-    .sports-pill-info h4 {
+    .sports-bar-text h4 {
       font-family: var(--font-heading);
       font-size: 11px;
       font-weight: 800;
@@ -474,19 +456,18 @@
       letter-spacing: 0.5px;
       margin-bottom: 2px;
     }
-    .sports-pill-info p {
+    .sports-bar-text p {
       font-size: 9px;
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.4px;
-      line-height: 1.2;
     }
 
     /* ==========================================================================
        2. 5 ИГР. МНОГО ЭМОЦИЙ (СЛАЙД 2)
        ========================================================================== */
     .games-section {
-      padding: 80px 0;
+      padding: 90px 0;
     }
 
     .games-grid-top {
@@ -508,8 +489,6 @@
       border-radius: 16px;
       border: 1px solid var(--border-subtle);
       padding: 24px;
-      display: flex;
-      flex-direction: column;
       position: relative;
       overflow: hidden;
       transition: all 0.3s ease;
@@ -518,13 +497,13 @@
     .game-card:hover {
       transform: translateY(-4px);
     }
-    .game-card.border-cyan { border-color: var(--cyan); }
+    .game-card.border-cyan { border-color: var(--neon-cyan); }
     .game-card.border-cyan:hover { box-shadow: 0 8px 30px rgba(0, 242, 254, 0.25); }
     .game-card.border-pink { border-color: var(--magenta); }
     .game-card.border-pink:hover { box-shadow: 0 8px 30px rgba(255, 45, 120, 0.25); }
     .game-card.border-lime { border-color: var(--lime); }
     .game-card.border-lime:hover { box-shadow: 0 8px 30px rgba(200, 255, 61, 0.25); }
-    .game-card.border-blue { border-color: var(--blue); }
+    .game-card.border-blue { border-color: var(--cyan); }
     .game-card.border-blue:hover { box-shadow: 0 8px 30px rgba(0, 180, 216, 0.25); }
     .game-card.border-magenta { border-color: var(--pink); }
     .game-card.border-magenta:hover { box-shadow: 0 8px 30px rgba(224, 36, 195, 0.25); }
@@ -533,8 +512,8 @@
       position: absolute;
       top: 16px;
       left: 16px;
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: rgba(5, 7, 14, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -550,7 +529,6 @@
       border-radius: 10px;
       overflow: hidden;
       margin-bottom: 20px;
-      position: relative;
     }
     .game-card-img img {
       width: 100%;
@@ -581,7 +559,7 @@
        3. ВСЕ НАШИ КЛУБЫ И АДРЕСА (СЛАЙД 3)
        ========================================================================== */
     .clubs-section {
-      padding: 80px 0;
+      padding: 90px 0;
     }
 
     .clubs-grid {
@@ -614,7 +592,7 @@
       outline: none;
     }
     .search-input:focus, .filter-select:focus {
-      border-color: var(--cyan);
+      border-color: var(--neon-cyan);
     }
 
     .control-icon {
@@ -656,7 +634,7 @@
     }
     .club-card:hover, .club-card.active {
       background: var(--bg-card-hover);
-      border-color: var(--cyan);
+      border-color: var(--neon-cyan);
       transform: translateX(4px);
     }
     .club-card.border-lime { border-color: rgba(200, 255, 61, 0.4); }
@@ -712,11 +690,10 @@
       gap: 6px;
     }
     .club-route-btn:hover {
-      border-color: var(--cyan);
-      color: var(--cyan);
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
     }
 
-    /* Map Box */
     .map-box {
       border-radius: 16px;
       overflow: hidden;
@@ -735,7 +712,7 @@
        4. ЦЕНЫ И АБОНЕМЕНТЫ (СЛАЙД 4)
        ========================================================================== */
     .pricing-section {
-      padding: 80px 0;
+      padding: 90px 0;
     }
 
     .pricing-dual-grid {
@@ -764,7 +741,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 14px;
-      padding: 16px 12px;
+      padding: 16px 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -781,7 +758,7 @@
     .price-card.orange { border-color: rgba(255, 140, 0, 0.4); }
 
     .price-card-head {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .price-card-head h4 {
       font-family: var(--font-heading);
@@ -820,7 +797,7 @@
 
     .price-card-val {
       font-family: var(--font-heading);
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 800;
       margin-bottom: 2px;
     }
@@ -833,26 +810,26 @@
     .sub-badge {
       position: absolute;
       top: -10px;
-      right: 12px;
+      right: 10px;
       background: var(--orange);
       color: #000;
       font-family: var(--font-heading);
       font-size: 9px;
       font-weight: 800;
-      padding: 3px 8px;
+      padding: 3px 7px;
       border-radius: 4px;
       text-transform: uppercase;
     }
 
     .sub-icon {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 10px;
       background: rgba(255, 255, 255, 0.04);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .sub-features {
@@ -861,7 +838,7 @@
       text-align: left;
       font-size: 10px;
       color: var(--text-muted);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       display: flex;
       flex-direction: column;
       gap: 6px;
@@ -878,11 +855,27 @@
       margin-top: 1px;
     }
 
+    .price-btn {
+      width: 100%;
+      padding: 8px 0;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .price-btn:hover {
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+    }
+
     /* ==========================================================================
        5. ПОЧЕМУ СТОИТ ИГРАТЬ — ВСЕМ (СЛАЙД 5)
        ========================================================================== */
     .audience-section {
-      padding: 80px 0;
+      padding: 90px 0;
     }
 
     .audience-grid {
@@ -896,7 +889,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
-      padding: 20px 16px;
+      padding: 20px 14px;
       display: flex;
       flex-direction: column;
       transition: all 0.3s ease;
@@ -912,8 +905,8 @@
     .audience-card.lime-alt { border-color: rgba(181, 245, 0, 0.4); }
 
     .audience-card-icon {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 10px;
       background: rgba(255, 255, 255, 0.04);
       display: flex;
@@ -974,7 +967,7 @@
        6. НОЧНЫЕ ИГРЫ (СЛАЙД 6)
        ========================================================================== */
     .night-section {
-      padding: 80px 0;
+      padding: 90px 0;
       position: relative;
     }
 
@@ -1018,13 +1011,13 @@
     .night-time-pill {
       background: rgba(200, 255, 61, 0.1);
       border: 1px solid var(--lime);
-      padding: 12px 20px;
+      padding: 10px 18px;
       border-radius: 8px;
       text-align: center;
     }
     .night-time-pill .time {
       font-family: var(--font-heading);
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       color: var(--lime);
       display: block;
@@ -1095,7 +1088,7 @@
     }
     .night-banner-slogan h3 {
       font-family: var(--font-heading);
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -1110,7 +1103,7 @@
        7. МАРКЕТ EVOSPORT (СЛАЙД 7)
        ========================================================================== */
     .market-section {
-      padding: 80px 0;
+      padding: 90px 0;
     }
 
     .market-grid {
@@ -1124,7 +1117,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       border-radius: 16px;
-      padding: 20px 16px;
+      padding: 20px 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1140,8 +1133,8 @@
     .market-card.orange { border-color: rgba(255, 140, 0, 0.4); }
 
     .market-icon {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.04);
       display: flex;
@@ -1192,7 +1185,7 @@
        8. ПРОИЗВОДСТВО В КИТАЕ (СЛАЙД 8)
        ========================================================================== */
     .china-section {
-      padding: 80px 0;
+      padding: 90px 0;
     }
 
     .china-grid {
@@ -1217,8 +1210,8 @@
     }
 
     .china-feat-icon {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       border-radius: 10px;
       background: rgba(200, 255, 61, 0.08);
       border: 1px solid rgba(200, 255, 61, 0.3);
@@ -1348,7 +1341,7 @@
       color: var(--text-muted);
     }
     .footer-links a:hover {
-      color: var(--cyan);
+      color: var(--neon-cyan);
     }
 
     .footer-phone {
@@ -1457,7 +1450,7 @@
       outline: none;
     }
     .form-control:focus {
-      border-color: var(--cyan);
+      border-color: var(--neon-cyan);
       background: rgba(0, 242, 254, 0.05);
     }
 
@@ -1465,8 +1458,8 @@
        RESPONSIVE
        ========================================================================== */
     @media (max-width: 1024px) {
-      .hero-scene-wrap { grid-template-columns: 1fr; }
-      .sports-pill-bar { grid-template-columns: repeat(3, 1fr); }
+      .hero-section { background-size: cover; }
+      .sports-bar { grid-template-columns: repeat(3, 1fr); }
       .games-grid-top { grid-template-columns: repeat(2, 1fr); }
       .games-grid-bot { grid-template-columns: 1fr; }
       .clubs-grid { grid-template-columns: 1fr; }
@@ -1484,10 +1477,11 @@
     @media (max-width: 768px) {
       .nav-links, .header-actions .header-btn { display: none; }
       .burger-btn { display: flex; }
-      .hero-content h1 { font-size: 34px; }
+      .hero-title { font-size: 36px; }
       .section-title { font-size: 28px; }
-      .sports-pill-bar { grid-template-columns: 1fr; gap: 12px; }
-      .sports-pill-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 10px; }
+      .hero-benefits-row { flex-wrap: wrap; gap: 14px; }
+      .sports-bar { grid-template-columns: 1fr; gap: 10px; }
+      .sports-bar-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 8px; }
       .games-grid-top { grid-template-columns: 1fr; }
       .pricing-cards-row { grid-template-columns: 1fr; }
       .audience-grid { grid-template-columns: 1fr; }
@@ -1496,14 +1490,14 @@
       .market-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr; }
       .map-box { height: 380px; }
-      .splash-brush-left, .splash-brush-right { display: none; }
+      .splash-left, .splash-right { display: none; }
     }
   </style>
 </head>
 <body>
 
   <!-- ==========================================================================
-       0. HEADER (TRANSPARENT BACKGROUND, VECTOR LOGO)
+       0. HEADER (EXACT 1-TO-1 VECTOR LOGO + TRANSPARENT NAVBAR)
        ========================================================================== -->
   <header class="header">
     <div class="container header-inner">
@@ -1526,14 +1520,13 @@
         <li><a href="#clubs">Клубы</a></li>
         <li><a href="#games">Игры</a></li>
         <li><a href="#pricing">Цены</a></li>
-        <li><a href="#night">Ночные игры</a></li>
         <li><a href="#market">Маркет</a></li>
-        <li><a href="#china">Производство</a></li>
+        <li><a href="#china">Франшиза</a></li>
       </ul>
 
       <div class="header-actions">
-        <button class="btn header-btn" onclick="openModal('Бронирование корта')">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <button class="header-btn" onclick="openModal('Бронирование корта (Хедер)')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           Забронировать корт
         </button>
         <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Меню">
@@ -1548,138 +1541,129 @@
       <a href="#clubs" onclick="toggleMobileMenu()">Клубы</a>
       <a href="#games" onclick="toggleMobileMenu()">Игры</a>
       <a href="#pricing" onclick="toggleMobileMenu()">Цены</a>
-      <a href="#night" onclick="toggleMobileMenu()">Ночные игры</a>
       <a href="#market" onclick="toggleMobileMenu()">Маркет</a>
-      <a href="#china" onclick="toggleMobileMenu()">Производство</a>
-      <button class="btn btn-gradient" style="margin-top: 10px;" onclick="openModal('Бронирование корта'); toggleMobileMenu();">
+      <a href="#china" onclick="toggleMobileMenu()">Франшиза</a>
+      <button class="btn-slide1-primary" style="margin-top: 10px; width: 100%; justify-content: center;" onclick="openModal('Бронирование корта'); toggleMobileMenu();">
+        <div class="btn-slide1-icon-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
         Забронировать корт
       </button>
     </div>
   </header>
 
   <!-- ==========================================================================
-       1. ГЛАВНЫЙ ЭКРАН (СЛАЙД 1: ПОЛНОРАЗМЕРНЫЙ ФОН + КЛЯКСЫ ПО БОКАМ)
+       1. HERO SECTION (SLIDE 1: SEAMLESS COURT BACKGROUND + CORNER SPLASHES)
        ========================================================================== -->
   <section class="hero-section" id="hero">
     <div class="container">
-      <div class="hero-scene-wrap">
-        <div class="hero-content">
-          <h1>
-            EVOSPORT<br>
-            <span class="text-gradient-lime">ТВОЯ ИГРА.</span><br>
-            <span class="text-gradient-pink">ТВОИ ПРАВИЛА.</span>
-          </h1>
-          <p class="hero-subtext">
-            EVOSPORT — это больше, чем клуб.<br>Это сообщество, эмоции и стиль жизни.
-          </p>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          EVOSPORT<br>
+          <span class="text-gradient-lime">ТВОЯ ИГРА.</span><br>
+          <span class="text-gradient-pink">ТВОИ ПРАВИЛА.</span>
+        </h1>
+        
+        <p class="hero-subtext">
+          EVOSPORT — это больше, чем клуб.<br>
+          Это сообщество, эмоции и стиль жизни.
+        </p>
 
-          <!-- 5 Benefit Badges with pure SVG -->
-          <div class="hero-features-row">
-            <div class="hero-feature-item">
-              <div class="hero-feature-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-              </div>
-              <span class="hero-feature-title">Сообщество и друзья</span>
-            </div>
-
-            <div class="hero-feature-item">
-              <div class="hero-feature-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
-              </div>
-              <span class="hero-feature-title">Турниры и лиги</span>
-            </div>
-
-            <div class="hero-feature-item">
-              <div class="hero-feature-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-              </div>
-              <span class="hero-feature-title">Музыка и вечеринки</span>
-            </div>
-
-            <div class="hero-feature-item">
-              <div class="hero-feature-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-              </div>
-              <span class="hero-feature-title">Кафе и лаунж</span>
-            </div>
-
-            <div class="hero-feature-item">
-              <div class="hero-feature-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-              </div>
-              <span class="hero-feature-title">Для детей и всей семьи</span>
-            </div>
+        <!-- 5 Minimalist SVG Benefit Badges from Slide 1 -->
+        <div class="hero-benefits-row">
+          <div class="hero-benefit-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span class="hero-benefit-label">Сообщество и друзья</span>
           </div>
 
-          <!-- Buttons with exact Slide 1 Pill Styling -->
-          <div class="hero-buttons">
-            <button class="btn btn-gradient" onclick="openModal('Бронирование корта (Главный экран)')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              Забронировать корт
-            </button>
-            <a href="#about" class="btn btn-outline">
-              Подробнее о клубе
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
+          <div class="hero-benefit-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+            <span class="hero-benefit-label">Турниры и лиги</span>
+          </div>
+
+          <div class="hero-benefit-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+            <span class="hero-benefit-label">Музыка и вечеринки</span>
+          </div>
+
+          <div class="hero-benefit-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            <span class="hero-benefit-label">Кафе и лаунж</span>
+          </div>
+
+          <div class="hero-benefit-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span class="hero-benefit-label">Для детей и всей семьи</span>
           </div>
         </div>
 
-        <div class="hero-court-bg">
-          <img src="images/hero_court_full_bg.jpg" alt="EVOSPORT Игроки на корте" class="hero-court-img">
+        <!-- 2 Slide 1 Action Buttons -->
+        <div class="hero-buttons-row">
+          <button class="btn-slide1-primary" onclick="openModal('Бронирование корта (Главный экран)')">
+            <div class="btn-slide1-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            Забронировать корт
+          </button>
+
+          <a href="#about" class="btn-slide1-secondary">
+            Подробнее о клубе
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
       </div>
 
-      <!-- Bottom Sports Bar with Corner Splashes -->
-      <div class="hero-bottom-wrap">
-        <img src="images/splash_cyan_corner.png" alt="Cyan Splash" class="splash-brush-left">
-        <img src="images/splash_magenta_corner.png" alt="Magenta Splash" class="splash-brush-right">
+      <!-- Bottom Bar with Pure Corner Splashes -->
+      <div class="hero-bottom-container">
+        <img src="images/splash_cyan_final.png" alt="Cyan Brush Splash" class="splash-left">
+        <img src="images/splash_magenta_final.png" alt="Magenta Brush Splash" class="splash-right">
 
-        <div class="sports-pill-bar">
-          <div class="sports-pill-item">
-            <div class="sports-pill-icon">
+        <div class="sports-bar">
+          <div class="sports-bar-item">
+            <div class="sports-bar-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><circle cx="12" cy="9" r="6"/><line x1="12" y1="15" x2="12" y2="22"/><circle cx="10" cy="8" r="0.8" fill="#00f2fe"/><circle cx="14" cy="8" r="0.8" fill="#00f2fe"/><circle cx="12" cy="10" r="0.8" fill="#00f2fe"/></svg>
             </div>
-            <div class="sports-pill-info">
-              <h4 style="color: var(--cyan);">Pickleball</h4>
+            <div class="sports-bar-text">
+              <h4 style="color: var(--neon-cyan);">Pickleball</h4>
               <p>Быстрая игра для всех</p>
             </div>
           </div>
 
-          <div class="sports-pill-item">
-            <div class="sports-pill-icon">
+          <div class="sports-bar-item">
+            <div class="sports-bar-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><rect x="7" y="4" width="10" height="12" rx="4"/><line x1="12" y1="16" x2="12" y2="22"/></svg>
             </div>
-            <div class="sports-pill-info">
+            <div class="sports-bar-text">
               <h4 style="color: var(--magenta);">Турти</h4>
               <p>Уникальный ракеточный спорт</p>
             </div>
           </div>
 
-          <div class="sports-pill-item">
-            <div class="sports-pill-icon">
+          <div class="sports-bar-item">
+            <div class="sports-bar-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="6" r="3"/><path d="M9 9l-4 9h14l-4-9"/><line x1="12" y1="9" x2="12" y2="18"/></svg>
             </div>
-            <div class="sports-pill-info">
+            <div class="sports-bar-text">
               <h4 style="color: var(--lime);">Бадминтон</h4>
               <p>Скорость, ловкость и реакция</p>
             </div>
           </div>
 
-          <div class="sports-pill-item">
-            <div class="sports-pill-icon">
+          <div class="sports-bar-item">
+            <div class="sports-bar-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="2"><circle cx="11" cy="9" r="6"/><line x1="15.5" y1="13.5" x2="20" y2="18"/><circle cx="6" cy="18" r="2.5" fill="#00b4d8"/></svg>
             </div>
-            <div class="sports-pill-info">
-              <h4 style="color: var(--blue);">Настольный теннис</h4>
+            <div class="sports-bar-text">
+              <h4 style="color: var(--cyan);">Настольный теннис</h4>
               <p>Классика, которую любят все</p>
             </div>
           </div>
 
-          <div class="sports-pill-item">
-            <div class="sports-pill-icon">
+          <div class="sports-bar-item">
+            <div class="sports-bar-icon">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e024c3" stroke-width="2"><ellipse cx="10" cy="10" rx="6" ry="6"/><line x1="14.5" y1="14.5" x2="20" y2="20"/><line x1="7" y1="10" x2="13" y2="10"/><line x1="10" y1="7" x2="10" y2="13"/></svg>
             </div>
-            <div class="sports-pill-info">
+            <div class="sports-bar-text">
               <h4 style="color: var(--pink);">Теннис</h4>
               <p>Традиции. Качество. Интенсив</p>
             </div>
@@ -1703,12 +1687,12 @@
       <div class="games-grid-top">
         <div class="game-card border-cyan">
           <div class="game-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><circle cx="12" cy="9" r="6"/><line x1="12" y1="15" x2="12" y2="22"/><circle cx="10" cy="8" r="0.8" fill="#00f2fe"/><circle cx="14" cy="8" r="0.8" fill="#00f2fe"/><circle cx="12" cy="10" r="0.8" fill="#00f2fe"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><circle cx="12" cy="9" r="6"/><line x1="12" y1="15" x2="12" y2="22"/><circle cx="10" cy="8" r="0.8" fill="#00f2fe"/><circle cx="14" cy="8" r="0.8" fill="#00f2fe"/><circle cx="12" cy="10" r="0.8" fill="#00f2fe"/></svg>
           </div>
           <div class="game-card-img">
             <img src="images/exact_sport_pickleball.jpg" alt="Pickleball в EVOSPORT">
           </div>
-          <h3 class="game-card-title" style="color: var(--cyan);">Pickleball</h3>
+          <h3 class="game-card-title" style="color: var(--neon-cyan);">Pickleball</h3>
           <p class="game-card-desc">
             Динамичная игра для всех возрастов. Лёгкие правила, быстрые розыгрыши и море эмоций с первого удара.
           </p>
@@ -1716,7 +1700,7 @@
 
         <div class="game-card border-pink">
           <div class="game-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><rect x="7" y="4" width="10" height="12" rx="4"/><line x1="12" y1="16" x2="12" y2="22"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><rect x="7" y="4" width="10" height="12" rx="4"/><line x1="12" y1="16" x2="12" y2="22"/></svg>
           </div>
           <div class="game-card-img">
             <img src="images/exact_sport_turti.jpg" alt="Турти в EVOSPORT">
@@ -1729,7 +1713,7 @@
 
         <div class="game-card border-lime">
           <div class="game-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="6" r="3"/><path d="M9 9l-4 9h14l-4-9"/><line x1="12" y1="9" x2="12" y2="18"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="6" r="3"/><path d="M9 9l-4 9h14l-4-9"/><line x1="12" y1="9" x2="12" y2="18"/></svg>
           </div>
           <div class="game-card-img">
             <img src="images/exact_sport_badminton.jpg" alt="Бадминтон в EVOSPORT">
@@ -1744,12 +1728,12 @@
       <div class="games-grid-bot">
         <div class="game-card border-blue">
           <div class="game-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="2"><circle cx="11" cy="9" r="6"/><line x1="15.5" y1="13.5" x2="20" y2="18"/><circle cx="6" cy="18" r="2.5" fill="#00b4d8"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="2"><circle cx="11" cy="9" r="6"/><line x1="15.5" y1="13.5" x2="20" y2="18"/><circle cx="6" cy="18" r="2.5" fill="#00b4d8"/></svg>
           </div>
           <div class="game-card-img">
             <img src="images/exact_sport_pingpong.jpg" alt="Настольный теннис в EVOSPORT">
           </div>
-          <h3 class="game-card-title" style="color: var(--blue);">Настольный теннис</h3>
+          <h3 class="game-card-title" style="color: var(--cyan);">Настольный теннис</h3>
           <p class="game-card-desc">
             Игра на реакцию, концентрацию и стратегию. Отличный выбор для тренировок мозга и дружеских турниров.
           </p>
@@ -1757,7 +1741,7 @@
 
         <div class="game-card border-magenta">
           <div class="game-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e024c3" stroke-width="2"><ellipse cx="10" cy="10" rx="6" ry="6"/><line x1="14.5" y1="14.5" x2="20" y2="20"/><line x1="7" y1="10" x2="13" y2="10"/><line x1="10" y1="7" x2="10" y2="13"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e024c3" stroke-width="2"><ellipse cx="10" cy="10" rx="6" ry="6"/><line x1="14.5" y1="14.5" x2="20" y2="20"/><line x1="7" y1="10" x2="13" y2="10"/><line x1="10" y1="7" x2="10" y2="13"/></svg>
           </div>
           <div class="game-card-img">
             <img src="images/exact_sport_tennis.jpg" alt="Большой теннис в EVOSPORT">
@@ -1923,12 +1907,12 @@
                 <img src="images/exact_price_padel.jpg" alt="Падел ракетка">
               </div>
               <div class="price-card-players">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 1–4 игрока
               </div>
               <div class="price-card-val">1 200 ₽</div>
               <div class="price-card-unit">/ час</div>
-              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Бронь: Падел')">Забронировать</button>
+              <button class="price-btn" onclick="openModal('Бронь: Падел')">Забронировать</button>
             </div>
 
             <div class="price-card pink">
@@ -1940,29 +1924,29 @@
                 <img src="images/exact_price_pickle.jpg" alt="Пиклбол ракетка">
               </div>
               <div class="price-card-players">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 1–4 игрока
               </div>
               <div class="price-card-val">900 ₽</div>
               <div class="price-card-unit">/ час</div>
-              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Бронь: Пиклбол')">Забронировать</button>
+              <button class="price-btn" onclick="openModal('Бронь: Пиклбол')">Забронировать</button>
             </div>
 
             <div class="price-card cyan">
               <div class="price-card-head">
-                <h4 style="color: var(--cyan);">Теннис</h4>
+                <h4 style="color: var(--neon-cyan);">Теннис</h4>
                 <p>Tennis</p>
               </div>
               <div class="price-card-photo">
                 <img src="images/exact_price_tennis.jpg" alt="Теннис ракетка">
               </div>
               <div class="price-card-players">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 1–4 игрока
               </div>
               <div class="price-card-val">1 400 ₽</div>
               <div class="price-card-unit">/ час</div>
-              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Бронь: Большой теннис')">Забронировать</button>
+              <button class="price-btn" onclick="openModal('Бронь: Большой теннис')">Забронировать</button>
             </div>
 
             <div class="price-card orange">
@@ -1974,12 +1958,12 @@
                 <img src="images/exact_price_badm.jpg" alt="Бадминтон ракетка">
               </div>
               <div class="price-card-players">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 1–4 игрока
               </div>
               <div class="price-card-val">800 ₽</div>
               <div class="price-card-unit">/ час</div>
-              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Бронь: Бадминтон')">Забронировать</button>
+              <button class="price-btn" onclick="openModal('Бронь: Бадминтон')">Забронировать</button>
             </div>
           </div>
         </div>
@@ -2003,7 +1987,7 @@
               </ul>
               <div class="price-card-val">4 000 ₽</div>
               <div class="price-card-unit">1 000 ₽ / час</div>
-              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Абонемент: LIGHT 4 часа')">Купить</button>
+              <button class="price-btn" onclick="openModal('Абонемент: LIGHT 4 часа')">Купить</button>
             </div>
 
             <div class="price-card pink">
@@ -2022,16 +2006,16 @@
               </ul>
               <div class="price-card-val">9 000 ₽</div>
               <div class="price-card-unit">900 ₽ / час</div>
-              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Абонемент: STANDARD 10 часов')">Купить</button>
+              <button class="price-btn" onclick="openModal('Абонемент: STANDARD 10 часов')">Купить</button>
             </div>
 
             <div class="price-card cyan">
               <div class="price-card-head">
-                <h4 style="color: var(--cyan);">PRO</h4>
+                <h4 style="color: var(--neon-cyan);">PRO</h4>
                 <p>20 ЧАСОВ</p>
               </div>
               <div class="sub-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polygon points="12 8 13.5 11 17 11.5 14.5 13.8 15.2 17.2 12 15.5 8.8 17.2 9.5 13.8 7 11.5 10.5 11 12 8" fill="#00f2fe"/></svg>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polygon points="12 8 13.5 11 17 11.5 14.5 13.8 15.2 17.2 12 15.5 8.8 17.2 9.5 13.8 7 11.5 10.5 11 12 8" fill="#00f2fe"/></svg>
               </div>
               <ul class="sub-features">
                 <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 20 часов игры</li>
@@ -2041,7 +2025,7 @@
               </ul>
               <div class="price-card-val">16 000 ₽</div>
               <div class="price-card-unit">800 ₽ / час</div>
-              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Абонемент: PRO 20 часов')">Купить</button>
+              <button class="price-btn" onclick="openModal('Абонемент: PRO 20 часов')">Купить</button>
             </div>
 
             <div class="price-card orange">
@@ -2051,7 +2035,7 @@
                 <p>БЕЗЛИМИТ</p>
               </div>
               <div class="sub-icon">
-                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2.5"><path d="M18.178 8c5.096 0 5.096 8 0 8-2.67 0-4.47-2.316-6.178-4-1.708 1.684-3.508 4-6.178 4-5.096 0-5.096-8 0-8 2.67 0 4.47 2.316 6.178 4 1.708-1.684 3.508-4 6.178-4z"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2.5"><path d="M18.178 8c5.096 0 5.096 8 0 8-2.67 0-4.47-2.316-6.178-4-1.708 1.684-3.508 4-6.178 4-5.096 0-5.096-8 0-8 2.67 0 4.47 2.316 6.178 4 1.708-1.684 3.508-4 6.178-4z"/></svg>
               </div>
               <ul class="sub-features">
                 <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Безлимитные игры</li>
@@ -2061,7 +2045,7 @@
               </ul>
               <div class="price-card-val">19 000 ₽</div>
               <div class="price-card-unit">633 ₽ / день</div>
-              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Абонемент: UNLIMITED')">Купить</button>
+              <button class="price-btn" onclick="openModal('Абонемент: UNLIMITED')">Купить</button>
             </div>
           </div>
         </div>
@@ -2083,7 +2067,7 @@
       <div class="audience-grid">
         <div class="audience-card lime">
           <div class="audience-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1" fill="#c8ff3d"/><circle cx="15" cy="10" r="1" fill="#c8ff3d"/><path d="M8 15s1.5 2 4 2 4-2 4-2"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1" fill="#c8ff3d"/><circle cx="15" cy="10" r="1" fill="#c8ff3d"/><path d="M8 15s1.5 2 4 2 4-2 4-2"/></svg>
           </div>
           <h3 class="audience-card-title" style="color: var(--lime);">Детям</h3>
           <p class="audience-card-sub">Игра с пользой для роста и развития</p>
@@ -2101,7 +2085,7 @@
 
         <div class="audience-card pink">
           <div class="audience-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
           </div>
           <h3 class="audience-card-title" style="color: var(--magenta);">Молодёжи</h3>
           <p class="audience-card-sub">Энергия, драйв и новые возможности</p>
@@ -2119,9 +2103,9 @@
 
         <div class="audience-card cyan">
           <div class="audience-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
-          <h3 class="audience-card-title" style="color: var(--cyan);">Взрослым</h3>
+          <h3 class="audience-card-title" style="color: var(--neon-cyan);">Взрослым</h3>
           <p class="audience-card-sub">Баланс между работой и отдыхом</p>
           <div class="audience-card-photo">
             <img src="images/exact_aud_adults.jpg" alt="Взрослые на корте">
@@ -2137,7 +2121,7 @@
 
         <div class="audience-card orange">
           <div class="audience-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
           <h3 class="audience-card-title" style="color: var(--orange);">Семьям</h3>
           <p class="audience-card-sub">Время вместе, которое важно</p>
@@ -2155,7 +2139,7 @@
 
         <div class="audience-card lime-alt">
           <div class="audience-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#b5f500" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9h.01M15 9h.01"/><path d="M8 16c2 1.5 6 1.5 8 0"/><path d="M8 7c1-1 3-1 4 0 1-1 3-1 4 0"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b5f500" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9h.01M15 9h.01"/><path d="M8 16c2 1.5 6 1.5 8 0"/><path d="M8 7c1-1 3-1 4 0 1-1 3-1 4 0"/></svg>
           </div>
           <h3 class="audience-card-title" style="color: #b5f500;">Пожилым людям</h3>
           <p class="audience-card-sub">Активное долголетие и здоровье</p>
@@ -2189,19 +2173,19 @@
           
           <div class="night-icons-row">
             <div class="night-icon-item">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
               <span>Ночные игры 22:00 – 03:00</span>
             </div>
             <div class="night-icon-item">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><circle cx="7" cy="7" r="4"/><line x1="10" y1="10" x2="20" y2="20"/><circle cx="17" cy="7" r="4"/><line x1="14" y1="10" x2="4" y2="20"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><circle cx="7" cy="7" r="4"/><line x1="10" y1="10" x2="20" y2="20"/><circle cx="17" cy="7" r="4"/><line x1="14" y1="10" x2="4" y2="20"/></svg>
               <span>Батлы и турниры</span>
             </div>
             <div class="night-icon-item">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
               <span>DJ сеты и атмосфера</span>
             </div>
             <div class="night-icon-item">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2"><path d="M8 22h8M12 15v7M19 3l-7 8-7-8h14z"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2"><path d="M8 22h8M12 15v7M19 3l-7 8-7-8h14z"/></svg>
               <span>Фирменные коктейли</span>
             </div>
           </div>
@@ -2215,15 +2199,17 @@
               <span class="time">22:00 – 03:00</span>
               <span class="label">Каждую ночь</span>
             </div>
-            <button class="btn btn-gradient" onclick="openModal('Бронь: Ночные игры 22:00–03:00')">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <button class="btn-slide1-primary" onclick="openModal('Бронь: Ночные игры 22:00–03:00')">
+              <div class="btn-slide1-icon-box">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
               Забронировать игру
             </button>
           </div>
         </div>
 
-        <div class="hero-court-bg">
-          <img src="images/exact_night_hero.jpg" alt="EVOSPORT Ночные игры" class="hero-court-img">
+        <div>
+          <img src="images/exact_night_hero.jpg" alt="EVOSPORT Ночные игры" style="width: 100%; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.8);">
         </div>
       </div>
 
@@ -2248,7 +2234,7 @@
           <div class="night-card-img">
             <img src="images/exact_night_court.jpg" alt="Люминесцентная разметка">
           </div>
-          <h5 style="color: var(--cyan);">Люминесцентная разметка</h5>
+          <h5 style="color: var(--neon-cyan);">Люминесцентная разметка</h5>
           <p>Корт, который сияет</p>
         </div>
 
@@ -2290,7 +2276,7 @@
       <div class="market-grid">
         <div class="market-card lime">
           <div class="market-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
           </div>
           <h4 class="market-title" style="color: var(--lime);">Покрытие</h4>
           <div class="market-photo">
@@ -2301,7 +2287,7 @@
 
         <div class="market-card pink">
           <div class="market-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><rect x="3" y="5" width="18" height="12" rx="1"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="13" x2="21" y2="13"/><line x1="7" y1="5" x2="7" y2="17"/><line x1="12" y1="5" x2="12" y2="17"/><line x1="17" y1="5" x2="17" y2="17"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><rect x="3" y="5" width="18" height="12" rx="1"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="13" x2="21" y2="13"/><line x1="7" y1="5" x2="7" y2="17"/><line x1="12" y1="5" x2="12" y2="17"/><line x1="17" y1="5" x2="17" y2="17"/></svg>
           </div>
           <h4 class="market-title" style="color: var(--magenta);">Сетки</h4>
           <div class="market-photo">
@@ -2312,9 +2298,9 @@
 
         <div class="market-card cyan">
           <div class="market-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><ellipse cx="10" cy="9" rx="6" ry="6"/><line x1="14.5" y1="13.5" x2="21" y2="20"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><ellipse cx="10" cy="9" rx="6" ry="6"/><line x1="14.5" y1="13.5" x2="21" y2="20"/></svg>
           </div>
-          <h4 class="market-title" style="color: var(--cyan);">Ракетки</h4>
+          <h4 class="market-title" style="color: var(--neon-cyan);">Ракетки</h4>
           <div class="market-photo">
             <img src="images/exact_market_rackets.jpg" alt="Ракетки EVOSPORT">
           </div>
@@ -2323,7 +2309,7 @@
 
         <div class="market-card orange">
           <div class="market-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
           </div>
           <h4 class="market-title" style="color: var(--orange);">Одежда</h4>
           <div class="market-photo">
@@ -2334,7 +2320,7 @@
 
         <div class="market-card lime">
           <div class="market-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><rect x="4" y="4" width="16" height="13" rx="2"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="13" x2="20" y2="13"/><circle cx="7" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><rect x="4" y="4" width="16" height="13" rx="2"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="13" x2="20" y2="13"/><circle cx="7" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
           </div>
           <h4 class="market-title" style="color: var(--lime);">Оборудование</h4>
           <div class="market-photo">
@@ -2372,7 +2358,7 @@
           <div class="china-features-col">
             <div class="china-feature-item">
               <div class="china-feat-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
               </div>
               <div class="china-feat-text">
                 <h5>Профессиональное качество</h5>
@@ -2382,7 +2368,7 @@
 
             <div class="china-feature-item">
               <div class="china-feat-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
               </div>
               <div class="china-feat-text">
                 <h5>Полный контроль производства</h5>
@@ -2392,7 +2378,7 @@
 
             <div class="china-feature-item">
               <div class="china-feat-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/></svg>
               </div>
               <div class="china-feat-text">
                 <h5>Мировой уровень и стандарты</h5>
@@ -2417,7 +2403,7 @@
 
       <div class="china-contacts-card">
         <div class="china-contact-company">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           <div>
             <h4>Guangzhou Evolution Road Trading Co., Ltd.</h4>
             <p>Room 1001-C21, No. 621 Tianhe Road, Tianhe District, Guangzhou City, China</p>
@@ -2426,15 +2412,15 @@
 
         <div class="china-contact-channels">
           <div class="china-contact-row">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
             <span>Email: <strong>newevolud@gmail.com</strong></span>
           </div>
           <div class="china-contact-row">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M8.5 12c4.14 0 7.5-2.69 7.5-6S12.64 0 8.5 0 1 2.69 1 6c0 1.91 1.13 3.6 2.87 4.67L3 13.5l3.2-1.6c.72.18 1.48.28 2.3.28z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M8.5 12c4.14 0 7.5-2.69 7.5-6S12.64 0 8.5 0 1 2.69 1 6c0 1.91 1.13 3.6 2.87 4.67L3 13.5l3.2-1.6c.72.18 1.48.28 2.3.28z"/></svg>
             <span>Тел / WeChat: <strong>+86 18617363834</strong></span>
           </div>
           <div class="china-contact-row">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
             <span>WhatsApp: <strong>+7 918 216-09-26</strong></span>
           </div>
         </div>
@@ -2449,7 +2435,7 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <svg viewBox="0 0 260 48" fill="none" style="height: 38px; margin-bottom: 16px;">
+          <svg viewBox="0 0 260 48" fill="none" style="height: 36px; margin-bottom: 16px;">
             <path d="M6 10 C14 4, 32 4, 38 10 C32 14, 18 16, 6 10 Z" fill="#00b4d8" />
             <path d="M6 22 C14 16, 32 16, 38 22 C32 26, 18 28, 6 22 Z" fill="#ff2d78" />
             <path d="M6 34 C14 28, 32 28, 38 34 C32 38, 18 40, 6 34 Z" fill="#c8ff3d" />
@@ -2491,7 +2477,7 @@
           <a href="tel:+79182160926" class="footer-phone">+7 918 216-09-26</a>
           <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">newevolud@gmail.com</p>
           <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Ежедневно 07:00 – 23:00</p>
-          <button class="btn btn-outline btn-sm" onclick="openModal('Заявка из футера')">Написать нам</button>
+          <button class="price-btn" style="max-width: 140px;" onclick="openModal('Заявка из футера')">Написать нам</button>
         </div>
       </div>
 
@@ -2540,7 +2526,10 @@
           <input type="text" id="modalServiceInput" class="form-control" value="Бронирование корта">
         </div>
 
-        <button type="submit" class="btn btn-gradient" style="width: 100%; margin-top: 12px;">
+        <button type="submit" class="btn-slide1-primary" style="width: 100%; margin-top: 12px; justify-content: center;">
+          <div class="btn-slide1-icon-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
           Отправить заявку
         </button>
       </form>
