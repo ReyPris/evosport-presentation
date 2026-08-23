@@ -3,71 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EVOSPORT — Центр ракеточного спорта</title>
+  <title>EVOSPORT — Центр ракеточного спорта | 5 игр. Много эмоций</title>
+  <meta name="description" content="EVOSPORT — премиальный центр ракеточного спорта: Падел, Пиклбол, Турти, Бадминтон, Теннис, Настольный теннис. 4 клуба в Краснодарском крае, ночные игры и маркет оборудования.">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Unbounded:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   
+  <!-- Leaflet CSS for Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
   <style>
     /* ==========================================================================
-       1. GLOBAL RESET & DESIGN TOKENS (EVOSPORT NEON SYSTEM)
+       EVOSPORT ROOT VARIABLES & BASE (PANTONE MATCHED)
        ========================================================================== */
     :root {
-      --bg: #05070e;
-      --bg-alt: #080c18;
-      --card: #0b1122;
-      --card-hover: #101932;
-      --card-border: rgba(255, 255, 255, 0.08);
+      --bg-dark: #05070e;
+      --bg-surface: #0a0e17;
+      --bg-card: rgba(13, 18, 30, 0.75);
+      --bg-card-hover: rgba(20, 27, 45, 0.9);
       
-      --lime: #c8ff3d;
-      --lime-dim: rgba(200, 255, 61, 0.15);
-      --pink: #ff2d78;
-      --pink-dim: rgba(255, 45, 120, 0.15);
+      /* Pantone Color Guide */
+      --blue: #00b4d8;
       --cyan: #00f2fe;
-      --cyan-dim: rgba(0, 242, 254, 0.15);
-      --blue: #0072ce;
-      --orange: #ff7a00;
-      --yellow: #ffd000;
+      --magenta: #ff2d78;
+      --pink: #e024c3;
+      --lime: #c8ff3d;
+      --orange: #ff8c00;
+      --white: #ffffff;
+      --text-muted: #8e9bb0;
       
-      --txt: #ffffff;
-      --txt-sub: #cbd5e1;
-      --txt-dim: #64748b;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-glow-blue: rgba(0, 242, 254, 0.4);
+      --border-glow-pink: rgba(255, 45, 120, 0.4);
+      --border-glow-lime: rgba(200, 255, 61, 0.4);
+      --border-glow-orange: rgba(255, 140, 0, 0.4);
       
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
-      --radius-xl: 26px;
-      
-      --grad-btn: linear-gradient(90deg, #ff2d78 0%, #c8ff3d 100%);
-      --grad-lime: linear-gradient(135deg, #c8ff3d 0%, #00f2fe 100%);
-      --grad-pink: linear-gradient(135deg, #ff2d78 0%, #ffd000 100%);
+      --font-heading: 'Unbounded', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --container-max: 1240px;
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
+    * {
       margin: 0;
       padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
+      box-sizing: border-box;
     }
 
     body {
-      background-color: var(--bg);
-      color: var(--txt);
-      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 15px;
       line-height: 1.5;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     img {
@@ -76,50 +68,83 @@
       display: block;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: all 0.25s ease;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: inherit;
+      border: none;
+      outline: none;
+      background: none;
+      transition: all 0.25s ease;
+    }
+
     .container {
       width: 100%;
-      max-width: 1280px;
+      max-width: var(--container-max);
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* Typography */
+    /* Section Tag & Headers */
     .section-tag {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-family: 'Unbounded', sans-serif;
+      gap: 12px;
+      font-family: var(--font-heading);
       font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.18em;
+      font-weight: 700;
       text-transform: uppercase;
-      color: var(--txt-sub);
+      letter-spacing: 2px;
+      color: var(--lime);
       margin-bottom: 12px;
     }
-
     .section-tag::before {
       content: '';
+      display: inline-block;
       width: 24px;
       height: 3px;
-      background: linear-gradient(90deg, var(--lime), var(--pink), var(--cyan));
+      background: linear-gradient(90deg, var(--cyan), var(--lime));
       border-radius: 2px;
     }
 
     .section-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(24px, 3.2vw, 42px);
-      font-weight: 900;
+      font-family: var(--font-heading);
+      font-size: 38px;
+      font-weight: 800;
       text-transform: uppercase;
+      letter-spacing: -0.5px;
       line-height: 1.15;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .section-desc {
-      font-size: clamp(13px, 1.2vw, 15px);
-      color: var(--txt-sub);
-      max-width: 680px;
+      color: var(--text-muted);
+      font-size: 16px;
       line-height: 1.6;
-      margin-bottom: 32px;
+      max-width: 680px;
+    }
+
+    .text-gradient-lime {
+      background: linear-gradient(90deg, #b5f500, #c8ff3d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-gradient-pink {
+      background: linear-gradient(90deg, #ff2d78, #e024c3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-gradient-mix {
+      background: linear-gradient(90deg, #ff2d78 0%, #c8ff3d 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     /* Buttons */
@@ -128,325 +153,345 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.04em;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
       text-transform: uppercase;
-      padding: 14px 26px;
-      border-radius: var(--radius-md);
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      border: none;
-      text-align: center;
+      letter-spacing: 0.5px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
     }
 
     .btn-gradient {
-      background: var(--grad-btn);
+      background: linear-gradient(90deg, #ff2d78 0%, #c8ff3d 100%);
       color: #05070e;
-      box-shadow: 0 8px 24px rgba(255, 45, 120, 0.25);
+      box-shadow: 0 4px 20px rgba(255, 45, 120, 0.3);
     }
     .btn-gradient:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(200, 255, 61, 0.35);
-    }
-
-    .btn-lime {
-      background: var(--lime);
-      color: #05070e;
-    }
-    .btn-lime:hover {
-      background: #d6ff5c;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(200, 255, 61, 0.3);
+      box-shadow: 0 6px 28px rgba(200, 255, 61, 0.4);
     }
 
     .btn-outline {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: #ffffff;
+      background: rgba(13, 18, 30, 0.8);
+      border: 1px solid var(--border-subtle);
+      color: var(--white);
     }
     .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.4);
+      border-color: var(--cyan);
+      background: rgba(0, 242, 254, 0.1);
       transform: translateY(-2px);
     }
 
-    .btn-block {
-      width: 100%;
+    .btn-sm {
+      padding: 10px 20px;
+      font-size: 11px;
     }
 
     /* ==========================================================================
-       HEADER & NAVIGATION (WITH OFFICIAL LOGO)
+       0. HEADER (STICKY)
        ========================================================================== */
     .header {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(5, 7, 14, 0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--card-border);
-      padding: 14px 0;
+      z-index: 1000;
+      background: rgba(5, 7, 14, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 16px 0;
     }
 
     .header-inner {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
 
-    .brand-logo-img {
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-img {
       height: 38px;
       width: auto;
-      display: block;
-      border-radius: 6px;
+      object-fit: contain;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 28px;
       list-style: none;
     }
 
-    .nav-link {
+    .nav-links a {
       font-size: 13px;
-      font-weight: 600;
-      color: var(--txt-sub);
-      transition: color 0.2s;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover {
+      color: var(--white);
     }
 
-    .nav-link:hover {
-      color: var(--lime);
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
+    .header-btn {
+      padding: 10px 18px;
+      font-size: 11px;
+      border: 1px solid var(--pink);
+      color: var(--white);
+      border-radius: 6px;
+      background: rgba(255, 45, 120, 0.08);
+    }
+    .header-btn:hover {
+      background: var(--pink);
       color: #fff;
-      cursor: pointer;
-      padding: 6px;
     }
 
-    @media (max-width: 980px) {
-      .nav-links, .header-cta {
-        display: none;
-      }
-      .hamburger {
-        display: block;
-      }
+    .burger-btn {
+      display: none;
+      width: 40px;
+      height: 40px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 6px;
+    }
+    .burger-btn span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      transition: 0.3s;
+    }
+
+    /* Mobile Drawer */
+    .mobile-drawer {
+      position: fixed;
+      top: 71px;
+      left: 0;
+      width: 100%;
+      background: rgba(5, 7, 14, 0.98);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 24px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 999;
+    }
+    .mobile-drawer.active {
+      display: flex;
+    }
+    .mobile-drawer a {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     /* ==========================================================================
-       SECTION 1: HERO (1 СТРАНИЦА)
+       1. HERO SECTION (СЛАЙД 1)
        ========================================================================== */
     .hero-section {
+      padding: 60px 0 40px;
       position: relative;
-      padding: 40px 0 60px;
-      overflow: hidden;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 1fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 40px;
       align-items: center;
+      margin-bottom: 48px;
     }
 
-    .hero-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(32px, 4.2vw, 56px);
+    .hero-content h1 {
+      font-family: var(--font-heading);
+      font-size: 52px;
       font-weight: 900;
-      line-height: 1.1;
+      line-height: 1.05;
+      margin-bottom: 20px;
       text-transform: uppercase;
-      margin-bottom: 18px;
+      letter-spacing: -1px;
     }
 
-    .hero-title .t-white { color: #ffffff; }
-    .hero-title .t-lime { color: var(--lime); }
-    .hero-title .t-pink { color: var(--pink); }
-    .hero-title .t-cyan { color: var(--cyan); }
-
-    .hero-desc {
-      font-size: 15px;
-      color: var(--txt-sub);
+    .hero-subtext {
+      color: var(--text-muted);
+      font-size: 16px;
       line-height: 1.6;
+      margin-bottom: 32px;
       max-width: 520px;
-      margin-bottom: 28px;
     }
 
-    .hero-features {
+    .hero-features-row {
       display: flex;
-      gap: 16px;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 36px;
       flex-wrap: wrap;
-      margin-bottom: 32px;
     }
 
     .hero-feature-item {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: 6px;
-      min-width: 70px;
+      align-items: flex-start;
+      gap: 8px;
+      max-width: 90px;
     }
 
     .hero-feature-icon {
       width: 44px;
       height: 44px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
     }
 
-    .hero-feature-text {
-      font-size: 9.5px;
+    .hero-feature-title {
+      font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
-      color: var(--txt-sub);
-      line-height: 1.2;
+      letter-spacing: 0.5px;
+      line-height: 1.25;
+      color: #d1d5db;
     }
 
-    .hero-actions {
+    .hero-buttons {
       display: flex;
-      gap: 14px;
-      align-items: center;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
     .hero-image-col {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      position: relative;
     }
 
     .hero-image-wrap {
-      position: relative;
-      border-radius: var(--radius-xl);
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 50px rgba(0, 242, 254, 0.15);
     }
-
     .hero-image-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
     }
 
-    .hero-thumbnails-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .hero-thumb-item {
-      height: 80px;
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      border: 1px solid var(--card-border);
-    }
-
-    .hero-thumb-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hero-sports-bar {
-      margin-top: 48px;
-      background: rgba(11, 17, 34, 0.85);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius-lg);
-      padding: 16px 20px;
+    /* Hero Bottom Sports Bar */
+    .sports-pill-bar {
+      background: rgba(13, 18, 30, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 18px 24px;
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      gap: 16px;
+      backdrop-filter: blur(12px);
     }
 
-    .sport-pill-col {
+    .sports-pill-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 8px 12px;
-      border-radius: var(--radius-md);
-      transition: background 0.2s;
-    }
-
-    .sport-pill-col:not(:last-child) {
+      gap: 14px;
+      padding: 0 12px;
       border-right: 1px solid rgba(255, 255, 255, 0.06);
     }
-
-    .sport-pill-col:hover {
-      background: rgba(255, 255, 255, 0.03);
+    .sports-pill-item:last-child {
+      border-right: none;
     }
 
-    .sport-pill-name {
-      font-family: 'Unbounded', sans-serif;
+    .sports-pill-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.04);
+      flex-shrink: 0;
+    }
+
+    .sports-pill-info h4 {
+      font-family: var(--font-heading);
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
       margin-bottom: 2px;
     }
-
-    .sport-pill-sub {
+    .sports-pill-info p {
       font-size: 9px;
-      font-weight: 500;
-      color: var(--txt-dim);
-      line-height: 1.2;
+      color: var(--text-muted);
       text-transform: uppercase;
+      letter-spacing: 0.4px;
+      line-height: 1.2;
     }
 
     /* ==========================================================================
-       SECTION 2: 5 ИГР. МНОГО ЭМОЦИЙ (2 СТРАНИЦА)
+       2. 5 ИГР. МНОГО ЭМОЦИЙ (СЛАЙД 2)
        ========================================================================== */
-    .sports-section {
-      padding: 70px 0;
-      border-top: 1px solid var(--card-border);
+    .games-section {
+      padding: 80px 0;
     }
 
-    .sports-grid-desktop {
+    .games-grid-top {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
+      margin-top: 40px;
       margin-bottom: 20px;
     }
 
-    .sports-grid-bottom {
+    .games-grid-bot {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
 
-    .sport-card-v2 {
-      background: var(--card);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid;
-      position: relative;
+    .game-card {
+      background: var(--bg-card);
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      padding: 24px;
       display: flex;
       flex-direction: column;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(12px);
     }
-
-    .sport-card-v2:hover {
+    .game-card:hover {
       transform: translateY(-4px);
     }
+    .game-card.border-cyan { border-color: var(--cyan); }
+    .game-card.border-cyan:hover { box-shadow: 0 8px 30px rgba(0, 242, 254, 0.2); }
+    .game-card.border-pink { border-color: var(--magenta); }
+    .game-card.border-pink:hover { box-shadow: 0 8px 30px rgba(255, 45, 120, 0.2); }
+    .game-card.border-lime { border-color: var(--lime); }
+    .game-card.border-lime:hover { box-shadow: 0 8px 30px rgba(200, 255, 61, 0.2); }
+    .game-card.border-blue { border-color: var(--blue); }
+    .game-card.border-blue:hover { box-shadow: 0 8px 30px rgba(0, 180, 216, 0.2); }
+    .game-card.border-magenta { border-color: var(--pink); }
+    .game-card.border-magenta:hover { box-shadow: 0 8px 30px rgba(224, 36, 195, 0.2); }
 
-    .sport-card-v2.c-blue { border-color: #00f2fe; }
-    .sport-card-v2.c-pink { border-color: #ff2d78; }
-    .sport-card-v2.c-lime { border-color: #c8ff3d; }
-    .sport-card-v2.c-cyan { border-color: #00b4d8; }
-    .sport-card-v2.c-magenta { border-color: #e024c3; }
-
-    .sport-card-top-icon {
+    .game-card-icon {
       position: absolute;
       top: 16px;
       left: 16px;
@@ -454,1005 +499,1077 @@
       height: 44px;
       border-radius: 50%;
       background: rgba(5, 7, 14, 0.85);
-      border: 1px solid currentColor;
+      border: 1px solid rgba(255, 255, 255, 0.15);
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 5;
-      font-size: 20px;
+      z-index: 2;
     }
 
-    .sport-card-img {
+    .game-card-img {
       width: 100%;
-      height: 200px;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .game-card-img img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      display: block;
+      transition: transform 0.4s ease;
+    }
+    .game-card:hover .game-card-img img {
+      transform: scale(1.05);
     }
 
-    .sport-card-content {
-      padding: 20px 22px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .sport-card-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 15px;
-      font-weight: 900;
+    .game-card-title {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 800;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
       margin-bottom: 8px;
     }
 
-    .sport-card-text {
-      font-size: 12.5px;
-      color: var(--txt-sub);
-      line-height: 1.55;
+    .game-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
     }
 
     /* ==========================================================================
-       SECTION 3: НАШИ КЛУБЫ И КАРТА (3 СТРАНИЦА)
+       3. ВСЕ НАШИ КЛУБЫ И АДРЕСА (СЛАЙД 3)
        ========================================================================== */
     .clubs-section {
-      padding: 70px 0;
-      border-top: 1px solid var(--card-border);
+      padding: 80px 0;
     }
 
-    .clubs-layout {
+    .clubs-grid {
       display: grid;
       grid-template-columns: 1fr 1.3fr;
-      gap: 28px;
-      align-items: start;
+      gap: 32px;
+      margin-top: 36px;
     }
 
-    .clubs-left-col {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .clubs-search-row {
-      display: flex;
+    .clubs-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin-bottom: 4px;
+      margin-bottom: 20px;
     }
 
-    .clubs-search-input, .clubs-city-select {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius-md);
-      padding: 12px 16px;
+    .search-input-wrap, .filter-select-wrap {
+      position: relative;
+    }
+
+    .search-input, .filter-select {
+      width: 100%;
+      background: rgba(13, 18, 30, 0.9);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 12px 14px 12px 38px;
+      color: var(--white);
       font-size: 13px;
-      color: #fff;
+      font-family: inherit;
       outline: none;
     }
-
-    .clubs-search-input { flex: 1; }
-
-    .club-item-card {
-      background: var(--card);
-      border: 1px solid;
-      border-radius: var(--radius-md);
-      padding: 14px;
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
+    .search-input:focus, .filter-select:focus {
+      border-color: var(--cyan);
     }
 
-    .club-item-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    }
-
-    .club-item-card.border-lime { border-color: var(--lime); }
-    .club-item-card.border-pink { border-color: var(--pink); }
-    .club-item-card.border-blue { border-color: var(--blue); }
-    .club-item-card.border-cyan { border-color: var(--cyan); }
-
-    .club-thumb {
-      width: 100px;
-      height: 75px;
-      border-radius: var(--radius-sm);
-      object-fit: cover;
-      flex-shrink: 0;
-    }
-
-    .club-info {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .club-city-name {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 12px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .club-street {
-      font-size: 12px;
-      color: var(--txt-sub);
-    }
-
-    .club-time {
-      font-size: 11px;
-      color: var(--txt-dim);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .club-route-btn {
-      align-self: flex-start;
-      margin-top: 4px;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 10px;
-      font-weight: 800;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 6px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .clubs-map-panel {
-      background: #040814;
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      position: relative;
-      min-height: 480px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-    }
-
-    .clubs-map-panel img {
-      width: 100%;
-      height: 100%;
-      min-height: 480px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .map-zoom-controls {
+    .control-icon {
       position: absolute;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      background: rgba(7, 12, 24, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 8px;
-      padding: 4px;
-    }
-
-    .map-zoom-btn {
-      width: 28px;
-      height: 28px;
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-size: 16px;
-      font-weight: 800;
-      cursor: pointer;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 4px;
     }
-    .map-zoom-btn:hover {
-      background: rgba(255, 255, 255, 0.1);
+
+    .filter-select {
+      appearance: none;
+      cursor: pointer;
+    }
+
+    .clubs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-height: 480px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+
+    .club-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 16px;
+      align-items: center;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .club-card:hover, .club-card.active {
+      background: var(--bg-card-hover);
+      border-color: var(--cyan);
+      transform: translateX(4px);
+    }
+    .club-card.border-lime { border-color: rgba(200, 255, 61, 0.4); }
+    .club-card.border-pink { border-color: rgba(255, 45, 120, 0.4); }
+    .club-card.border-blue { border-color: rgba(0, 180, 216, 0.4); }
+
+    .club-thumb {
+      width: 110px;
+      height: 75px;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .club-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .club-info h4 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .club-info p {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .club-time {
+      font-size: 11px;
+      color: var(--lime);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+
+    .club-route-btn {
+      font-family: var(--font-heading);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+      color: var(--white);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .club-route-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* Map Box */
+    .map-box {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      height: 520px;
+      background: #05070e;
+    }
+    #evosportMap {
+      width: 100%;
+      height: 100%;
+      background: #090e17;
     }
 
     /* ==========================================================================
-       SECTION 4: ИГРЫ, ЦЕНЫ И АБОНЕМЕНТЫ (4 СТРАНИЦА)
+       4. ЦЕНЫ И АБОНЕМЕНТЫ (СЛАЙД 4)
        ========================================================================== */
     .pricing-section {
-      padding: 70px 0;
-      border-top: 1px solid var(--card-border);
+      padding: 80px 0;
     }
 
-    .pricing-two-col {
+    .pricing-dual-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 32px;
+      margin-top: 40px;
     }
 
     .pricing-block-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 16px;
-      font-weight: 900;
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 800;
       text-transform: uppercase;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      margin-bottom: 24px;
+      letter-spacing: -0.5px;
     }
 
-    .pricing-cards-grid {
+    .pricing-cards-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
     }
 
-    .price-sport-card {
-      background: var(--card);
-      border: 1px solid;
-      border-radius: var(--radius-md);
+    .price-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
       padding: 16px 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
     }
-
-    .price-sport-card.c-lime { border-color: var(--lime); }
-    .price-sport-card.c-pink { border-color: var(--pink); }
-    .price-sport-card.c-cyan { border-color: var(--cyan); }
-    .price-sport-card.c-orange { border-color: var(--orange); }
-
-    .price-sport-name {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 11px;
-      font-weight: 900;
-      margin-bottom: 2px;
+    .price-card:hover {
+      transform: translateY(-4px);
     }
+    .price-card.lime { border-color: rgba(200, 255, 61, 0.4); }
+    .price-card.pink { border-color: rgba(255, 45, 120, 0.4); }
+    .price-card.cyan { border-color: rgba(0, 242, 254, 0.4); }
+    .price-card.orange { border-color: rgba(255, 140, 0, 0.4); }
 
-    .price-sport-en {
+    .price-card-head {
+      margin-bottom: 12px;
+    }
+    .price-card-head h4 {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .price-card-head p {
       font-size: 9px;
-      font-weight: 700;
-      color: var(--txt-dim);
-      margin-bottom: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
-    .price-sport-img {
-      width: 70px;
-      height: 90px;
-      object-fit: contain;
+    .price-card-photo {
+      width: 100%;
+      height: 120px;
+      border-radius: 8px;
+      overflow: hidden;
       margin-bottom: 12px;
     }
+    .price-card-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-    .price-sport-players {
-      font-size: 10px;
-      color: var(--txt-sub);
-      margin-bottom: 8px;
+    .price-card-players {
       display: flex;
       align-items: center;
-      gap: 4px;
-    }
-
-    .price-sport-val {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 14px;
-      font-weight: 900;
-      color: #fff;
-    }
-
-    .price-sport-sub {
-      font-size: 9px;
-      color: var(--txt-dim);
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
       margin-bottom: 12px;
     }
 
-    .price-sport-btn {
-      width: 100%;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 9px;
+    .price-card-val {
+      font-family: var(--font-heading);
+      font-size: 18px;
       font-weight: 800;
-      padding: 8px 4px;
-      border-radius: 6px;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.2s;
+      margin-bottom: 2px;
     }
-    .price-sport-btn:hover {
-      background: var(--lime);
-      color: #05070e;
-      border-color: var(--lime);
+    .price-card-unit {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
     }
-
-    /* Subscription Card */
-    .sub-card {
-      background: var(--card);
-      border: 1px solid;
-      border-radius: var(--radius-md);
-      padding: 18px 14px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    .sub-card.c-lime { border-color: var(--lime); }
-    .sub-card.c-pink { border-color: var(--pink); }
-    .sub-card.c-cyan { border-color: var(--cyan); }
-    .sub-card.c-orange { border-color: var(--orange); }
 
     .sub-badge {
       position: absolute;
       top: -10px;
       right: 12px;
       background: var(--orange);
-      color: #fff;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 8px;
-      font-weight: 900;
-      padding: 2px 8px;
+      color: #000;
+      font-family: var(--font-heading);
+      font-size: 9px;
+      font-weight: 800;
+      padding: 3px 8px;
       border-radius: 4px;
       text-transform: uppercase;
     }
 
-    .sub-name {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 11px;
-      font-weight: 900;
-    }
-
-    .sub-hours-label {
-      font-size: 9.5px;
-      font-weight: 700;
-      color: var(--txt-dim);
-      margin-bottom: 12px;
-    }
-
-    .sub-icon-wrap {
+    .sub-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 14px;
-      font-size: 20px;
     }
 
     .sub-features {
       list-style: none;
+      width: 100%;
+      text-align: left;
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
       display: flex;
       flex-direction: column;
       gap: 6px;
-      font-size: 10px;
-      color: var(--txt-sub);
-      margin-bottom: 18px;
-      flex: 1;
+      flex-grow: 1;
     }
-
     .sub-features li {
       display: flex;
       align-items: flex-start;
-      gap: 6px;
+      gap: 5px;
       line-height: 1.3;
     }
-
-    .sub-price-val {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 14px;
-      font-weight: 900;
-    }
-
-    .sub-price-rate {
-      font-size: 9.5px;
-      color: var(--txt-dim);
-      margin-bottom: 12px;
-    }
-
-    .sub-btn {
-      width: 100%;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 9px;
-      font-weight: 800;
-      padding: 8px 4px;
-      border-radius: 6px;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .sub-btn:hover {
-      background: #fff;
-      color: #05070e;
+    .sub-features li svg {
+      flex-shrink: 0;
+      margin-top: 1px;
     }
 
     /* ==========================================================================
-       SECTION 5: ПОЧЕМУ СТОИТ ИГРАТЬ ВСЕМ (5 СТРАНИЦА)
+       5. ПОЧЕМУ СТОИТ ИГРАТЬ — ВСЕМ (СЛАЙД 5)
        ========================================================================== */
     .audience-section {
-      padding: 70px 0;
-      border-top: 1px solid var(--card-border);
+      padding: 80px 0;
     }
 
-    .audience-grid-desktop {
+    .audience-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 16px;
+      margin-top: 40px;
     }
 
-    .audience-card-col {
-      background: var(--card);
-      border: 1px solid;
-      border-radius: var(--radius-lg);
+    .audience-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
       padding: 20px 16px;
       display: flex;
       flex-direction: column;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(12px);
     }
+    .audience-card:hover {
+      transform: translateY(-4px);
+    }
+    .audience-card.lime { border-color: rgba(200, 255, 61, 0.4); }
+    .audience-card.pink { border-color: rgba(255, 45, 120, 0.4); }
+    .audience-card.cyan { border-color: rgba(0, 242, 254, 0.4); }
+    .audience-card.orange { border-color: rgba(255, 140, 0, 0.4); }
+    .audience-card.lime-alt { border-color: rgba(181, 245, 0, 0.4); }
 
-    .audience-card-col.c-lime { border-color: var(--lime); }
-    .audience-card-col.c-pink { border-color: var(--pink); }
-    .audience-card-col.c-cyan { border-color: var(--cyan); }
-    .audience-card-col.c-orange { border-color: var(--orange); }
-    .audience-card-col.c-yellow { border-color: var(--yellow); }
-
-    .audience-icon {
-      font-size: 28px;
+    .audience-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 12px;
     }
 
-    .audience-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 13px;
-      font-weight: 900;
+    .audience-card-title {
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 800;
       text-transform: uppercase;
       margin-bottom: 4px;
     }
 
-    .audience-sub {
-      font-size: 10.5px;
-      color: var(--txt-sub);
-      line-height: 1.3;
+    .audience-card-sub {
+      font-size: 11px;
+      color: var(--text-muted);
       margin-bottom: 16px;
-      min-height: 28px;
+      min-height: 32px;
+      line-height: 1.35;
     }
 
-    .audience-img {
+    .audience-card-photo {
       width: 100%;
-      height: 110px;
-      border-radius: var(--radius-sm);
-      object-fit: cover;
+      height: 130px;
+      border-radius: 10px;
+      overflow: hidden;
       margin-bottom: 16px;
     }
+    .audience-card-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-    .audience-bullets {
+    .audience-list {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 8px;
-      font-size: 10.5px;
-      color: var(--txt-sub);
-      flex: 1;
+      font-size: 11px;
+      color: #d1d5db;
     }
-
-    .audience-bullets li {
+    .audience-list li {
       display: flex;
       align-items: flex-start;
       gap: 6px;
       line-height: 1.35;
     }
+    .audience-list li svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
 
     /* ==========================================================================
-       SECTION 6: НОЧНЫЕ ИГРЫ (6 СТРАНИЦА)
+       6. НОЧНЫЕ ИГРЫ (СЛАЙД 6)
        ========================================================================== */
     .night-section {
-      padding: 70px 0;
-      border-top: 1px solid var(--card-border);
+      padding: 80px 0;
+      position: relative;
     }
 
     .night-hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 1fr;
-      gap: 36px;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 40px;
       align-items: center;
-      margin-bottom: 40px;
-    }
-
-    .night-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(28px, 3.8vw, 48px);
-      font-weight: 900;
-      line-height: 1.1;
-      text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 48px;
     }
 
     .night-icons-row {
-      display: flex;
-      gap: 16px;
-      margin: 18px 0 24px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 28px 0;
     }
 
     .night-icon-item {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      text-align: center;
-      min-width: 65px;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .night-icon-item span {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #e5e7eb;
+      line-height: 1.25;
     }
 
-    .night-icon-box {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    .night-cta-bar {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 18px;
+      gap: 16px;
+      margin-top: 24px;
+      flex-wrap: wrap;
     }
 
-    .night-icon-label {
+    .night-time-pill {
+      background: rgba(200, 255, 61, 0.1);
+      border: 1px solid var(--lime);
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .night-time-pill .time {
+      font-family: var(--font-heading);
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--lime);
+      display: block;
+    }
+    .night-time-pill .label {
       font-size: 9px;
       font-weight: 700;
       text-transform: uppercase;
-      color: var(--txt-sub);
+      letter-spacing: 1px;
+      color: var(--white);
     }
 
-    .night-time-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 14px;
-      font-weight: 900;
-      color: var(--lime);
-      background: var(--lime-dim);
-      border: 1px solid rgba(200, 255, 61, 0.3);
-      padding: 10px 18px;
-      border-radius: var(--radius-md);
-      margin-right: 14px;
-    }
-
-    .night-features-strip {
+    .night-cards-row {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 16px;
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
 
-    .night-feat-card {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius-md);
-      overflow: hidden;
+    .night-card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
+      transition: all 0.3s ease;
+    }
+    .night-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--magenta);
+      box-shadow: 0 8px 30px rgba(255, 45, 120, 0.25);
     }
 
-    .night-feat-img {
+    .night-card-img {
       width: 100%;
       height: 120px;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .night-card-img img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
 
-    .night-feat-body {
-      padding: 14px 12px;
-      text-align: center;
-    }
-
-    .night-feat-name {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 10px;
+    .night-card h5 {
+      font-family: var(--font-heading);
+      font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
       margin-bottom: 4px;
+      line-height: 1.25;
+    }
+    .night-card p {
+      font-size: 10px;
+      color: var(--text-muted);
+      line-height: 1.3;
     }
 
-    .night-feat-sub {
-      font-size: 9.5px;
-      color: var(--txt-dim);
-    }
-
-    .night-bottom-slogan {
+    .night-banner-slogan {
       text-align: center;
-      padding: 24px;
-      background: rgba(11, 17, 34, 0.5);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--card-border);
+      padding: 32px 20px;
+      background: rgba(13, 18, 30, 0.6);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
-
-    .night-slogan-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 16px;
+    .night-banner-slogan h3 {
+      font-family: var(--font-heading);
+      font-size: 24px;
       font-weight: 900;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
       margin-bottom: 6px;
+    }
+    .night-banner-slogan p {
+      font-size: 13px;
+      color: var(--text-muted);
     }
 
     /* ==========================================================================
-       SECTION 7: МАРКЕТ EVOSPORT (7 СТРАНИЦА)
+       7. МАРКЕТ EVOSPORT (СЛАЙД 7)
        ========================================================================== */
     .market-section {
-      padding: 70px 0;
-      border-top: 1px solid var(--card-border);
+      padding: 80px 0;
     }
 
-    .market-grid-desktop {
+    .market-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 16px;
+      margin-top: 40px;
     }
 
-    .market-col-card {
-      background: var(--card);
-      border: 1px solid;
-      border-radius: var(--radius-lg);
-      padding: 20px 14px;
+    .market-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 20px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
+      transition: all 0.3s ease;
     }
-
-    .market-col-card.c-lime { border-color: var(--lime); }
-    .market-col-card.c-pink { border-color: var(--pink); }
-    .market-col-card.c-cyan { border-color: var(--cyan); }
-    .market-col-card.c-orange { border-color: var(--orange); }
-    .market-col-card.c-yellow { border-color: var(--yellow); }
+    .market-card:hover {
+      transform: translateY(-4px);
+    }
+    .market-card.lime { border-color: rgba(200, 255, 61, 0.4); }
+    .market-card.pink { border-color: rgba(255, 45, 120, 0.4); }
+    .market-card.cyan { border-color: rgba(0, 242, 254, 0.4); }
+    .market-card.orange { border-color: rgba(255, 140, 0, 0.4); }
 
     .market-icon {
-      font-size: 26px;
-      margin-bottom: 12px;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
     }
 
-    .market-cat-name {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 12px;
-      font-weight: 900;
+    .market-title {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 800;
       text-transform: uppercase;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
     }
 
-    .market-prod-img {
+    .market-photo {
       width: 100%;
-      height: 140px;
-      object-fit: contain;
+      height: 170px;
+      border-radius: 10px;
+      overflow: hidden;
       margin-bottom: 20px;
-      flex: 1;
+    }
+    .market-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .market-btn {
       width: 100%;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 10px;
-      border-radius: 8px;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.2s;
+      padding: 10px 0;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      color: var(--white);
     }
     .market-btn:hover {
-      background: #fff;
+      background: var(--white);
       color: #05070e;
     }
 
     /* ==========================================================================
-       SECTION 8: КАЧЕСТВО В КИТАЕ (EVOLUD Ltd) (8 СТРАНИЦА)
+       8. ПРОИЗВОДСТВО В КИТАЕ (СЛАЙД 8)
        ========================================================================== */
     .china-section {
-      padding: 70px 0;
-      border-top: 1px solid var(--card-border);
+      padding: 80px 0;
     }
 
-    .china-grid-desktop {
+    .china-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 36px;
-      margin-bottom: 28px;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 40px;
     }
 
-    .china-benefits-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 24px;
-    }
-
-    .china-benefit-item {
+    .china-features-col {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 20px;
+      margin-top: 28px;
     }
 
-    .china-benefit-icon {
-      font-size: 24px;
-    }
-
-    .china-benefit-name {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 10px;
-      font-weight: 800;
-      text-transform: uppercase;
-      color: #fff;
-    }
-
-    .china-benefit-desc {
-      font-size: 10.5px;
-      color: var(--txt-sub);
-      line-height: 1.4;
-    }
-
-    .china-images-grid {
-      display: grid;
-      grid-template-rows: 1.4fr 1fr;
-      gap: 14px;
-    }
-
-    .china-main-img {
-      width: 100%;
-      height: 100%;
-      min-height: 220px;
-      border-radius: var(--radius-lg);
-      object-fit: cover;
-    }
-
-    .china-sub-imgs {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .china-sub-img {
-      width: 100%;
-      height: 120px;
-      border-radius: var(--radius-md);
-      object-fit: cover;
-    }
-
-    .china-contact-bar {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius-lg);
-      padding: 20px 28px;
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .china-addr-block {
+    .china-feature-item {
       display: flex;
-      gap: 14px;
+      gap: 16px;
       align-items: flex-start;
     }
 
-    .china-contacts-list {
+    .china-feat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(200, 255, 61, 0.08);
+      border: 1px solid rgba(200, 255, 61, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .china-feat-text h5 {
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--lime);
+      margin-bottom: 4px;
+    }
+    .china-feat-text p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .china-collage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 240px 140px;
+      gap: 14px;
+    }
+
+    .china-photo-main {
+      grid-column: 1 / span 2;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .china-photo-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .china-photo-sub {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .china-photo-sub img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .china-contacts-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px 32px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .china-contact-company {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .china-contact-company h4 {
+      font-family: var(--font-heading);
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .china-contact-company p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .china-contact-channels {
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      font-size: 12.5px;
-      color: var(--txt-sub);
+      gap: 10px;
+      font-size: 13px;
+    }
+    .china-contact-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #e5e7eb;
     }
 
     /* ==========================================================================
-       FOOTER & MODAL
+       9. ФУТЕР
        ========================================================================== */
     .footer {
-      background: #03050a;
-      border-top: 1px solid var(--card-border);
-      padding: 48px 0 32px;
-      font-size: 13px;
+      background: #020306;
+      border-top: 1px solid var(--border-subtle);
+      padding: 60px 0 32px;
     }
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 32px;
-      margin-bottom: 36px;
+      grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+      gap: 40px;
+      margin-bottom: 48px;
     }
 
-    .footer-col-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 11px;
+    .footer-col h5 {
+      font-family: var(--font-heading);
+      font-size: 12px;
       font-weight: 800;
       text-transform: uppercase;
-      color: #fff;
-      margin-bottom: 14px;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
     }
 
     .footer-links {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      color: var(--txt-dim);
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
     }
-
     .footer-links a:hover {
-      color: var(--lime);
+      color: var(--cyan);
     }
 
-    .modal-backdrop {
+    .footer-phone {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--lime);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #6b7280;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ==========================================================================
+       10. МОДАЛЬНОЕ ОКНО ЗАЯВКИ (LEAD POPUP)
+       ========================================================================== */
+    .modal-overlay {
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 7, 14, 0.85);
+      backdrop-filter: blur(16px);
       display: none;
       align-items: center;
       justify-content: center;
+      z-index: 2000;
       padding: 20px;
     }
-
-    .modal-backdrop.open {
+    .modal-overlay.active {
       display: flex;
     }
 
     .modal-window {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius-xl);
-      padding: 32px;
+      background: #0a0e17;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 36px;
       width: 100%;
-      max-width: 440px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+      max-width: 480px;
       position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 45, 120, 0.2);
     }
 
-    .modal-close {
+    .modal-close-btn {
       position: absolute;
-      top: 20px;
-      right: 20px;
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-size: 24px;
-      cursor: pointer;
+      top: 18px;
+      right: 18px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+    }
+    .modal-close-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .modal-title {
+      font-family: var(--font-heading);
+      font-size: 22px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .modal-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+    .form-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 6px;
+    }
+    .form-control {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: var(--white);
+      font-family: inherit;
+      font-size: 14px;
+      outline: none;
+    }
+    .form-control:focus {
+      border-color: var(--cyan);
+      background: rgba(0, 242, 254, 0.05);
     }
 
     /* ==========================================================================
-       MOBILE RESPONSIVE MEDIA QUERIES (390px - 768px)
+       RESPONSIVE BREAKPOINTS
        ========================================================================== */
-    @media (max-width: 980px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-      .hero-features {
-        justify-content: center;
-      }
-      .hero-actions {
-        justify-content: center;
-      }
-      .hero-sports-bar {
-        grid-template-columns: 1fr;
-      }
-      .sport-pill-col:not(:last-child) {
-        border-right: none;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-      }
-      
-      .sports-grid-desktop, .sports-grid-bottom {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .sports-pill-bar { grid-template-columns: repeat(3, 1fr); }
+      .games-grid-top { grid-template-columns: repeat(2, 1fr); }
+      .games-grid-bot { grid-template-columns: 1fr; }
+      .clubs-grid { grid-template-columns: 1fr; }
+      .pricing-dual-grid { grid-template-columns: 1fr; }
+      .pricing-cards-row { grid-template-columns: repeat(2, 1fr); }
+      .audience-grid { grid-template-columns: repeat(3, 1fr); }
+      .night-hero-grid { grid-template-columns: 1fr; }
+      .night-cards-row { grid-template-columns: repeat(3, 1fr); }
+      .market-grid { grid-template-columns: repeat(3, 1fr); }
+      .china-grid { grid-template-columns: 1fr; }
+      .china-contacts-card { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
 
-      .clubs-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .pricing-two-col {
-        grid-template-columns: 1fr;
-      }
-      .pricing-cards-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .audience-grid-desktop {
-        grid-template-columns: 1fr;
-      }
-
-      .night-hero-grid {
-        grid-template-columns: 1fr;
-      }
-      .night-features-strip {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .market-grid-desktop {
-        grid-template-columns: 1fr;
-      }
-
-      .china-grid-desktop {
-        grid-template-columns: 1fr;
-      }
-      .china-benefits-row {
-        grid-template-columns: 1fr;
-      }
-      .china-contact-bar {
-        grid-template-columns: 1fr;
-      }
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 768px) {
+      .nav-links, .header-actions .header-btn { display: none; }
+      .burger-btn { display: flex; }
+      .hero-content h1 { font-size: 34px; }
+      .section-title { font-size: 28px; }
+      .sports-pill-bar { grid-template-columns: 1fr; gap: 12px; }
+      .sports-pill-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 10px; }
+      .games-grid-top { grid-template-columns: 1fr; }
+      .pricing-cards-row { grid-template-columns: 1fr; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .night-icons-row { grid-template-columns: repeat(2, 1fr); }
+      .night-cards-row { grid-template-columns: 1fr; }
+      .market-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .map-box { height: 380px; }
     }
   </style>
 </head>
 <body>
 
   <!-- ==========================================================================
-       HEADER (OFFICIAL BRAND LOGO)
+       0. HEADER
        ========================================================================== -->
   <header class="header">
     <div class="container header-inner">
-      <a href="#" class="logo">
-        <img src="images/evosport_official_logo.png" alt="EVOSPORT Центр ракеточного спорта" class="brand-logo-img">
+      <a href="#" class="logo-wrap">
+        <img src="images/evosport_official_logo.png" alt="EVOSPORT Racket Club" class="logo-img">
       </a>
 
       <ul class="nav-links">
-        <li><a href="#about" class="nav-link">О нас</a></li>
-        <li><a href="#clubs" class="nav-link">Клубы</a></li>
-        <li><a href="#games" class="nav-link">Игры</a></li>
-        <li><a href="#prices" class="nav-link">Цены</a></li>
-        <li><a href="#market" class="nav-link">Маркет</a></li>
-        <li><a href="#night" class="nav-link">Ночные игры</a></li>
-        <li><a href="#china" class="nav-link">Производство</a></li>
+        <li><a href="#about">О нас</a></li>
+        <li><a href="#clubs">Клубы</a></li>
+        <li><a href="#games">Игры</a></li>
+        <li><a href="#pricing">Цены</a></li>
+        <li><a href="#night">Ночные игры</a></li>
+        <li><a href="#market">Маркет</a></li>
+        <li><a href="#china">Производство</a></li>
       </ul>
 
-      <div class="header-cta">
-        <button class="btn btn-outline" style="padding:10px 18px; font-size:11px;" onclick="openLeadModal('Бронирование корта (Шапка)')">
-          📅 ЗАБРОНИРОВАТЬ КОРТ
+      <div class="header-actions">
+        <button class="btn header-btn" onclick="openModal('Бронирование корта')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Забронировать корт
+        </button>
+        <button class="burger-btn" onclick="toggleMobileMenu()" aria-label="Меню">
+          <span></span><span></span><span></span>
         </button>
       </div>
+    </div>
 
-      <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Открыть меню">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <!-- Mobile Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <a href="#about" onclick="toggleMobileMenu()">О нас</a>
+      <a href="#clubs" onclick="toggleMobileMenu()">Клубы</a>
+      <a href="#games" onclick="toggleMobileMenu()">Игры</a>
+      <a href="#pricing" onclick="toggleMobileMenu()">Цены</a>
+      <a href="#night" onclick="toggleMobileMenu()">Ночные игры</a>
+      <a href="#market" onclick="toggleMobileMenu()">Маркет</a>
+      <a href="#china" onclick="toggleMobileMenu()">Производство</a>
+      <button class="btn btn-gradient" style="margin-top: 10px;" onclick="openModal('Бронирование корта'); toggleMobileMenu();">
+        Забронировать корт
       </button>
     </div>
   </header>
 
   <!-- ==========================================================================
-       1 СТРАНИЦА: ГЛАВНЫЙ ЭКРАН (HERO)
+       1. ГЛАВНЫЙ ЭКРАН (СЛАЙД 1)
        ========================================================================== -->
   <section class="hero-section" id="hero">
     <div class="container">
       <div class="hero-grid">
-        
         <div class="hero-content">
-          <h1 class="hero-title">
-            <span class="t-white">EVOSPORT</span><br>
-            <span class="t-lime">ТВОЯ ИГРА.</span><br>
-            <span class="t-pink">ТВОИ ПРАВИЛА.</span>
+          <h1>
+            EVOSPORT<br>
+            <span class="text-gradient-lime">ТВОЯ ИГРА.</span><br>
+            <span class="text-gradient-pink">ТВОИ ПРАВИЛА.</span>
           </h1>
-
-          <p class="hero-desc">
+          <p class="hero-subtext">
             EVOSPORT — это больше, чем клуб. Это сообщество, эмоции и стиль жизни.
           </p>
 
-          <div class="hero-features">
+          <!-- 5 Benefit Badges with pure SVG -->
+          <div class="hero-features-row">
             <div class="hero-feature-item">
-              <div class="hero-feature-icon">👥</div>
-              <span class="hero-feature-text">СООБЩЕСТВО<br>И ДРУЗЬЯ</span>
+              <div class="hero-feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <span class="hero-feature-title">Сообщество и друзья</span>
             </div>
+
             <div class="hero-feature-item">
-              <div class="hero-feature-icon">🏆</div>
-              <span class="hero-feature-text">ТУРНИРЫ<br>И ЛИГИ</span>
+              <div class="hero-feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.45 1-1 1H8c-.55 0-1 .45-1 1v1c0 .55.45 1 1 1h8c.55 0 1-.45 1-1v-1c0-.55-.45-1-1-1h-1c-.55 0-1-.45-1-1v-2.34"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+              </div>
+              <span class="hero-feature-title">Турниры и лиги</span>
             </div>
+
             <div class="hero-feature-item">
-              <div class="hero-feature-icon">🎵</div>
-              <span class="hero-feature-text">МУЗЫКА<br>И ВЕЧЕРИНКИ</span>
+              <div class="hero-feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+              </div>
+              <span class="hero-feature-title">Музыка и вечеринки</span>
             </div>
+
             <div class="hero-feature-item">
-              <div class="hero-feature-icon">🥤</div>
-              <span class="hero-feature-text">КАФЕ<br>И ЛАУНЖ</span>
+              <div class="hero-feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+              </div>
+              <span class="hero-feature-title">Кафе и лаунж</span>
             </div>
+
             <div class="hero-feature-item">
-              <div class="hero-feature-icon">❤️</div>
-              <span class="hero-feature-text">ДЛЯ ДЕТЕЙ<br>И ВСЕЙ СЕМЬИ</span>
+              <div class="hero-feature-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <span class="hero-feature-title">Для детей и всей семьи</span>
             </div>
           </div>
 
-          <div class="hero-actions">
-            <button class="btn btn-gradient" onclick="openLeadModal('Забронировать корт (Главный экран)')">
-              📅 ЗАБРОНИРОВАТЬ КОРТ
+          <div class="hero-buttons">
+            <button class="btn btn-gradient" onclick="openModal('Бронирование корта (Главный экран)')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Забронировать корт
             </button>
             <a href="#about" class="btn btn-outline">
-              ПОДРОБНЕЕ О КЛУБЕ →
+              Подробнее о клубе
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
           </div>
         </div>
@@ -1462,867 +1579,1030 @@
             <img src="images/exact_hero_players.jpg" alt="EVOSPORT Игроки на корте под неоновым светом">
           </div>
         </div>
-
       </div>
 
-      <!-- Нижняя панель 5 видов спорта -->
-      <div class="hero-sports-bar">
-        <div class="sport-pill-col">
-          <span style="font-size:22px;">🎾</span>
-          <div>
-            <div class="sport-pill-name" style="color:var(--cyan);">PICKLEBALL</div>
-            <div class="sport-pill-sub">БЫСТРАЯ ИГРА ДЛЯ ВСЕХ</div>
+      <!-- Bottom Sports Pill Bar -->
+      <div class="sports-pill-bar">
+        <div class="sports-pill-item">
+          <div class="sports-pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><circle cx="12" cy="9" r="6"/><line x1="12" y1="15" x2="12" y2="22"/><circle cx="10" cy="8" r="0.8" fill="#00f2fe"/><circle cx="14" cy="8" r="0.8" fill="#00f2fe"/><circle cx="12" cy="10" r="0.8" fill="#00f2fe"/></svg>
+          </div>
+          <div class="sports-pill-info">
+            <h4 style="color: var(--cyan);">Pickleball</h4>
+            <p>Быстрая игра для всех</p>
           </div>
         </div>
-        <div class="sport-pill-col">
-          <span style="font-size:22px;">🏓</span>
-          <div>
-            <div class="sport-pill-name" style="color:var(--pink);">ТУРТИ</div>
-            <div class="sport-pill-sub">УНИКАЛЬНЫЙ РАКЕТОЧНЫЙ СПОРТ</div>
+
+        <div class="sports-pill-item">
+          <div class="sports-pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><rect x="7" y="4" width="10" height="12" rx="4"/><line x1="12" y1="16" x2="12" y2="22"/></svg>
+          </div>
+          <div class="sports-pill-info">
+            <h4 style="color: var(--magenta);">Турти</h4>
+            <p>Уникальный ракеточный спорт</p>
           </div>
         </div>
-        <div class="sport-pill-col">
-          <span style="font-size:22px;">🏸</span>
-          <div>
-            <div class="sport-pill-name" style="color:var(--lime);">БАДМИНТОН</div>
-            <div class="sport-pill-sub">СКОРОСТЬ, ЛОВКОСТЬ И РЕАКЦИЯ</div>
+
+        <div class="sports-pill-item">
+          <div class="sports-pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="6" r="3"/><path d="M9 9l-4 9h14l-4-9"/><line x1="12" y1="9" x2="12" y2="18"/></svg>
+          </div>
+          <div class="sports-pill-info">
+            <h4 style="color: var(--lime);">Бадминтон</h4>
+            <p>Скорость, ловкость и реакция</p>
           </div>
         </div>
-        <div class="sport-pill-col">
-          <span style="font-size:22px;">🏓</span>
-          <div>
-            <div class="sport-pill-name" style="color:var(--blue);">НАСТОЛЬНЫЙ ТЕННИС</div>
-            <div class="sport-pill-sub">КЛАССИКА, КОТОРУЮ ЛЮБЯТ ВСЕ</div>
+
+        <div class="sports-pill-item">
+          <div class="sports-pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="2"><circle cx="11" cy="9" r="6"/><line x1="15.5" y1="13.5" x2="20" y2="18"/><circle cx="6" cy="18" r="2.5" fill="#00b4d8"/></svg>
+          </div>
+          <div class="sports-pill-info">
+            <h4 style="color: var(--blue);">Настольный теннис</h4>
+            <p>Классика, которую любят все</p>
           </div>
         </div>
-        <div class="sport-pill-col">
-          <span style="font-size:22px;">🎾</span>
-          <div>
-            <div class="sport-pill-name" style="color:#e024c3;">ТЕННИС</div>
-            <div class="sport-pill-sub">ТРАДИЦИИ. КАЧЕСТВО. ИНТЕНСИВ</div>
+
+        <div class="sports-pill-item">
+          <div class="sports-pill-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e024c3" stroke-width="2"><ellipse cx="10" cy="10" rx="6" ry="6"/><line x1="14.5" y1="14.5" x2="20" y2="20"/><line x1="7" y1="10" x2="13" y2="10"/><line x1="10" y1="7" x2="10" y2="13"/></svg>
+          </div>
+          <div class="sports-pill-info">
+            <h4 style="color: var(--pink);">Теннис</h4>
+            <p>Традиции. Качество. Интенсив</p>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- ==========================================================================
-       2 СТРАНИЦА: 5 ИГР. МНОГО ЭМОЦИЙ
+       2. 5 ИГР. МНОГО ЭМОЦИЙ (СЛАЙД 2)
        ========================================================================== -->
-  <section class="sports-section" id="games">
+  <section class="games-section" id="games">
     <div class="container">
-      
-      <div class="section-tag">НАШИ ИГРЫ</div>
-      <h2 class="section-title">5 ИГР. <span style="background:linear-gradient(90deg, var(--pink), var(--lime)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">МНОГО ЭМОЦИЙ</span></h2>
+      <div class="section-tag">Наши игры</div>
+      <h2 class="section-title">5 ИГР. <span class="text-gradient-mix">МНОГО ЭМОЦИЙ</span></h2>
       <p class="section-desc">
         В EVOSPORT ты найдёшь игру, которая подходит именно тебе. Выбирай, пробуй, играй и получай максимум удовольствия.
       </p>
 
-      <!-- Верхний ряд: 3 карточки -->
-      <div class="sports-grid-desktop">
-        
-        <!-- 1. PICKLEBALL -->
-        <div class="sport-card-v2 c-blue">
-          <div class="sport-card-top-icon" style="color:var(--cyan);">🎾</div>
-          <img src="images/exact_sport_pickleball.jpg" alt="Pickleball" class="sport-card-img">
-          <div class="sport-card-content">
-            <h3 class="sport-card-title" style="color:var(--cyan);">PICKLEBALL</h3>
-            <p class="sport-card-text">
-              Динамичная игра для всех возрастов. Лёгкие правила, быстрые розыгрыши и море эмоций с первого удара.
-            </p>
+      <!-- Top Row (3 games) -->
+      <div class="games-grid-top">
+        <div class="game-card border-cyan">
+          <div class="game-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><circle cx="12" cy="9" r="6"/><line x1="12" y1="15" x2="12" y2="22"/><circle cx="10" cy="8" r="0.8" fill="#00f2fe"/><circle cx="14" cy="8" r="0.8" fill="#00f2fe"/><circle cx="12" cy="10" r="0.8" fill="#00f2fe"/></svg>
           </div>
+          <div class="game-card-img">
+            <img src="images/exact_sport_pickleball.jpg" alt="Pickleball в EVOSPORT">
+          </div>
+          <h3 class="game-card-title" style="color: var(--cyan);">Pickleball</h3>
+          <p class="game-card-desc">
+            Динамичная игра для всех возрастов. Лёгкие правила, быстрые розыгрыши и море эмоций с первого удара.
+          </p>
         </div>
 
-        <!-- 2. ТУРТИ -->
-        <div class="sport-card-v2 c-pink">
-          <div class="sport-card-top-icon" style="color:var(--pink);">🏓</div>
-          <img src="images/exact_sport_turti.jpg" alt="Турти" class="sport-card-img">
-          <div class="sport-card-content">
-            <h3 class="sport-card-title" style="color:var(--pink);">ТУРТИ</h3>
-            <p class="sport-card-text">
-              Уникальный ракеточный спорт, который сочетает скорость, тактику и зрелищные розыгрыши. Игра для тех, кто любит драйв.
-            </p>
+        <div class="game-card border-pink">
+          <div class="game-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><rect x="7" y="4" width="10" height="12" rx="4"/><line x1="12" y1="16" x2="12" y2="22"/></svg>
           </div>
+          <div class="game-card-img">
+            <img src="images/exact_sport_turti.jpg" alt="Турти в EVOSPORT">
+          </div>
+          <h3 class="game-card-title" style="color: var(--magenta);">Турти</h3>
+          <p class="game-card-desc">
+            Уникальный ракеточный спорт, который сочетает скорость, тактику и зрелищные розыгрыши. Игра для тех, кто любит драйв.
+          </p>
         </div>
 
-        <!-- 3. БАДМИНТОН -->
-        <div class="sport-card-v2 c-lime">
-          <div class="sport-card-top-icon" style="color:var(--lime);">🏸</div>
-          <img src="images/exact_sport_badminton.jpg" alt="Бадминтон" class="sport-card-img">
-          <div class="sport-card-content">
-            <h3 class="sport-card-title" style="color:var(--lime);">БАДМИНТОН</h3>
-            <p class="sport-card-text">
-              Классика, которая никогда не выходит из моды. Лёгкость, скорость и захватывающие матчи для любого уровня.
-            </p>
+        <div class="game-card border-lime">
+          <div class="game-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="6" r="3"/><path d="M9 9l-4 9h14l-4-9"/><line x1="12" y1="9" x2="12" y2="18"/></svg>
           </div>
+          <div class="game-card-img">
+            <img src="images/exact_sport_badminton.jpg" alt="Бадминтон в EVOSPORT">
+          </div>
+          <h3 class="game-card-title" style="color: var(--lime);">Бадминтон</h3>
+          <p class="game-card-desc">
+            Классика, которая никогда не выходит из моды. Лёгкость, скорость и захватывающие матчи для любого уровня.
+          </p>
         </div>
-
       </div>
 
-      <!-- Нижний ряд: 2 карточки -->
-      <div class="sports-grid-bottom">
-        
-        <!-- 4. НАСТОЛЬНЫЙ ТЕННИС -->
-        <div class="sport-card-v2 c-cyan">
-          <div class="sport-card-top-icon" style="color:var(--cyan);">🏓</div>
-          <img src="images/exact_sport_pingpong.jpg" alt="Настольный теннис" class="sport-card-img">
-          <div class="sport-card-content">
-            <h3 class="sport-card-title" style="color:var(--cyan);">НАСТОЛЬНЫЙ ТЕННИС</h3>
-            <p class="sport-card-text">
-              Игра на реакцию, концентрацию и стратегию. Отличный выбор для тренировок мозга и дружеских турниров.
-            </p>
+      <!-- Bottom Row (2 games) -->
+      <div class="games-grid-bot">
+        <div class="game-card border-blue">
+          <div class="game-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="2"><circle cx="11" cy="9" r="6"/><line x1="15.5" y1="13.5" x2="20" y2="18"/><circle cx="6" cy="18" r="2.5" fill="#00b4d8"/></svg>
           </div>
+          <div class="game-card-img">
+            <img src="images/exact_sport_pingpong.jpg" alt="Настольный теннис в EVOSPORT">
+          </div>
+          <h3 class="game-card-title" style="color: var(--blue);">Настольный теннис</h3>
+          <p class="game-card-desc">
+            Игра на реакцию, концентрацию и стратегию. Отличный выбор для тренировок мозга и дружеских турниров.
+          </p>
         </div>
 
-        <!-- 5. ТЕННИС -->
-        <div class="sport-card-v2 c-magenta">
-          <div class="sport-card-top-icon" style="color:#e024c3;">🎾</div>
-          <img src="images/exact_sport_tennis.jpg" alt="Теннис" class="sport-card-img">
-          <div class="sport-card-content">
-            <h3 class="sport-card-title" style="color:#e024c3);">ТЕННИС</h3>
-            <p class="sport-card-text">
-              Традиции, техника и настоящий спортивный дух. Игра для тех, кто любит вызов и стремится к новым вершинам.
-            </p>
+        <div class="game-card border-magenta">
+          <div class="game-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e024c3" stroke-width="2"><ellipse cx="10" cy="10" rx="6" ry="6"/><line x1="14.5" y1="14.5" x2="20" y2="20"/><line x1="7" y1="10" x2="13" y2="10"/><line x1="10" y1="7" x2="10" y2="13"/></svg>
           </div>
+          <div class="game-card-img">
+            <img src="images/exact_sport_tennis.jpg" alt="Большой теннис в EVOSPORT">
+          </div>
+          <h3 class="game-card-title" style="color: var(--pink);">Теннис</h3>
+          <p class="game-card-desc">
+            Традиции, техника и настоящий спортивный дух. Игра для тех, кто любит вызов и стремится к новым вершинам.
+          </p>
         </div>
-
       </div>
-
     </div>
   </section>
 
   <!-- ==========================================================================
-       3 СТРАНИЦА: НАШИ КЛУБЫ И КАРТА
+       3. ВСЕ НАШИ КЛУБЫ И АДРЕСА (СЛАЙД 3)
        ========================================================================== -->
   <section class="clubs-section" id="clubs">
     <div class="container">
-      
-      <div class="section-tag">НАШИ КЛУБЫ</div>
+      <div class="section-tag">Наши клубы</div>
       <h2 class="section-title">ВСЕ НАШИ КЛУБЫ И АДРЕСА</h2>
       <p class="section-desc">
         4 современных спортивных хаба в Краснодарском крае. Выбирайте клуб и стройте удобный маршрут.
       </p>
 
-      <div class="clubs-layout">
-        
-        <!-- Левая колонка со списком клубов -->
-        <div class="clubs-left-col">
-          
-          <div class="clubs-search-row">
-            <input type="text" class="clubs-search-input" id="cSearch" placeholder="🔍 Поиск по городу" oninput="filterClubs(this.value)">
-            <select class="clubs-city-select" id="cCity" onchange="filterClubsCity(this.value)">
-              <option value="all">📍 Выберите город</option>
-              <option value="all">Все города</option>
-              <option value="Крымск">Крымск</option>
-              <option value="Новороссийск">Новороссийск</option>
-              <option value="Краснодар">Краснодар</option>
-              <option value="Другие">Другие города (скоро)</option>
-            </select>
-          </div>
+      <div class="clubs-grid">
+        <div class="clubs-sidebar">
+          <div class="clubs-controls">
+            <div class="search-input-wrap">
+              <span class="control-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </span>
+              <input type="text" id="clubSearchInput" class="search-input" placeholder="Поиск по городу" oninput="filterClubs()">
+            </div>
 
-          <!-- 1. Крымск -->
-          <div class="club-item-card border-lime" data-city="Крымск" onclick="openLeadModal('Маршрут: Крымск (ул. Синева, 25)')">
-            <img src="images/exact_club_krymsk.jpg" alt="EVOSPORT Крымск" class="club-thumb">
-            <div class="club-info">
-              <div class="club-city-name" style="color:var(--lime);">📍 Крымск</div>
-              <div class="club-street">ул. Синева, 25</div>
-              <div class="club-time">🕒 Ежедневно 07:00 – 23:00</div>
-              <button class="club-route-btn">✈ ПОСТРОИТЬ МАРШРУТ</button>
+            <div class="filter-select-wrap">
+              <span class="control-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <select id="clubCitySelect" class="filter-select" onchange="filterClubs()">
+                <option value="all">Все города</option>
+                <option value="крымск">Крымск</option>
+                <option value="новороссийск">Новороссийск</option>
+                <option value="краснодар">Краснодар</option>
+              </select>
             </div>
           </div>
 
-          <!-- 2. Новороссийск -->
-          <div class="club-item-card border-pink" data-city="Новороссийск" onclick="openLeadModal('Маршрут: Новороссийск (ул. Энгельса, 17)')">
-            <img src="images/exact_club_novoross.jpg" alt="EVOSPORT Новороссийск" class="club-thumb">
-            <div class="club-info">
-              <div class="club-city-name" style="color:var(--pink);">📍 Новороссийск</div>
-              <div class="club-street">ул. Энгельса, 17</div>
-              <div class="club-time">🕒 Ежедневно 07:00 – 23:00</div>
-              <button class="club-route-btn">✈ ПОСТРОИТЬ МАРШРУТ</button>
+          <div class="clubs-list" id="clubsListContainer">
+            <!-- Club 1: Крымск -->
+            <div class="club-card border-lime" data-city="крымск" data-lat="44.9282" data-lng="37.9922" onclick="focusMap(44.9282, 37.9922, 'Крымск, ул. Синева, 25')">
+              <div class="club-thumb">
+                <img src="images/exact_club_krymsk.jpg" alt="EVOSPORT Крымск">
+              </div>
+              <div class="club-info">
+                <h4>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Крымск
+                </h4>
+                <p>ул. Синева, 25</p>
+                <div class="club-time">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Ежедневно 07:00 – 23:00
+                </div>
+                <a href="https://yandex.ru/maps/?text=Крымск+ул.+Синева+25" target="_blank" class="club-route-btn" onclick="event.stopPropagation()">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                  Построить маршрут
+                </a>
+              </div>
+            </div>
+
+            <!-- Club 2: Новороссийск -->
+            <div class="club-card border-pink" data-city="новороссийск" data-lat="44.7239" data-lng="37.7687" onclick="focusMap(44.7239, 37.7687, 'Новороссийск, ул. Энгельса, 17')">
+              <div class="club-thumb">
+                <img src="images/exact_club_novoross.jpg" alt="EVOSPORT Новороссийск">
+              </div>
+              <div class="club-info">
+                <h4>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Новороссийск
+                </h4>
+                <p>ул. Энгельса, 17</p>
+                <div class="club-time">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Ежедневно 07:00 – 23:00
+                </div>
+                <a href="https://yandex.ru/maps/?text=Новороссийск+ул.+Энгельса+17" target="_blank" class="club-route-btn" onclick="event.stopPropagation()">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                  Построить маршрут
+                </a>
+              </div>
+            </div>
+
+            <!-- Club 3: Краснодар 1 Мая -->
+            <div class="club-card border-blue" data-city="краснодар" data-lat="45.0645" data-lng="39.0215" onclick="focusMap(45.0645, 39.0215, 'Краснодар, ул. 1 Мая, 439')">
+              <div class="club-thumb">
+                <img src="images/exact_club_krd1.jpg" alt="EVOSPORT Краснодар 1 Мая">
+              </div>
+              <div class="club-info">
+                <h4>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Краснодар
+                </h4>
+                <p>ул. 1 Мая, 439</p>
+                <div class="club-time">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Ежедневно 07:00 – 23:00
+                </div>
+                <a href="https://yandex.ru/maps/?text=Краснодар+ул.+1+Мая+439" target="_blank" class="club-route-btn" onclick="event.stopPropagation()">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                  Построить маршрут
+                </a>
+              </div>
+            </div>
+
+            <!-- Club 4: Краснодар Галактика -->
+            <div class="club-card border-blue" data-city="краснодар" data-lat="45.0298" data-lng="39.0435" onclick="focusMap(45.0298, 39.0435, 'Краснодар, ул. Уральская, 77 (ТЦ Галактика)')">
+              <div class="club-thumb">
+                <img src="images/exact_club_krd_gal.jpg" alt="EVOSPORT Краснодар ТЦ Галактика">
+              </div>
+              <div class="club-info">
+                <h4>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                  Краснодар
+                </h4>
+                <p>ул. Уральская, 77 (ТЦ Галактика)</p>
+                <div class="club-time">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Ежедневно 07:00 – 23:00
+                </div>
+                <a href="https://yandex.ru/maps/?text=Краснодар+ул.+Уральская+77" target="_blank" class="club-route-btn" onclick="event.stopPropagation()">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                  Построить маршрут
+                </a>
+              </div>
             </div>
           </div>
-
-          <!-- 3. Краснодар 1 Мая -->
-          <div class="club-item-card border-blue" data-city="Краснодар" onclick="openLeadModal('Маршрут: Краснодар (ул. 1 Мая, 439)')">
-            <img src="images/exact_club_krd1.jpg" alt="EVOSPORT Краснодар 1 Мая" class="club-thumb">
-            <div class="club-info">
-              <div class="club-city-name" style="color:var(--blue);">📍 Краснодар</div>
-              <div class="club-street">ул. 1 Мая, 439</div>
-              <div class="club-time">🕒 Ежедневно 07:00 – 23:00</div>
-              <button class="club-route-btn">✈ ПОСТРОИТЬ МАРШРУТ</button>
-            </div>
-          </div>
-
-          <!-- 4. Краснодар Галактика -->
-          <div class="club-item-card border-cyan" data-city="Краснодар" onclick="openLeadModal('Маршрут: Краснодар (ул. Уральская, 77)')">
-            <img src="images/exact_club_krd_gal.jpg" alt="EVOSPORT Краснодар Галактика" class="club-thumb">
-            <div class="club-info">
-              <div class="club-city-name" style="color:var(--cyan);">📍 Краснодар</div>
-              <div class="club-street">ул. Уральская, 77 (ТЦ Галактика)</div>
-              <div class="club-time">🕒 Ежедневно 07:00 – 23:00</div>
-              <button class="club-route-btn">✈ ПОСТРОИТЬ МАРШРУТ</button>
-            </div>
-          </div>
-
         </div>
 
-        <!-- Правая колонка: Карта сети со спутником и метками -->
-        <div class="clubs-map-panel">
-          <img src="images/exact_satellite_map.jpg" alt="Карта сети EVOSPORT Краснодарский край">
-          <div class="map-zoom-controls">
-            <button class="map-zoom-btn" onclick="alert('Зум карты активен')">+</button>
-            <button class="map-zoom-btn" onclick="alert('Зум карты активен')">−</button>
-          </div>
+        <!-- Interactive Map Container -->
+        <div class="map-box">
+          <div id="evosportMap"></div>
         </div>
-
       </div>
-
     </div>
   </section>
 
   <!-- ==========================================================================
-       4 СТРАНИЦА: ИГРЫ, ЦЕНЫ И АБОНЕМЕНТЫ
+       4. ЦЕНЫ И АБОНЕМЕНТЫ (СЛАЙД 4)
        ========================================================================== -->
-  <section class="pricing-section" id="prices">
+  <section class="pricing-section" id="pricing">
     <div class="container">
-      
-      <div class="pricing-two-col">
-        
-        <!-- Левый блок: Игры и стоимость бронирования -->
+      <div class="section-tag">Тарифы</div>
+      <h2 class="section-title">ИГРЫ И СТОИМОСТЬ БРОНИРОВАНИЯ</h2>
+      <p class="section-desc">
+        Прозрачные цены без скрытых платежей. Бронируйте разовые игры или экономьте до 40% с клубными абонементами.
+      </p>
+
+      <div class="pricing-dual-grid">
+        <!-- Single Games -->
         <div>
-          <div class="pricing-block-title">
-            <span>ИГРЫ И СТОИМОСТЬ БРОНИРОВАНИЯ</span>
-          </div>
-
-          <div class="pricing-cards-grid">
-            
-            <!-- ПАДЕЛ -->
-            <div class="price-sport-card c-lime">
-              <div class="price-sport-name" style="color:var(--lime);">ПАДЕЛ</div>
-              <div class="price-sport-en">PADEL</div>
-              <img src="images/exact_price_padel.jpg" alt="Падел" class="price-sport-img">
-              <div class="price-sport-players">👥 1–4 игрока</div>
-              <div class="price-sport-val">1 200 ₽</div>
-              <div class="price-sport-sub">/ час</div>
-              <button class="price-sport-btn" onclick="openLeadModal('Бронь корта: Падел (1 200 ₽/час)')">ЗАБРОНИРОВАТЬ</button>
+          <h3 class="pricing-block-title text-gradient-lime">Игры по часам</h3>
+          <div class="pricing-cards-row">
+            <div class="price-card lime">
+              <div class="price-card-head">
+                <h4 style="color: var(--lime);">Падел</h4>
+                <p>Padel</p>
+              </div>
+              <div class="price-card-photo">
+                <img src="images/exact_price_padel.jpg" alt="Падел ракетка">
+              </div>
+              <div class="price-card-players">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                1–4 игрока
+              </div>
+              <div class="price-card-val">1 200 ₽</div>
+              <div class="price-card-unit">/ час</div>
+              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Бронь: Падел')">Забронировать</button>
             </div>
 
-            <!-- ПИКЛБОЛ -->
-            <div class="price-sport-card c-pink">
-              <div class="price-sport-name" style="color:var(--pink);">ПИКЛБОЛ</div>
-              <div class="price-sport-en">PICKLEBALL</div>
-              <img src="images/exact_price_pickle.jpg" alt="Пиклбол" class="price-sport-img">
-              <div class="price-sport-players">👥 1–4 игрока</div>
-              <div class="price-sport-val">900 ₽</div>
-              <div class="price-sport-sub">/ час</div>
-              <button class="price-sport-btn" onclick="openLeadModal('Бронь корта: Пиклбол (900 ₽/час)')">ЗАБРОНИРОВАТЬ</button>
+            <div class="price-card pink">
+              <div class="price-card-head">
+                <h4 style="color: var(--magenta);">Пиклбол</h4>
+                <p>Pickleball</p>
+              </div>
+              <div class="price-card-photo">
+                <img src="images/exact_price_pickle.jpg" alt="Пиклбол ракетка">
+              </div>
+              <div class="price-card-players">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                1–4 игрока
+              </div>
+              <div class="price-card-val">900 ₽</div>
+              <div class="price-card-unit">/ час</div>
+              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Бронь: Пиклбол')">Забронировать</button>
             </div>
 
-            <!-- ТЕННИС -->
-            <div class="price-sport-card c-cyan">
-              <div class="price-sport-name" style="color:var(--cyan);">ТЕННИС</div>
-              <div class="price-sport-en">TENNIS</div>
-              <img src="images/exact_price_tennis.jpg" alt="Теннис" class="price-sport-img">
-              <div class="price-sport-players">👥 1–4 игрока</div>
-              <div class="price-sport-val">1 400 ₽</div>
-              <div class="price-sport-sub">/ час</div>
-              <button class="price-sport-btn" onclick="openLeadModal('Бронь корта: Теннис (1 400 ₽/час)')">ЗАБРОНИРОВАТЬ</button>
+            <div class="price-card cyan">
+              <div class="price-card-head">
+                <h4 style="color: var(--cyan);">Теннис</h4>
+                <p>Tennis</p>
+              </div>
+              <div class="price-card-photo">
+                <img src="images/exact_price_tennis.jpg" alt="Теннис ракетка">
+              </div>
+              <div class="price-card-players">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                1–4 игрока
+              </div>
+              <div class="price-card-val">1 400 ₽</div>
+              <div class="price-card-unit">/ час</div>
+              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Бронь: Большой теннис')">Забронировать</button>
             </div>
 
-            <!-- БАДМИНТОН -->
-            <div class="price-sport-card c-orange">
-              <div class="price-sport-name" style="color:var(--orange);">БАДМИНТОН</div>
-              <div class="price-sport-en">BADMINTON</div>
-              <img src="images/exact_price_badm.jpg" alt="Бадминтон" class="price-sport-img">
-              <div class="price-sport-players">👥 1–4 игрока</div>
-              <div class="price-sport-val">800 ₽</div>
-              <div class="price-sport-sub">/ час</div>
-              <button class="price-sport-btn" onclick="openLeadModal('Бронь корта: Бадминтон (800 ₽/час)')">ЗАБРОНИРОВАТЬ</button>
+            <div class="price-card orange">
+              <div class="price-card-head">
+                <h4 style="color: var(--orange);">Бадминтон</h4>
+                <p>Badminton</p>
+              </div>
+              <div class="price-card-photo">
+                <img src="images/exact_price_badm.jpg" alt="Бадминтон ракетка">
+              </div>
+              <div class="price-card-players">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                1–4 игрока
+              </div>
+              <div class="price-card-val">800 ₽</div>
+              <div class="price-card-unit">/ час</div>
+              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Бронь: Бадминтон')">Забронировать</button>
             </div>
-
           </div>
         </div>
 
-        <!-- Правый блок: Абонементы -->
+        <!-- Subscriptions -->
         <div>
-          <div class="pricing-block-title">
-            <span>АБОНЕМЕНТЫ — ВЫГОДНЕЕ С КАЖДОЙ ИГРОЙ</span>
-          </div>
-
-          <div class="pricing-cards-grid">
-            
-            <!-- LIGHT -->
-            <div class="sub-card c-lime">
-              <div class="sub-name" style="color:var(--lime);">LIGHT</div>
-              <div class="sub-hours-label">4 ЧАСА</div>
-              <div class="sub-icon-wrap" style="color:var(--lime);">📅</div>
+          <h3 class="pricing-block-title text-gradient-pink">Абонементы — выгоднее с каждой игрой</h3>
+          <div class="pricing-cards-row">
+            <div class="price-card lime">
+              <div class="price-card-head">
+                <h4 style="color: var(--lime);">LIGHT</h4>
+                <p>4 ЧАСА</p>
+              </div>
+              <div class="sub-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1" fill="#c8ff3d"/><circle cx="12" cy="14" r="1" fill="#c8ff3d"/><circle cx="16" cy="14" r="1" fill="#c8ff3d"/></svg>
+              </div>
               <ul class="sub-features">
-                <li>✓ 4 часа игры</li>
-                <li>✓ Срок действия 30 дней</li>
-                <li>✓ Любые дни и время</li>
-                <li>✓ Бронирование онлайн</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 4 часа игры</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Срок 30 дней</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Любые дни и время</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Онлайн-бронь</li>
               </ul>
-              <div class="sub-price-val" style="color:var(--lime);">4 000 ₽</div>
-              <div class="sub-price-rate">1 000 ₽ / час</div>
-              <button class="sub-btn" onclick="openLeadModal('Абонемент: LIGHT (4 000 ₽)')">КУПИТЬ АБОНЕМЕНТ</button>
+              <div class="price-card-val">4 000 ₽</div>
+              <div class="price-card-unit">1 000 ₽ / час</div>
+              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Абонемент: LIGHT 4 часа')">Купить</button>
             </div>
 
-            <!-- STANDARD -->
-            <div class="sub-card c-pink">
-              <div class="sub-name" style="color:var(--pink);">STANDARD</div>
-              <div class="sub-hours-label">10 ЧАСОВ</div>
-              <div class="sub-icon-wrap" style="color:var(--pink);">📅</div>
+            <div class="price-card pink">
+              <div class="price-card-head">
+                <h4 style="color: var(--magenta);">STANDARD</h4>
+                <p>10 ЧАСОВ</p>
+              </div>
+              <div class="sub-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="8" cy="14" r="1" fill="#ff2d78"/><circle cx="12" cy="14" r="1" fill="#ff2d78"/><circle cx="16" cy="14" r="1" fill="#ff2d78"/></svg>
+              </div>
               <ul class="sub-features">
-                <li>✓ 10 часов игры</li>
-                <li>✓ Срок действия 60 дней</li>
-                <li>✓ Любые дни и время</li>
-                <li>✓ Приоритетное бронирование</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 10 часов игры</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Срок 60 дней</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Любые дни и время</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Приоритет брони</li>
               </ul>
-              <div class="sub-price-val" style="color:var(--pink);">9 000 ₽</div>
-              <div class="sub-price-rate">900 ₽ / час</div>
-              <button class="sub-btn" onclick="openLeadModal('Абонемент: STANDARD (9 000 ₽)')">КУПИТЬ АБОНЕМЕНТ</button>
+              <div class="price-card-val">9 000 ₽</div>
+              <div class="price-card-unit">900 ₽ / час</div>
+              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Абонемент: STANDARD 10 часов')">Купить</button>
             </div>
 
-            <!-- PRO -->
-            <div class="sub-card c-cyan">
-              <div class="sub-name" style="color:var(--cyan);">PRO</div>
-              <div class="sub-hours-label">20 ЧАСОВ</div>
-              <div class="sub-icon-wrap" style="color:var(--cyan);">⭐</div>
+            <div class="price-card cyan">
+              <div class="price-card-head">
+                <h4 style="color: var(--cyan);">PRO</h4>
+                <p>20 ЧАСОВ</p>
+              </div>
+              <div class="sub-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polygon points="12 8 13.5 11 17 11.5 14.5 13.8 15.2 17.2 12 15.5 8.8 17.2 9.5 13.8 7 11.5 10.5 11 12 8" fill="#00f2fe"/></svg>
+              </div>
               <ul class="sub-features">
-                <li>✓ 20 часов игры</li>
-                <li>✓ Срок действия 90 дней</li>
-                <li>✓ Любые дни и время</li>
-                <li>✓ Приоритетное бронирование</li>
-                <li>✓ Скидка на аренду инвентаря</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 20 часов игры</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Срок 90 дней</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Любые дни и время</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Скидка на инвентарь</li>
               </ul>
-              <div class="sub-price-val" style="color:var(--cyan);">16 000 ₽</div>
-              <div class="sub-price-rate">800 ₽ / час</div>
-              <button class="sub-btn" onclick="openLeadModal('Абонемент: PRO (16 000 ₽)')">КУПИТЬ АБОНЕМЕНТ</button>
+              <div class="price-card-val">16 000 ₽</div>
+              <div class="price-card-unit">800 ₽ / час</div>
+              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Абонемент: PRO 20 часов')">Купить</button>
             </div>
 
-            <!-- UNLIMITED -->
-            <div class="sub-card c-orange">
-              <span class="sub-badge">ВЫГОДНО</span>
-              <div class="sub-name" style="color:var(--orange);">UNLIMITED</div>
-              <div class="sub-hours-label">БЕЗЛИМИТ</div>
-              <div class="sub-icon-wrap" style="color:var(--orange);">∞</div >
+            <div class="price-card orange">
+              <span class="sub-badge">Выгодно</span>
+              <div class="price-card-head">
+                <h4 style="color: var(--orange);">UNLIMITED</h4>
+                <p>БЕЗЛИМИТ</p>
+              </div>
+              <div class="sub-icon">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2.5"><path d="M18.178 8c5.096 0 5.096 8 0 8-2.67 0-4.47-2.316-6.178-4-1.708 1.684-3.508 4-6.178 4-5.096 0-5.096-8 0-8 2.67 0 4.47 2.316 6.178 4 1.708-1.684 3.508-4 6.178-4z"/></svg>
+              </div>
               <ul class="sub-features">
-                <li>✓ Безлимитные игры</li>
-                <li>✓ Срок действия 30 дней</li>
-                <li>✓ Любые дни и время</li>
-                <li>✓ Приоритетное бронирование</li>
-                <li>✓ Скидка на аренду инвентаря</li>
-                <li>✓ Приглашения для друзей</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Безлимитные игры</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Срок 30 дней</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Приглашения друзей</li>
+                <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Скидка на маркет</li>
               </ul>
-              <div class="sub-price-val" style="color:var(--orange);">19 000 ₽</div>
-              <div class="sub-price-rate">633 ₽ / день</div>
-              <button class="sub-btn" onclick="openLeadModal('Абонемент: UNLIMITED (19 000 ₽)')">КУПИТЬ АБОНЕМЕНТ</button>
+              <div class="price-card-val">19 000 ₽</div>
+              <div class="price-card-unit">633 ₽ / день</div>
+              <button class="btn btn-outline btn-sm" style="width:100%;" onclick="openModal('Абонемент: UNLIMITED')">Купить</button>
             </div>
-
           </div>
         </div>
-
       </div>
-
     </div>
   </section>
 
   <!-- ==========================================================================
-       5 СТРАНИЦА: ПОЧЕМУ СТОИТ ИГРАТЬ В EVOSPORT — ВСЕМ
+       5. ПОЧЕМУ СТОИТ ИГРАТЬ В EVOSPORT — ВСЕМ (СЛАЙД 5)
        ========================================================================== -->
   <section class="audience-section" id="about">
     <div class="container">
-      
-      <div class="section-tag">О НАС</div>
-      <h2 class="section-title">
-        ПОЧЕМУ СТОИТ ИГРАТЬ В <span style="color:var(--pink);">EVOSPORT —</span> <span style="color:var(--lime);">ВСЕМ</span>
-      </h2>
+      <div class="section-tag">О нас</div>
+      <h2 class="section-title">ПОЧЕМУ СТОИТ ИГРАТЬ <span class="text-gradient-pink">В EVOSPORT</span> <span class="text-gradient-lime">— ВСЕМ</span></h2>
       <p class="section-desc">
         Ракеточные виды спорта — это энергия, движение и эмоции. Они подходят каждому и делают жизнь лучше.
       </p>
 
-      <div class="audience-grid-desktop">
-        
-        <!-- 1. ДЕТЯМ -->
-        <div class="audience-card-col c-lime">
-          <div class="audience-icon">👦</div>
-          <div class="audience-title" style="color:var(--lime);">ДЕТЯМ</div>
-          <div class="audience-sub">Игра с пользой для роста и развития</div>
-          <img src="images/exact_aud_kids.jpg" alt="Детям" class="audience-img">
-          <ul class="audience-bullets">
-            <li>✓ Развивает координацию и реакцию</li>
-            <li>✓ Улучшает концентрацию и внимание</li>
-            <li>✓ Укрепляет уверенность в себе и дисциплину</li>
-            <li>✓ Помогает заводить друзей и работать в команде</li>
-            <li>✓ Альтернатива гаджетам и малоподвижному образу жизни</li>
+      <div class="audience-grid">
+        <!-- 1. Детям -->
+        <div class="audience-card lime">
+          <div class="audience-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1" fill="#c8ff3d"/><circle cx="15" cy="10" r="1" fill="#c8ff3d"/><path d="M8 15s1.5 2 4 2 4-2 4-2"/></svg>
+          </div>
+          <h3 class="audience-card-title" style="color: var(--lime);">Детям</h3>
+          <p class="audience-card-sub">Игра с пользой для роста и развития</p>
+          <div class="audience-card-photo">
+            <img src="images/exact_aud_kids.jpg" alt="Дети играют в ракеточный спорт">
+          </div>
+          <ul class="audience-list">
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Развивает координацию и реакцию</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Улучшает концентрацию и внимание</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Укрепляет уверенность в себе</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Помогает заводить друзей</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Альтернатива гаджетам</li>
           </ul>
         </div>
 
-        <!-- 2. МОЛОДЁЖИ -->
-        <div class="audience-card-col c-pink">
-          <div class="audience-icon">🎓</div>
-          <div class="audience-title" style="color:var(--pink);">МОЛОДЁЖИ</div>
-          <div class="audience-sub">Энергия, драйв и новые возможности</div>
-          <img src="images/exact_aud_youth.jpg" alt="Молодёжи" class="audience-img">
-          <ul class="audience-bullets">
-            <li>✓ Снимает стресс и перезагружает</li>
-            <li>✓ Повышает выносливость и физическую форму</li>
-            <li>✓ Развивает стратегическое мышление и скорость</li>
-            <li>✓ Отличный способ провести время с друзьями</li>
-            <li>✓ Возможность участвовать в турнирах и расти</li>
+        <!-- 2. Молодёжи -->
+        <div class="audience-card pink">
+          <div class="audience-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h3 class="audience-card-title" style="color: var(--magenta);">Молодёжи</h3>
+          <p class="audience-card-sub">Энергия, драйв и новые возможности</p>
+          <div class="audience-card-photo">
+            <img src="images/exact_aud_youth.jpg" alt="Молодежь в клубе EVOSPORT">
+          </div>
+          <ul class="audience-list">
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Снимает стресс и перезагружает</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Повышает выносливость и форму</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Стратегическое мышление</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Время с друзьями и вечеринки</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Турниры и рост в рейтинге</li>
           </ul>
         </div>
 
-        <!-- 3. ВЗРОСЛЫМ -->
-        <div class="audience-card-col c-cyan">
-          <div class="audience-icon">👤</div>
-          <div class="audience-title" style="color:var(--cyan);">ВЗРОСЛЫМ</div>
-          <div class="audience-sub">Баланс между работой, здоровьем и отдыхом</div>
-          <img src="images/exact_aud_adults.jpg" alt="Взрослым" class="audience-img">
-          <ul class="audience-bullets">
-            <li>✓ Снимает напряжение после рабочего дня</li>
-            <li>✓ Поддерживает отличную физическую форму</li>
-            <li>✓ Улучшает здоровье сердца и дыхательной системы</li>
-            <li>✓ Развивает ловкость, скорость и координацию</li>
-            <li>✓ Даёт заряд энергии и положительных эмоций</li>
+        <!-- 3. Взрослым -->
+        <div class="audience-card cyan">
+          <div class="audience-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3 class="audience-card-title" style="color: var(--cyan);">Взрослым</h3>
+          <p class="audience-card-sub">Баланс между работой и отдыхом</p>
+          <div class="audience-card-photo">
+            <img src="images/exact_aud_adults.jpg" alt="Взрослые на корте">
+          </div>
+          <ul class="audience-list">
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Снимает напряжение дня</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Поддерживает физическую форму</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Здоровье сердца и сосудов</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Ловкость и координация</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Заряд позитивных эмоций</li>
           </ul>
         </div>
 
-        <!-- 4. СЕМЬЯМ -->
-        <div class="audience-card-col c-orange">
-          <div class="audience-icon">👨‍👩‍👧‍👦</div>
-          <div class="audience-title" style="color:var(--orange);">СЕМЬЯМ</div>
-          <div class="audience-sub">Время вместе, которое действительно важно</div>
-          <img src="images/exact_aud_family.jpg" alt="Семьям" class="audience-img">
-          <ul class="audience-bullets">
-            <li>✓ Объединяет и помогает проводить качественное время</li>
-            <li>✓ Подходит для любого возраста и уровня подготовки</li>
-            <li>✓ Формирует здоровые привычки у детей</li>
-            <li>✓ Безопасная и дружелюбная среда</li>
-            <li>✓ Совместные занятия укрепляют отношения</li>
+        <!-- 4. Семьям -->
+        <div class="audience-card orange">
+          <div class="audience-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="audience-card-title" style="color: var(--orange);">Семьям</h3>
+          <p class="audience-card-sub">Время вместе, которое важно</p>
+          <div class="audience-card-photo">
+            <img src="images/exact_aud_family.jpg" alt="Семья играет в клубе">
+          </div>
+          <ul class="audience-list">
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Качественное время вместе</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Любой возраст и уровень</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Здоровые привычки детей</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Безопасная уютная среда</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Укрепление отношений</li>
           </ul>
         </div>
 
-        <!-- 5. ПОЖИЛЫМ ЛЮДЯМ -->
-        <div class="audience-card-col c-yellow">
-          <div class="audience-icon">👴👵</div>
-          <div class="audience-title" style="color:var(--yellow);">ПОЖИЛЫМ ЛЮДЯМ</div>
-          <div class="audience-sub">Активное долголетие и хорошее самочувствие</div>
-          <img src="images/exact_aud_seniors.jpg" alt="Пожилым людям" class="audience-img">
-          <ul class="audience-bullets">
-            <li>✓ Мягкая нагрузка на суставы</li>
-            <li>✓ Улучшает подвижность и гибкость</li>
-            <li>✓ Поддерживает здоровье сердца и сосудов</li>
-            <li>✓ Повышает настроение и снижает риск депрессии</li>
-            <li>✓ Новые знакомства и активное общение</li>
+        <!-- 5. Пожилым людям -->
+        <div class="audience-card lime-alt">
+          <div class="audience-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#b5f500" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 9h.01M15 9h.01"/><path d="M8 16c2 1.5 6 1.5 8 0"/><path d="M8 7c1-1 3-1 4 0 1-1 3-1 4 0"/></svg>
+          </div>
+          <h3 class="audience-card-title" style="color: #b5f500;">Пожилым людям</h3>
+          <p class="audience-card-sub">Активное долголетие и здоровье</p>
+          <div class="audience-card-photo">
+            <img src="images/exact_aud_seniors.jpg" alt="Пожилые люди играют в пиклбол">
+          </div>
+          <ul class="audience-list">
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#b5f500" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Мягкая нагрузка на суставы</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#b5f500" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Подвижность и гибкость</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#b5f500" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Здоровье сердца и сосудов</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#b5f500" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Снижает риск депрессии</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#b5f500" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Новые знакомства и общение</li>
           </ul>
         </div>
-
       </div>
-
     </div>
   </section>
 
   <!-- ==========================================================================
-       6 СТРАНИЦА: НОЧНЫЕ ИГРЫ
+       6. НОЧНЫЕ ИГРЫ (СЛАЙД 6)
        ========================================================================== -->
   <section class="night-section" id="night">
     <div class="container">
-      
       <div class="night-hero-grid">
         <div>
-          <h2 class="night-title">
-            <span style="color:var(--pink);">НОЧНЫЕ</span> <span style="color:var(--lime);">ИГРЫ</span>
+          <div class="section-tag" style="color: var(--magenta);">Атмосфера ночи</div>
+          <h2 class="section-title">
+            <span class="text-gradient-pink">НОЧНЫЕ ИГРЫ</span><br>
+            <span style="font-size: 28px; color: #fff;">ИГРАЙ. СВЕТИСЬ. ТУСУЙСЯ.</span>
           </h2>
-          <div style="font-family:'Unbounded', sans-serif; font-size:13px; font-weight:800; letter-spacing:0.06em; color:#fff; text-transform:uppercase; margin-bottom:12px;">
-            ИГРАЙ. СВЕТИСЬ. ТУСУЙСЯ.
-          </div>
-
+          
           <div class="night-icons-row">
             <div class="night-icon-item">
-              <div class="night-icon-box">🌙</div>
-              <span class="night-icon-label">НОЧНЫЕ ИГРЫ<br>22:00 – 03:00</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              <span>Ночные игры 22:00 – 03:00</span>
             </div>
             <div class="night-icon-item">
-              <div class="night-icon-box">🎾</div>
-              <span class="night-icon-label">БАТЛЫ<br>И ТУРНИРЫ</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><circle cx="7" cy="7" r="4"/><line x1="10" y1="10" x2="20" y2="20"/><circle cx="17" cy="7" r="4"/><line x1="14" y1="10" x2="4" y2="20"/></svg>
+              <span>Батлы и турниры</span>
             </div>
             <div class="night-icon-item">
-              <div class="night-icon-box">🎧</div>
-              <span class="night-icon-label">DJ СЕТЫ<br>И АТМОСФЕРА</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+              <span>DJ сеты и атмосфера</span>
             </div>
             <div class="night-icon-item">
-              <div class="night-icon-box">🍹</div>
-              <span class="night-icon-label">ФИРМЕННЫЕ<br>КОКТЕЙЛИ</span>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2"><path d="M8 22h8M12 15v7M19 3l-7 8-7-8h14z"/></svg>
+              <span>Фирменные коктейли</span>
             </div>
           </div>
 
-          <p style="font-size:13.5px; color:var(--txt-sub); line-height:1.6; margin-bottom:24px; max-width:480px;">
+          <p class="section-desc" style="margin-bottom: 24px;">
             EVOSPORT — это вечерние тусовочные игры под люминесцентным светом. Здесь светится всё: одежда, мячи и разметка. Энергия спорта. Атмосфера ночи.
           </p>
 
-          <div style="display:flex; align-items:center; flex-wrap:wrap; gap:12px;">
-            <div class="night-time-badge">
-              22:00 – 03:00 <span style="font-size:10px; color:var(--txt-sub); font-weight:600;">КАЖДУЮ НОЧЬ</span>
+          <div class="night-cta-bar">
+            <div class="night-time-pill">
+              <span class="time">22:00 – 03:00</span>
+              <span class="label">Каждую ночь</span>
             </div>
-            <button class="btn btn-outline" style="border-color:var(--pink); color:#fff;" onclick="openLeadModal('Бронь: Ночные игры (22:00–03:00)')">
-              ЗАБРОНИРОВАТЬ ИГРУ 📅
+            <button class="btn btn-gradient" onclick="openModal('Бронь: Ночные игры 22:00–03:00')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              Забронировать игру
             </button>
           </div>
         </div>
 
-        <div style="border-radius:var(--radius-xl); overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,0.7);">
+        <div class="hero-image-wrap">
           <img src="images/exact_night_hero.jpg" alt="EVOSPORT Ночные игры">
         </div>
       </div>
 
-      <!-- 5 карточек особенностей -->
-      <div class="night-features-strip">
-        <div class="night-feat-card">
-          <img src="images/exact_night_clothes.jpg" alt="Светящаяся одежда" class="night-feat-img">
-          <div class="night-feat-body">
-            <div class="night-feat-name">СВЕТЯЩАЯСЯ ОДЕЖДА</div>
-            <div class="night-feat-sub">Выделяйся на корте</div>
+      <!-- 5 Night Cards -->
+      <div class="night-cards-row">
+        <div class="night-card">
+          <div class="night-card-img">
+            <img src="images/exact_night_clothes.jpg" alt="Светящаяся одежда">
           </div>
+          <h5 style="color: var(--pink);">Светящаяся одежда</h5>
+          <p>Выделяйся на корте</p>
         </div>
 
-        <div class="night-feat-card">
-          <img src="images/exact_night_balls.jpg" alt="Светящиеся мячи" class="night-feat-img">
-          <div class="night-feat-body">
-            <div class="night-feat-name">СВЕТЯЩИЕСЯ МЯЧИ</div>
-            <div class="night-feat-sub">Максимум драйва</div>
+        <div class="night-card">
+          <div class="night-card-img">
+            <img src="images/exact_night_balls.jpg" alt="Светящиеся мячи">
           </div>
+          <h5 style="color: var(--lime);">Светящиеся мячи</h5>
+          <p>Максимум драйва</p>
         </div>
 
-        <div class="night-feat-card">
-          <img src="images/exact_night_court.jpg" alt="Люминесцентная разметка" class="night-feat-img">
-          <div class="night-feat-body">
-            <div class="night-feat-name">ЛЮМИНЕСЦЕНТНАЯ РАЗМЕТКА</div>
-            <div class="night-feat-sub">Корт, который сияет</div>
+        <div class="night-card">
+          <div class="night-card-img">
+            <img src="images/exact_night_court.jpg" alt="Люминесцентная разметка">
           </div>
+          <h5 style="color: var(--cyan);">Люминесцентная разметка</h5>
+          <p>Корт, который сияет</p>
         </div>
 
-        <div class="night-feat-card">
-          <img src="images/exact_night_dj.jpg" alt="DJ сеты" class="night-feat-img">
-          <div class="night-feat-body">
-            <div class="night-feat-name">DJ СЕТЫ</div>
-            <div class="night-feat-sub">Лучшие диджеи каждый вечер</div>
+        <div class="night-card">
+          <div class="night-card-img">
+            <img src="images/exact_night_dj.jpg" alt="DJ сеты">
           </div>
+          <h5 style="color: var(--magenta);">DJ сеты</h5>
+          <p>Лучшие диджеи каждый вечер</p>
         </div>
 
-        <div class="night-feat-card">
-          <img src="images/exact_night_cocktail.jpg" alt="Фирменные коктейли" class="night-feat-img">
-          <div class="night-feat-body">
-            <div class="night-feat-name">ФИРМЕННЫЕ КОКТЕЙЛИ</div>
-            <div class="night-feat-sub">Заряжают атмосферу</div>
+        <div class="night-card">
+          <div class="night-card-img">
+            <img src="images/exact_night_cocktail.jpg" alt="Фирменные коктейли">
           </div>
+          <h5 style="color: var(--orange);">Фирменные коктейли</h5>
+          <p>Заряжают атмосферу</p>
         </div>
       </div>
 
-      <div class="night-bottom-slogan">
-        <div class="night-slogan-title">
-          <span style="color:var(--pink);">НОЧЬ.</span> <span style="color:#00f2fe;">СПОРТ.</span> <span style="color:#e024c3;">МУЗЫКА.</span> <span style="color:var(--lime);">ТВОЙ ДВИЖ.</span>
-        </div>
-        <p style="font-size:12.5px; color:var(--txt-sub);">Присоединяйся к ночному движению EVOSPORT!</p>
+      <div class="night-banner-slogan">
+        <h3><span class="text-gradient-pink">НОЧЬ. СПОРТ. МУЗЫКА.</span> <span class="text-gradient-lime">ТВОЙ ДВИЖ.</span></h3>
+        <p>Присоединяйся к ночному движению EVOSPORT!</p>
       </div>
-
     </div>
   </section>
 
   <!-- ==========================================================================
-       7 СТРАНИЦА: МАРКЕТ EVOSPORT
+       7. МАРКЕТ EVOSPORT (СЛАЙД 7)
        ========================================================================== -->
   <section class="market-section" id="market">
     <div class="container">
-      
-      <div style="text-align:center; margin-bottom:36px;">
-        <h2 class="section-title">
-          <span style="color:var(--pink);">МАРКЕТ</span> <span style="color:var(--lime);">EVOSPORT</span>
-        </h2>
-        <p style="font-family:'Unbounded', sans-serif; font-size:12px; font-weight:800; letter-spacing:0.08em; color:var(--txt-sub); text-transform:uppercase;">
-          ФИРМЕННЫЕ ТОВАРЫ ДЛЯ ВАШЕЙ ЛУЧШЕЙ ИГРЫ
-        </p>
+      <div class="section-tag">Экипировка</div>
+      <h2 class="section-title"><span class="text-gradient-mix">МАРКЕТ EVOSPORT</span></h2>
+      <p class="section-desc">
+        Фирменные товары для вашей лучшей игры. Профессиональное оборудование от производителя.
+      </p>
+
+      <div class="market-grid">
+        <div class="market-card lime">
+          <div class="market-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <h4 class="market-title" style="color: var(--lime);">Покрытие</h4>
+          <div class="market-photo">
+            <img src="images/exact_market_flooring.jpg" alt="Покрытие для корта EVOSPORT">
+          </div>
+          <button class="market-btn" onclick="openModal('Заказ: Покрытие корта')">Перейти</button>
+        </div>
+
+        <div class="market-card pink">
+          <div class="market-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><rect x="3" y="5" width="18" height="12" rx="1"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="13" x2="21" y2="13"/><line x1="7" y1="5" x2="7" y2="17"/><line x1="12" y1="5" x2="12" y2="17"/><line x1="17" y1="5" x2="17" y2="17"/></svg>
+          </div>
+          <h4 class="market-title" style="color: var(--magenta);">Сетки</h4>
+          <div class="market-photo">
+            <img src="images/exact_market_nets.jpg" alt="Сетки EVOSPORT">
+          </div>
+          <button class="market-btn" onclick="openModal('Заказ: Сетки')">Перейти</button>
+        </div>
+
+        <div class="market-card cyan">
+          <div class="market-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00f2fe" stroke-width="2"><ellipse cx="10" cy="9" rx="6" ry="6"/><line x1="14.5" y1="13.5" x2="21" y2="20"/></svg>
+          </div>
+          <h4 class="market-title" style="color: var(--cyan);">Ракетки</h4>
+          <div class="market-photo">
+            <img src="images/exact_market_rackets.jpg" alt="Ракетки EVOSPORT">
+          </div>
+          <button class="market-btn" onclick="openModal('Заказ: Ракетки')">Перейти</button>
+        </div>
+
+        <div class="market-card orange">
+          <div class="market-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff8c00" stroke-width="2"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+          </div>
+          <h4 class="market-title" style="color: var(--orange);">Одежда</h4>
+          <div class="market-photo">
+            <img src="images/exact_market_clothes.jpg" alt="Фирменная одежда EVOSPORT">
+          </div>
+          <button class="market-btn" onclick="openModal('Заказ: Одежда')">Перейти</button>
+        </div>
+
+        <div class="market-card lime">
+          <div class="market-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><rect x="4" y="4" width="16" height="13" rx="2"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="13" x2="20" y2="13"/><circle cx="7" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
+          </div>
+          <h4 class="market-title" style="color: var(--lime);">Оборудование</h4>
+          <div class="market-photo">
+            <img src="images/exact_market_equipment.jpg" alt="Оборудование и аксессуары EVOSPORT">
+          </div>
+          <button class="market-btn" onclick="openModal('Заказ: Оборудование и аксессуары')">Перейти</button>
+        </div>
       </div>
-
-      <div class="market-grid-desktop">
-        
-        <!-- 1. ПОКРЫТИЕ -->
-        <div class="market-col-card c-lime">
-          <div class="market-icon">🟦</div>
-          <div class="market-cat-name" style="color:var(--lime);">ПОКРЫТИЕ</div>
-          <img src="images/exact_market_flooring.jpg" alt="Покрытие" class="market-prod-img">
-          <button class="market-btn" onclick="openLeadModal('Маркет: Заказ покрытия корта')">ПЕРЕЙТИ</button>
-        </div>
-
-        <!-- 2. СЕТКИ -->
-        <div class="market-col-card c-pink">
-          <div class="market-icon">🥅</div>
-          <div class="market-cat-name" style="color:var(--pink);">СЕТКИ</div>
-          <img src="images/exact_market_nets.jpg" alt="Сетки" class="market-prod-img">
-          <button class="market-btn" onclick="openLeadModal('Маркет: Заказ сеток')">ПЕРЕЙТИ</button>
-        </div>
-
-        <!-- 3. РАКЕТКИ -->
-        <div class="market-col-card c-cyan">
-          <div class="market-icon">🎾</div>
-          <div class="market-cat-name" style="color:var(--cyan);">РАКЕТКИ</div>
-          <img src="images/exact_market_rackets.jpg" alt="Ракетки" class="market-prod-img">
-          <button class="market-btn" onclick="openLeadModal('Маркет: Заказ ракеток')">ПЕРЕЙТИ</button>
-        </div>
-
-        <!-- 4. ОДЕЖДА -->
-        <div class="market-col-card c-orange">
-          <div class="market-icon">👕</div>
-          <div class="market-cat-name" style="color:var(--orange);">ОДЕЖДА</div>
-          <img src="images/exact_market_clothes.jpg" alt="Одежда" class="market-prod-img">
-          <button class="market-btn" onclick="openLeadModal('Маркет: Заказ спортивной одежды')">ПЕРЕЙТИ</button>
-        </div>
-
-        <!-- 5. ОБОРУДОВАНИЕ -->
-        <div class="market-col-card c-yellow">
-          <div class="market-icon">🛒</div>
-          <div class="market-cat-name" style="color:var(--yellow);">ОБОРУДОВАНИЕ<br>И АКСЕССУАРЫ</div>
-          <img src="images/exact_market_equipment.jpg" alt="Оборудование" class="market-prod-img">
-          <button class="market-btn" onclick="openLeadModal('Маркет: Заказ оборудования и аксессуаров')">ПЕРЕЙТИ</button>
-        </div>
-
-      </div>
-
     </div>
   </section>
 
   <!-- ==========================================================================
-       8 СТРАНИЦА: КАЧЕСТВО В КИТАЕ (EVOLUD Ltd)
+       8. ПРОИЗВОДСТВО В КИТАЕ (СЛАЙД 8)
        ========================================================================== -->
   <section class="china-section" id="china">
     <div class="container">
-      
-      <div class="china-grid-desktop">
-        
-        <!-- Левая колонка с текстом и преимуществами -->
+      <div class="china-grid">
         <div>
-          <div class="section-tag">01 О НАС</div>
+          <div class="section-tag">Производство</div>
           <h2 class="section-title">
             EVOSPORT —<br>
-            <span style="color:var(--pink);">КАЧЕСТВО,</span> <span style="color:var(--lime);">СОЗДАННОЕ В КИТАЕ</span>
+            <span class="text-gradient-pink">КАЧЕСТВО, СОЗДАННОЕ</span><br>
+            <span class="text-gradient-pink">В КИТАЕ</span>
           </h2>
-
-          <p style="font-size:13px; color:var(--txt-sub); line-height:1.6; margin-bottom:14px;">
+          <p class="section-desc" style="margin-bottom: 16px;">
             EVOLUD Ltd — производственная компания, расположенная в Китае. Мы специализируемся на разработке и производстве профессионального оборудования для ракеточных видов спорта под брендом EVOSPORT.
           </p>
-          <p style="font-size:13px; color:var(--txt-sub); line-height:1.6; margin-bottom:18px;">
+          <p class="section-desc" style="margin-bottom: 20px;">
             Наше оборудование создаётся с использованием передовых технологий, современных материалов и строгого контроля качества на каждом этапе производства.
           </p>
-          <div style="font-family:'Unbounded', sans-serif; font-size:12px; font-weight:800; color:var(--lime); line-height:1.5;">
+          <p style="font-family: var(--font-heading); font-size: 14px; font-weight: 700; color: var(--lime);">
             Мы создаём решения мирового уровня, чтобы вы могли играть лучше каждый день.
-          </div>
+          </p>
 
-          <div class="china-benefits-row">
-            <div class="china-benefit-item">
-              <div class="china-benefit-icon">🏆</div>
-              <div class="china-benefit-name">ПРОФЕССИОНАЛЬНОЕ КАЧЕСТВО</div>
-              <div class="china-benefit-desc">Используем премиальные материалы и передовые технологии для максимальной надёжности.</div>
+          <div class="china-features-col">
+            <div class="china-feature-item">
+              <div class="china-feat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+              </div>
+              <div class="china-feat-text">
+                <h5>Профессиональное качество</h5>
+                <p>Используем премиальные материалы и передовые технологии для максимальной надёжности.</p>
+              </div>
             </div>
 
-            <div class="china-benefit-item">
-              <div class="china-benefit-icon">🛡️</div>
-              <div class="china-benefit-name">ПОЛНЫЙ КОНТРОЛЬ ПРОИЗВОДСТВА</div>
-              <div class="china-benefit-desc">От разработки до упаковки — мы контролируем каждый этап для стабильного качества.</div>
+            <div class="china-feature-item">
+              <div class="china-feat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              </div>
+              <div class="china-feat-text">
+                <h5>Полный контроль производства</h5>
+                <p>От разработки до упаковки — контролируем каждый этап для стабильного качества.</p>
+              </div>
             </div>
 
-            <div class="china-benefit-item">
-              <div class="china-benefit-icon">🌐</div>
-              <div class="china-benefit-name">МИРОВОЙ УРОВЕНЬ И СТАНДАРТЫ</div>
-              <div class="china-benefit-desc">Наша продукция соответствует международным стандартам для клубов и профи.</div>
+            <div class="china-feature-item">
+              <div class="china-feat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div class="china-feat-text">
+                <h5>Мировой уровень и стандарты</h5>
+                <p>Продукция соответствует международным стандартам и подходит для клубов и профи.</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Правая колонка с фотографиями -->
-        <div class="china-images-grid">
-          <img src="images/exact_china_main.jpg" alt="EVOSPORT Фасад" class="china-main-img">
-          <div class="china-sub-imgs">
-            <img src="images/exact_china_sub1.jpg" alt="Производство ракеток" class="china-sub-img">
-            <img src="images/exact_china_sub2.jpg" alt="Производство мячей" class="china-sub-img">
+        <div class="china-collage">
+          <div class="china-photo-main">
+            <img src="images/exact_china_main.jpg" alt="EVOSPORT Фабрика и Клуб">
+          </div>
+          <div class="china-photo-sub">
+            <img src="images/exact_china_sub1.jpg" alt="Роботизированная линия ракеток">
+          </div>
+          <div class="china-photo-sub">
+            <img src="images/exact_china_sub2.jpg" alt="Линия производства мячей">
           </div>
         </div>
-
       </div>
 
-      <!-- Нижний блок контактов производства -->
-      <div class="china-contact-bar">
-        <div class="china-addr-block">
-          <span style="font-size:28px; color:var(--lime);">📍</span>
+      <!-- Credentials Card -->
+      <div class="china-contacts-card">
+        <div class="china-contact-company">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           <div>
-            <div style="font-family:'Unbounded', sans-serif; font-size:13px; font-weight:800; color:#fff; margin-bottom:4px;">
-              Guangzhou Evolution Road Trading Co., Ltd.
-            </div>
-            <div style="font-size:12px; color:var(--txt-sub);">
-              Room 1001-C21, No. 621 Tianhe Road, Tianhe District, Guangzhou City, China
-            </div>
+            <h4>Guangzhou Evolution Road Trading Co., Ltd.</h4>
+            <p>Room 1001-C21, No. 621 Tianhe Road, Tianhe District, Guangzhou City, China</p>
           </div>
         </div>
 
-        <div class="china-contacts-list">
-          <div>✉️ <strong>Email:</strong> newevolud@gmail.com</div>
-          <div>💬 <strong>Тел / WeChat:</strong> +86 18617363834</div>
-          <div>📱 <strong>Тел / WhatsApp:</strong> +7 9182160926</div>
+        <div class="china-contact-channels">
+          <div class="china-contact-row">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg>
+            <span>Email: <strong>newevolud@gmail.com</strong></span>
+          </div>
+          <div class="china-contact-row">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M8.5 12c4.14 0 7.5-2.69 7.5-6S12.64 0 8.5 0 1 2.69 1 6c0 1.91 1.13 3.6 2.87 4.67L3 13.5l3.2-1.6c.72.18 1.48.28 2.3.28z"/></svg>
+            <span>Тел / WeChat: <strong>+86 18617363834</strong></span>
+          </div>
+          <div class="china-contact-row">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>WhatsApp: <strong>+7 918 216-09-26</strong></span>
+          </div>
         </div>
       </div>
-
     </div>
   </section>
 
   <!-- ==========================================================================
-       FOOTER
+       9. ФУТЕР
        ========================================================================== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        
         <div>
-          <a href="#" class="logo" style="margin-bottom:16px;">
-            <img src="images/evosport_official_logo.png" alt="EVOSPORT Центр ракеточного спорта" style="height:36px; width:auto; border-radius:4px;">
-          </a>
-          <p style="font-size:12px; color:var(--txt-dim); line-height:1.6; max-width:280px;">
-            Сеть премиальных ракеточных клубов на юге России. Падел, пиклбол, бадминтон, настольный теннис и теннис.
+          <img src="images/evosport_official_logo.png" alt="EVOSPORT" style="height: 42px; margin-bottom: 16px;">
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; max-width: 320px;">
+            Сеть современных ракеточных клубов на юге России. Падел, пиклбол, бадминтон, настольный теннис и теннис.
           </p>
         </div>
 
-        <div>
-          <div class="footer-col-title">КЛУБЫ</div>
+        <div class="footer-col">
+          <h5>Клубы</h5>
           <ul class="footer-links">
-            <li><a href="#clubs">Крымск (ул. Синева, 25)</a></li>
-            <li><a href="#clubs">Новороссийск (ул. Энгельса, 17)</a></li>
-            <li><a href="#clubs">Краснодар (ул. 1 Мая, 439)</a></li>
-            <li><a href="#clubs">Краснодар (ТРЦ Галактика)</a></li>
+            <li>Крымск (ул. Синева, 25)</li>
+            <li>Новороссийск (ул. Энгельса, 17)</li>
+            <li>Краснодар (ул. 1 Мая, 439)</li>
+            <li>Краснодар (ТРЦ Галактика)</li>
           </ul>
         </div>
 
-        <div>
-          <div class="footer-col-title">ИГРЫ И УСЛУГИ</div>
+        <div class="footer-col">
+          <h5>Игры и услуги</h5>
           <ul class="footer-links">
             <li><a href="#games">Pickleball</a></li>
             <li><a href="#games">Турти</a></li>
             <li><a href="#games">Бадминтон</a></li>
             <li><a href="#games">Настольный теннис</a></li>
-            <li><a href="#night">Ночные игры (22:00–03:00)</a></li>
+            <li><a href="#night">Ночные игры 22:00–03:00</a></li>
           </ul>
         </div>
 
-        <div>
-          <div class="footer-col-title">КОНТАКТЫ</div>
-          <ul class="footer-links">
-            <li><strong style="color:#fff;">+7 918 216-09-26</strong></li>
-            <li>newevolud@gmail.com</li>
-            <li>Ежедневно 07:00 – 23:00</li>
-            <li>Ночные игры до 03:00</li>
-          </ul>
+        <div class="footer-col">
+          <h5>Контакты</h5>
+          <a href="tel:+79182160926" class="footer-phone">+7 918 216-09-26</a>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">newevolud@gmail.com</p>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 14px;">Ежедневно 07:00 – 23:00</p>
+          <button class="btn btn-outline btn-sm" onclick="openModal('Заявка из футера')">Написать нам</button>
         </div>
-
       </div>
 
-      <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:11.5px; color:var(--txt-dim);">
-        <div>© 2026 EVOSPORT Центр ракеточного спорта. Все права защищены.</div>
-        <div style="display:flex; gap:16px;">
-          <a href="#">Telegram</a>
-          <a href="#">ВКонтакте</a>
-          <a href="#">Instagram</a>
-        </div>
+      <div class="footer-bottom">
+        <span>© 2026 EVOSPORT. Центр ракеточного спорта. Все права защищены.</span>
+        <span>EVOLUD Ltd. Производство и дистрибуция</span>
       </div>
     </div>
   </footer>
 
   <!-- ==========================================================================
-       MODAL POPUP
+       10. МОДАЛЬНОЕ ОКНО ЗАЯВКИ
        ========================================================================== -->
-  <div class="modal-backdrop" id="leadModal" onclick="closeLeadModal(event)">
-    <div class="modal-window" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeLeadModal()">&times;</button>
-      
-      <div style="font-family:'Unbounded', sans-serif; font-size:16px; font-weight:900; text-transform:uppercase; margin-bottom:8px;" id="mTitle">
-        БРОНИРОВАНИЕ
-      </div>
-      <p style="font-size:12.5px; color:var(--txt-sub); margin-bottom:20px;">
-        Оставьте номер телефона, и наш администратор свяжется с вами в течение 5 минут для подтверждения брони.
-      </p>
+  <div class="modal-overlay" id="leadModal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-window">
+      <button class="modal-close-btn" onclick="closeModal()" aria-label="Закрыть">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
 
-      <form onsubmit="handleModalSubmit(event)" style="display:flex; flex-direction:column; gap:12px;">
-        <input type="text" required placeholder="Ваше имя" style="background:#070c18; border:1px solid var(--card-border); border-radius:10px; padding:12px 16px; font-size:13px; color:#fff; outline:none;">
-        <input type="tel" required placeholder="+7 (___) ___-__-__" style="background:#070c18; border:1px solid var(--card-border); border-radius:10px; padding:12px 16px; font-size:13px; color:#fff; outline:none;">
-        <select style="background:#070c18; border:1px solid var(--card-border); border-radius:10px; padding:12px 16px; font-size:13px; color:#fff; outline:none;">
-          <option>EVOSPORT Крымск (ул. Синева, 25)</option>
-          <option>EVOSPORT Новороссийск (ул. Энгельса, 17)</option>
-          <option>EVOSPORT Краснодар (ул. 1 Мая, 439)</option>
-          <option>EVOSPORT Краснодар (ТРЦ Галактика)</option>
-        </select>
-        <button type="submit" class="btn btn-lime btn-block" style="margin-top:6px;">
-          ОТПРАВИТЬ ЗАЯВКУ
+      <h3 class="modal-title text-gradient-mix">Забронировать</h3>
+      <p class="modal-desc" id="modalTargetDesc">Оставьте заявку, и мы свяжемся с вами в течение 5 минут для подтверждения.</p>
+
+      <form id="leadForm" onsubmit="submitLeadForm(event)">
+        <div class="form-group">
+          <label class="form-label">Ваше имя</label>
+          <input type="text" class="form-control" placeholder="Иван" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Номер телефона</label>
+          <input type="tel" class="form-control" placeholder="+7 (999) 000-00-00" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Выберите клуб</label>
+          <select class="form-control">
+            <option value="Краснодар (ул. 1 Мая, 439)">Краснодар (ул. 1 Мая, 439)</option>
+            <option value="Краснодар (ТРЦ Галактика)">Краснодар (ТРЦ Галактика)</option>
+            <option value="Новороссийск (ул. Энгельса, 17)">Новороссийск (ул. Энгельса, 17)</option>
+            <option value="Крымск (ул. Синева, 25)">Крымск (ул. Синева, 25)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Вид спорта / услуга</label>
+          <input type="text" id="modalServiceInput" class="form-control" value="Бронирование корта">
+        </div>
+
+        <button type="submit" class="btn btn-gradient" style="width: 100%; margin-top: 12px;">
+          Отправить заявку
         </button>
       </form>
     </div>
   </div>
 
-  <!-- Global JavaScript -->
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
   <script>
-    function openLeadModal(title) {
-      const m = document.getElementById('leadModal');
-      const t = document.getElementById('mTitle');
-      if (t && title) t.textContent = title;
-      if (m) m.classList.add('open');
-    }
-
-    function closeLeadModal() {
-      const m = document.getElementById('leadModal');
-      if (m) m.classList.remove('open');
-    }
-
-    function handleModalSubmit(e) {
-      e.preventDefault();
-      alert('Спасибо за заявку! Мы свяжемся с вами в течение 5 минут.');
-      closeLeadModal();
-    }
-
+    /* Mobile Drawer */
     function toggleMobileMenu() {
-      const nav = document.querySelector('.nav-links');
-      if (nav) {
-        if (nav.style.display === 'flex') {
-          nav.style.display = 'none';
-        } else {
-          nav.style.display = 'flex';
-          nav.style.flexDirection = 'column';
-          nav.style.position = 'absolute';
-          nav.style.top = '100%';
-          nav.style.left = '0';
-          nav.style.width = '100%';
-          nav.style.background = '#05070e';
-          nav.style.padding = '20px';
-          nav.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
-        }
+      const drawer = document.getElementById('mobileDrawer');
+      drawer.classList.toggle('active');
+    }
+
+    /* Modal Popup */
+    function openModal(serviceName) {
+      const modal = document.getElementById('leadModal');
+      const input = document.getElementById('modalServiceInput');
+      if (serviceName) input.value = serviceName;
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('leadModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'leadModal') closeModal();
+    }
+
+    function submitLeadForm(e) {
+      e.preventDefault();
+      alert('Спасибо за заявку! Наш администратор свяжется с вами в течение нескольких минут.');
+      closeModal();
+    }
+
+    /* Leaflet Dark Satellite Map */
+    let map;
+    const markers = [];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const mapContainer = document.getElementById('evosportMap');
+      if (!mapContainer) return;
+
+      map = L.map('evosportMap', {
+        center: [44.90, 38.45],
+        zoom: 9,
+        zoomControl: true,
+        attributionControl: false
+      });
+
+      // High contrast dark tile layer
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19
+      }).addTo(map);
+
+      const clubsData = [
+        { name: 'Крымск', address: 'ул. Синева, 25', lat: 44.9282, lng: 37.9922, color: '#c8ff3d' },
+        { name: 'Новороссийск', address: 'ул. Энгельса, 17', lat: 44.7239, lng: 37.7687, color: '#ff2d78' },
+        { name: 'Краснодар (1 Мая)', address: 'ул. 1 Мая, 439', lat: 45.0645, lng: 39.0215, color: '#00b4d8' },
+        { name: 'Краснодар (Галактика)', address: 'ул. Уральская, 77', lat: 45.0298, lng: 39.0435, color: '#00b4d8' }
+      ];
+
+      clubsData.forEach(c => {
+        const customIcon = L.divIcon({
+          className: 'custom-map-marker',
+          html: `<div style="background-color: ${c.color}; width: 16px; height: 16px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 14px ${c.color};"></div>`,
+          iconSize: [16, 16],
+          iconAnchor: [8, 8]
+        });
+
+        const m = L.marker([c.lat, c.lng], { icon: customIcon }).addTo(map);
+        m.bindPopup(`<strong style="color:#000;">${c.name}</strong><br><span style="color:#444;">${c.address}</span>`);
+        markers.push({ ...c, marker: m });
+      });
+    });
+
+    function focusMap(lat, lng, name) {
+      if (map) {
+        map.flyTo([lat, lng], 13, { duration: 1.2 });
+        const target = markers.find(m => m.lat === lat && m.lng === lng);
+        if (target) target.marker.openPopup();
       }
     }
 
-    function filterClubs(query) {
-      const q = query.toLowerCase().trim();
-      const cards = document.querySelectorAll('.club-item-card');
-      cards.forEach(c => {
-        const txt = c.textContent.toLowerCase();
-        c.style.display = txt.includes(q) ? 'flex' : 'none';
-      });
-    }
+    function filterClubs() {
+      const search = document.getElementById('clubSearchInput').value.toLowerCase();
+      const city = document.getElementById('clubCitySelect').value.toLowerCase();
+      const cards = document.querySelectorAll('.club-card');
 
-    function filterClubsCity(city) {
-      const cards = document.querySelectorAll('.club-item-card');
-      cards.forEach(c => {
-        if (city === 'all' || city === '📍 Выберите город' || c.getAttribute('data-city') === city) {
-          c.style.display = 'flex';
+      cards.forEach(card => {
+        const cardCity = card.getAttribute('data-city').toLowerCase();
+        const text = card.innerText.toLowerCase();
+
+        const matchCity = (city === 'all' || cardCity === city);
+        const matchSearch = (search === '' || text.includes(search));
+
+        if (matchCity && matchSearch) {
+          card.style.display = 'grid';
         } else {
-          c.style.display = 'none';
+          card.style.display = 'none';
         }
       });
     }
   </script>
-
 </body>
 </html>
