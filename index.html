@@ -414,40 +414,34 @@
     }
 
     /* Bottom 5 Sports Bar with Organic Raw Splashes */
+    
     .hero-bottom-container {
       position: relative;
       margin-top: 30px;
-      z-index: 4;
+      z-index: 5;
+      width: 100%;
     }
 
-    .splash-brush-left {
+    .splash-img-left {
       position: absolute;
-      left: -60px;
-      bottom: -35px;
+      left: -35px;
+      bottom: -20px;
       width: 260px;
-      height: 170px;
-      background-image: url('images/organic_brush_cyan.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: left bottom;
+      height: auto;
       pointer-events: none;
       z-index: 1;
-      opacity: 0.95;
+      display: block;
     }
 
-    .splash-brush-right {
+    .splash-img-right {
       position: absolute;
-      right: -60px;
-      bottom: -35px;
+      right: -35px;
+      bottom: -20px;
       width: 260px;
-      height: 170px;
-      background-image: url('images/organic_brush_magenta.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: right bottom;
+      height: auto;
       pointer-events: none;
       z-index: 1;
-      opacity: 0.95;
+      display: block;
     }
 
     .sports-bar {
@@ -463,44 +457,7 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     }
 
-    .sports-bar-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 0 14px;
-      border-right: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .sports-bar-item:last-child {
-      border-right: none;
-    }
-
-    .sports-bar-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.04);
-      flex-shrink: 0;
-    }
-
-    .sports-bar-text h4 {
-      font-family: var(--font-heading);
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 2px;
-    }
-    .sports-bar-text p {
-      font-size: 9px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-    }
-
-    /* ==========================================================================
+/* ==========================================================================
        2. 5 ИГР. МНОГО ЭМОЦИЙ (СЛАЙД 2)
        ========================================================================== */
     .games-section {
@@ -1647,6 +1604,8 @@
 
       <!-- Bottom Bar with Organic Raw Splashes -->
       <div class="hero-bottom-container">
+        <img src="images/edge_splash_cyan.png" class="splash-img-left" alt="Cyan Splash">
+        <img src="images/edge_splash_magenta.png" class="splash-img-right" alt="Magenta Splash">
         
 
         <div class="sports-bar">
