@@ -1069,22 +1069,73 @@
     }
 
     /* Map Box on Right */
+    
+    
+    /* Deep Blue Cyber Map Container matching Slide 3 */
     .clubs-map-col {
       border-radius: 18px;
       overflow: hidden;
       border: 1.2px solid rgba(255, 255, 255, 0.12);
       position: relative;
       min-height: 480px;
-      background: #03060c;
+      background: #020712 url('images/exact_slide3_blue_map.jpg') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    #clubs-interactive-map {
+    .map-interactive-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      min-height: 480px;
+      pointer-events: none;
     }
 
-    
+    .map-hotspot {
+      position: absolute;
+      pointer-events: auto;
+      cursor: pointer;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .map-hotspot::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: scale(0.5);
+    }
+
+    .map-hotspot.active::after, .map-hotspot:hover::after {
+      opacity: 0.4;
+      transform: scale(1.2);
+    }
+
+    .hotspot-krymsk { top: 31%; left: 27%; }
+    .hotspot-krymsk::after { background: radial-gradient(circle, #c8ff3d 0%, transparent 70%); }
+
+    .hotspot-novoross { top: 54%; left: 35%; }
+    .hotspot-novoross::after { background: radial-gradient(circle, #ff2d78 0%, transparent 70%); }
+
+    .hotspot-krd1 { top: 27%; left: 71%; }
+    .hotspot-krd1::after { background: radial-gradient(circle, #00b4d8 0%, transparent 70%); }
+
+    .hotspot-krd2 { top: 39%; left: 68%; }
+    .hotspot-krd2::after { background: radial-gradient(circle, #00b4d8 0%, transparent 70%); }
+
+
     /* Custom Leaflet Dark Marker Icons & Zoom Controls */
     .neon-map-pin {
       display: flex;
@@ -2220,9 +2271,14 @@
         </div>
       </div>
 
-      <!-- Right Column: Interactive Map with Custom Pins -->
-      <div class="clubs-map-col">
-        <div id="clubs-interactive-map"></div>
+      <!-- Right Column: Exact Slide 3 Blue Map with Interactive Pins -->
+      <div class="clubs-map-col" id="clubsMapContainer">
+        <div class="map-interactive-layer">
+          <div class="map-hotspot hotspot-krymsk active" onclick="focusClub(0)" title="Крымск"></div>
+          <div class="map-hotspot hotspot-novoross" onclick="focusClub(1)" title="Новороссийск"></div>
+          <div class="map-hotspot hotspot-krd1" onclick="focusClub(2)" title="Краснодар (1 Мая)"></div>
+          <div class="map-hotspot hotspot-krd2" onclick="focusClub(3)" title="Краснодар (Уральская)"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -2929,9 +2985,8 @@
       });
       L.control.zoom({ position: 'bottomright' }).addTo(clubsMap);
 
-      // Dark Matter Map Tiles
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; CartoDB &copy; OpenStreetMap',
+      // Deep Blue Cyber Navigation Tiles
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
         subdomains: 'abcd',
         maxZoom: 19
       }).addTo(clubsMap);
@@ -2968,9 +3023,8 @@
       const cards = document.querySelectorAll('.club-card-slide');
       cards.forEach((c, i) => c.classList.toggle('active', i === idx));
 
-      if (clubsMap && clubsData[idx]) {
-        clubsMap.flyTo([clubsData[idx].lat, clubsData[idx].lng], 12, { duration: 1.2 });
-      }
+      const hotspots = document.querySelectorAll('.map-hotspot');
+      hotspots.forEach((h, i) => h.classList.toggle('active', i === idx));
     }
 
     function toggleCityDropdown() {
