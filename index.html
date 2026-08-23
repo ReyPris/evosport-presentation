@@ -2053,6 +2053,9 @@
     <!-- ==========================================================================
        3. НАШИ КЛУБЫ (SLIDE 3: EXACT 1-TO-1 MATCH)
        ========================================================================== -->
+    <!-- ==========================================================================
+       3. НАШИ КЛУБЫ (SLIDE 3: EXACT 1-TO-1 MATCH)
+       ========================================================================== -->
   <section class="clubs-section" id="clubs">
     <div class="clubs-header">
       <h2 class="clubs-title">НАШИ КЛУБЫ</h2>
@@ -2071,8 +2074,11 @@
 
       <div class="clubs-dropdown-box">
         <div class="clubs-dropdown-btn" id="cityDropdownBtn" onclick="toggleCityDropdown()">
-          <span id="selectedCityLabel">📍 Выберите город</span>
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <span class="dropdown-btn-label" id="selectedCityLabel">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#9ca3af" stroke="#9ca3af" stroke-width="1"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span id="selectedCityText">Выберите город</span>
+          </span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </div>
         <div class="clubs-dropdown-menu" id="cityDropdownMenu">
           <div class="clubs-dropdown-item active" onclick="selectCity('all', 'Все города')">Все города</div>
@@ -2104,7 +2110,7 @@
               Ежедневно 07:00 – 23:00
             </div>
             <a href="https://yandex.ru/maps/?rtext=~44.9276,37.9942" target="_blank" class="btn-route" onclick="event.stopPropagation()">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="2 2 22 11 13 13 11 22 2 2"/></svg>
               ПОСТРОИТЬ МАРШРУТ
             </a>
           </div>
@@ -2126,7 +2132,7 @@
               Ежедневно 07:00 – 23:00
             </div>
             <a href="https://yandex.ru/maps/?rtext=~44.7244,37.7675" target="_blank" class="btn-route" onclick="event.stopPropagation()">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="2 2 22 11 13 13 11 22 2 2"/></svg>
               ПОСТРОИТЬ МАРШРУТ
             </a>
           </div>
@@ -2148,7 +2154,7 @@
               Ежедневно 07:00 – 23:00
             </div>
             <a href="https://yandex.ru/maps/?rtext=~45.0682,39.0185" target="_blank" class="btn-route" onclick="event.stopPropagation()">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="2 2 22 11 13 13 11 22 2 2"/></svg>
               ПОСТРОИТЬ МАРШРУТ
             </a>
           </div>
@@ -2170,7 +2176,7 @@
               Ежедневно 07:00 – 23:00
             </div>
             <a href="https://yandex.ru/maps/?rtext=~45.0315,39.0835" target="_blank" class="btn-route" onclick="event.stopPropagation()">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              <svg width="10" height="10" viewBox="0 0 24 24"><polygon points="2 2 22 11 13 13 11 22 2 2"/></svg>
               ПОСТРОИТЬ МАРШРУТ
             </a>
           </div>
@@ -2936,7 +2942,7 @@
     }
 
     function selectCity(cityKey, label) {
-      document.getElementById('selectedCityLabel').innerText = '📍 ' + label;
+      document.getElementById('selectedCityText').innerText = label;
       document.querySelectorAll('.clubs-dropdown-item').forEach(item => {
         item.classList.toggle('active', item.innerText === label);
       });
