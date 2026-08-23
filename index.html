@@ -4295,167 +4295,185 @@
 </div>
 
 
+  
+
+
+
   <script>
-    // =========================================================================
-    // INTERACTIVE CYBER MAP INITIALIZATION
-    // =========================================================================
-    var clubsData = [
-      {
-        id: 0,
-        city: 'Крымск',
-        address: 'ул. Синева, 25',
-        hours: 'Ежедневно 07:00 – 23:00',
-        lat: 44.9276,
-        lng: 37.9942,
-        colorClass: 'pin-lime',
-        colorHex: '#c8ff3d',
-        routeUrl: 'https://yandex.ru/maps/?rtext=~44.9276,37.9942'
-      },
-      {
-        id: 1,
-        city: 'Новороссийск',
-        address: 'ул. Мира, 17',
-        hours: 'Ежедневно 07:00 – 23:00',
-        lat: 44.7244,
-        lng: 37.7675,
-        colorClass: 'pin-pink',
-        colorHex: '#ff2d78',
-        routeUrl: 'https://yandex.ru/maps/?rtext=~44.7244,37.7675'
-      },
-      {
-        id: 2,
-        city: 'Краснодар (1 Мая)',
-        address: 'ул. 1 Мая, 439',
-        hours: 'Ежедневно 07:00 – 23:00',
-        lat: 45.0682,
-        lng: 39.0185,
-        colorClass: 'pin-cyan',
-        colorHex: '#00b4d8',
-        routeUrl: 'https://yandex.ru/maps/?rtext=~45.0682,39.0185'
-      },
-      {
-        id: 3,
-        city: 'Краснодар (Галактика)',
-        address: 'ул. Уральская, 77 (ТРК Галактика)',
-        hours: 'Ежедневно 07:00 – 23:00',
-        lat: 45.0315,
-        lng: 39.0835,
-        colorClass: 'pin-cyan',
-        colorHex: '#00b4d8',
-        routeUrl: 'https://yandex.ru/maps/?rtext=~45.0315,39.0835'
-      }
-    ];
+    // Unified Clubs Map Controller
+    (function() {
+      var clubs = [
+        {
+          id: 0,
+          city: 'Крымск',
+          address: 'ул. Синева, 25',
+          hours: 'Ежедневно 07:00 – 23:00',
+          lat: 44.9276,
+          lng: 37.9942,
+          colorClass: 'pin-lime',
+          colorHex: '#c8ff3d',
+          routeUrl: 'https://yandex.ru/maps/?rtext=~44.9276,37.9942'
+        },
+        {
+          id: 1,
+          city: 'Новороссийск',
+          address: 'ул. Мира, 17',
+          hours: 'Ежедневно 07:00 – 23:00',
+          lat: 44.7244,
+          lng: 37.7675,
+          colorClass: 'pin-pink',
+          colorHex: '#ff2d78',
+          routeUrl: 'https://yandex.ru/maps/?rtext=~44.7244,37.7675'
+        },
+        {
+          id: 2,
+          city: 'Краснодар (1 Мая)',
+          address: 'ул. 1 Мая, 439',
+          hours: 'Ежедневно 07:00 – 23:00',
+          lat: 45.0682,
+          lng: 39.0185,
+          colorClass: 'pin-cyan',
+          colorHex: '#00b4d8',
+          routeUrl: 'https://yandex.ru/maps/?rtext=~45.0682,39.0185'
+        },
+        {
+          id: 3,
+          city: 'Краснодар (Галактика)',
+          address: 'ул. Уральская, 77 (ТРК Галактика)',
+          hours: 'Ежедневно 07:00 – 23:00',
+          lat: 45.0315,
+          lng: 39.0835,
+          colorClass: 'pin-cyan',
+          colorHex: '#00b4d8',
+          routeUrl: 'https://yandex.ru/maps/?rtext=~45.0315,39.0835'
+        }
+      ];
 
-    var evosportMap = null;
-    var mapMarkers = [];
+      var map = null;
+      var markers = [];
 
-    function initInteractiveMap() {
-      var mapContainer = document.getElementById('interactiveLeafletMap');
-      if (!mapContainer || typeof L === 'undefined') return;
+      window.initMap = function() {
+        var mapEl = document.getElementById('interactiveLeafletMap');
+        if (!mapEl || typeof L === 'undefined') return;
 
-      // Center map between Novorossiysk, Krymsk and Krasnodar
-      evosportMap = L.map('interactiveLeafletMap', {
-        center: [44.90, 38.45],
-        zoom: 9,
-        zoomControl: true,
-        scrollWheelZoom: true
-      });
-
-      // Dark Matter cyber tile layer from CartoDB
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-        subdomains: 'abcd',
-        maxZoom: 19
-      }).addTo(evosportMap);
-
-      // Create Custom Glowing Markers
-      clubsData.forEach(function(club, index) {
-        var markerHtml = '<div class="custom-neon-marker ' + club.colorClass + '">' +
-          '<div class="marker-pin-head"><div class="marker-pin-inner"></div></div>' +
-          '<div class="marker-pin-label">' + club.city.split(' ')[0] + '</div>' +
-          '</div>';
-
-        var customIcon = L.divIcon({
-          html: markerHtml,
-          className: 'leaflet-custom-div-icon',
-          iconSize: [30, 42],
-          iconAnchor: [15, 42],
-          popupAnchor: [0, -42]
+        map = L.map('interactiveLeafletMap', {
+          center: [44.90, 38.45],
+          zoom: 9,
+          zoomControl: true,
+          scrollWheelZoom: true
         });
 
-        var popupContent = '<div class="popup-title" style="color: ' + club.colorHex + ';">EVOSPORT ' + club.city + '</div>' +
-          '<div class="popup-addr">' + club.address + '<br>' + club.hours + '</div>' +
-          '<a href="' + club.routeUrl + '" target="_blank" class="popup-route-btn">Построить маршрут &rarr;</a>';
+        // CartoDB Dark Matter tile layer for dark cyber theme
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+          attribution: '&copy; OpenStreetMap &copy; CARTO',
+          subdomains: 'abcd',
+          maxZoom: 19
+        }).addTo(map);
 
-        var marker = L.marker([club.lat, club.lng], { icon: customIcon }).addTo(evosportMap);
-        marker.bindPopup(popupContent);
+        clubs.forEach(function(club, idx) {
+          var markerHtml = '<div class="custom-neon-marker ' + club.colorClass + '">' +
+            '<div class="marker-pin-head"><div class="marker-pin-inner"></div></div>' +
+            '<div class="marker-pin-label">' + club.city.split(' ')[0] + '</div>' +
+            '</div>';
 
-        marker.on('click', function() {
-          highlightClubCard(index);
+          var icon = L.divIcon({
+            html: markerHtml,
+            className: 'custom-div-icon',
+            iconSize: [30, 42],
+            iconAnchor: [15, 42],
+            popupAnchor: [0, -42]
+          });
+
+          var popup = '<div class="popup-title" style="color: ' + club.colorHex + ';">EVOSPORT ' + club.city + '</div>' +
+            '<div class="popup-addr">' + club.address + '<br>' + club.hours + '</div>' +
+            '<a href="' + club.routeUrl + '" target="_blank" class="popup-route-btn">Построить маршрут &rarr;</a>';
+
+          var m = L.marker([club.lat, club.lng], { icon: icon }).addTo(map);
+          m.bindPopup(popup);
+
+          m.on('click', function() {
+            window.highlightClub(idx);
+          });
+
+          markers.push(m);
+        });
+      };
+
+      window.focusClub = function(idx) {
+        window.highlightClub(idx);
+        if (map && clubs[idx]) {
+          var c = clubs[idx];
+          map.flyTo([c.lat, c.lng], 13, { duration: 1.2 });
+          if (markers[idx]) {
+            markers[idx].openPopup();
+          }
+        }
+      };
+
+      window.highlightClub = function(idx) {
+        var cards = document.querySelectorAll('.club-card-slide');
+        cards.forEach(function(card, i) {
+          if (i === idx) {
+            card.classList.add('active');
+            card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          } else {
+            card.classList.remove('active');
+          }
+        });
+      };
+
+      window.selectCity = function(cityKey, labelText) {
+        var label = document.getElementById('selectedCityText');
+        if (label) label.textContent = labelText;
+        var menu = document.getElementById('cityDropdownMenu');
+        if (menu) menu.classList.remove('show');
+
+        var cards = document.querySelectorAll('.club-card-slide');
+        cards.forEach(function(card) {
+          if (cityKey === 'all' || card.getAttribute('data-city') === cityKey) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
         });
 
-        mapMarkers.push(marker);
-      });
-    }
+        if (map) {
+          if (cityKey === 'all') {
+            map.flyTo([44.90, 38.45], 9, { duration: 1 });
+          } else if (cityKey === 'krymsk') {
+            window.focusClub(0);
+          } else if (cityKey === 'novoross') {
+            window.focusClub(1);
+          } else if (cityKey === 'krd') {
+            map.flyTo([45.05, 39.05], 11, { duration: 1 });
+          }
+        }
+      };
 
-    function focusClub(index) {
-      highlightClubCard(index);
-      if (evosportMap && clubsData[index]) {
-        var club = clubsData[index];
-        evosportMap.flyTo([club.lat, club.lng], 13, {
-          duration: 1.2
+      window.toggleCityDropdown = function() {
+        var menu = document.getElementById('cityDropdownMenu');
+        if (menu) menu.classList.toggle('show');
+      };
+
+      window.filterClubs = function() {
+        var q = (document.getElementById('clubSearchInput').value || '').toLowerCase().trim();
+        var cards = document.querySelectorAll('.club-card-slide');
+        cards.forEach(function(card) {
+          var txt = card.innerText.toLowerCase();
+          if (!q || txt.indexOf(q) !== -1) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
         });
-        if (mapMarkers[index]) {
-          mapMarkers[index].openPopup();
-        }
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', window.initMap);
+      } else {
+        window.initMap();
       }
-    }
-
-    function highlightClubCard(index) {
-      var cards = document.querySelectorAll('.club-card-slide');
-      cards.forEach(function(card, i) {
-        if (i === index) {
-          card.classList.add('active');
-          card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } else {
-          card.classList.remove('active');
-        }
-      });
-    }
-
-    function selectCity(cityKey, labelText) {
-      document.getElementById('selectedCityText').textContent = labelText;
-      var menu = document.getElementById('cityDropdownMenu');
-      if (menu) menu.classList.remove('show');
-
-      var cards = document.querySelectorAll('.club-card-slide');
-      cards.forEach(function(card) {
-        if (cityKey === 'all' || card.getAttribute('data-city') === cityKey) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-
-      if (evosportMap) {
-        if (cityKey === 'all') {
-          evosportMap.flyTo([44.90, 38.45], 9, { duration: 1 });
-        } else if (cityKey === 'krymsk') {
-          focusClub(0);
-        } else if (cityKey === 'novoross') {
-          focusClub(1);
-        } else if (cityKey === 'krd') {
-          evosportMap.flyTo([45.05, 39.05], 11, { duration: 1 });
-        }
-      }
-    }
-
-    // Initialize map on DOMContentLoaded
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initInteractiveMap);
-    } else {
-      initInteractiveMap();
-    }
+    })();
   </script>
 
 </body>
