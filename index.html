@@ -3493,7 +3493,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     /* ==========================================================================
        ULTRA-POLISHED 1-TO-1 MOBILE RESPONSIVE ENGINE
        ========================================================================== */
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
       /* Global Viewport Resets */
       html, body {
         overflow-x: hidden !important;
@@ -4384,6 +4384,30 @@ svg.leaflet-image-layer.leaflet-interactive path {
       color: #00b4d8;
       border-color: rgba(0, 180, 216, 0.4);
     }
+  
+
+    /* Responsive Breakpoint for All Mobile & Tablet Screens <= 1024px */
+    @media (max-width: 1024px) {
+      .header .nav-links, ul.nav-links, .nav-links {
+        display: none !important;
+      }
+      .header-btn, .header-actions button:not(.burger-btn) {
+        display: none !important;
+      }
+      .burger-btn {
+        display: flex !important;
+      }
+      .footer-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 24px !important;
+        width: 100% !important;
+      }
+      .footer-col {
+        width: 100% !important;
+      }
+    }
+
   </style>
 </head>
 <body>
