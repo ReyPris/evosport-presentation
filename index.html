@@ -3381,27 +3381,38 @@
       background: #060913;
     }
 
-    /* Custom Neon Marker Styles */
+    
+    /* Custom Neon Marker Styles with Side Labels */
     .custom-neon-marker {
       display: flex;
-      flex-direction: column;
       align-items: center;
       cursor: pointer;
-      transform: translate(-50%, -100%);
+      transform: translate(-14px, -14px);
     }
+    .custom-neon-marker.layout-bottom {
+      flex-direction: column;
+      transform: translate(-14px, -28px);
+    }
+    .custom-neon-marker.layout-right {
+      flex-direction: row;
+      gap: 7px;
+      transform: translate(-14px, -14px);
+    }
+
     .marker-pin-head {
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       border-radius: 50% 50% 50% 0;
       transform: rotate(-45deg);
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .marker-pin-inner {
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: #060913;
       transform: rotate(45deg);
@@ -3411,19 +3422,19 @@
       font-size: 10px;
       font-weight: 800;
       color: #ffffff;
-      background: rgba(6, 9, 19, 0.85);
-      padding: 2px 7px;
-      border-radius: 4px;
-      margin-top: 4px;
+      background: rgba(6, 9, 19, 0.9);
+      padding: 3px 8px;
+      border-radius: 5px;
       white-space: nowrap;
       letter-spacing: 0.3px;
       border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
     }
 
     /* Pin Color Themes */
     .pin-lime .marker-pin-head {
       background: #c8ff3d;
-      box-shadow: 0 0 14px #c8ff3d, inset 0 0 6px #ffffff;
+      box-shadow: 0 0 14px #c8ff3d, inset 0 0 5px #ffffff;
     }
     .pin-lime .marker-pin-label {
       color: #c8ff3d;
@@ -3432,7 +3443,7 @@
 
     .pin-pink .marker-pin-head {
       background: #ff2d78;
-      box-shadow: 0 0 14px #ff2d78, inset 0 0 6px #ffffff;
+      box-shadow: 0 0 14px #ff2d78, inset 0 0 5px #ffffff;
     }
     .pin-pink .marker-pin-label {
       color: #ff2d78;
@@ -3441,15 +3452,11 @@
 
     .pin-cyan .marker-pin-head {
       background: #00b4d8;
-      box-shadow: 0 0 14px #00b4d8, inset 0 0 6px #ffffff;
+      box-shadow: 0 0 14px #00b4d8, inset 0 0 5px #ffffff;
     }
     .pin-cyan .marker-pin-label {
       color: #00b4d8;
       border-color: rgba(0, 180, 216, 0.4);
-    }
-
-    .custom-neon-marker:hover .marker-pin-head {
-      transform: rotate(-45deg) scale(1.15);
     }
 
     /* Leaflet Dark Popup */
@@ -4371,7 +4378,8 @@
         }).addTo(map);
 
         clubs.forEach(function(club, idx) {
-          var markerHtml = '<div class="custom-neon-marker ' + club.colorClass + '">' +
+          var layoutClass = (club.id >= 2) ? 'layout-right' : 'layout-bottom';
+          var markerHtml = '<div class="custom-neon-marker ' + club.colorClass + ' ' + layoutClass + '">' +
             '<div class="marker-pin-head"><div class="marker-pin-inner"></div></div>' +
             '<div class="marker-pin-label">' + club.city.split(' ')[0] + '</div>' +
             '</div>';
@@ -4379,9 +4387,9 @@
           var icon = L.divIcon({
             html: markerHtml,
             className: 'custom-div-icon',
-            iconSize: [30, 42],
-            iconAnchor: [15, 42],
-            popupAnchor: [0, -42]
+            iconSize: [120, 36],
+            iconAnchor: [13, 13],
+            popupAnchor: [0, -18]
           });
 
           var popup = '<div class="popup-title" style="color: ' + club.colorHex + ';">EVOSPORT ' + club.city + '</div>' +
