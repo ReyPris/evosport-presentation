@@ -1006,30 +1006,67 @@
 
     .btn-route {
       align-self: flex-start;
-      margin-top: 4px;
+      margin-top: 5px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(13, 18, 30, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(5, 7, 14, 0.7);
       border-radius: 6px;
-      padding: 4px 10px;
+      padding: 5px 12px;
       font-family: var(--font-heading);
-      font-size: 8.5px;
+      font-size: 9px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: #cbd5e1;
+      color: #e2e8f0;
       text-decoration: none;
       transition: all 0.2s ease;
     }
-    .btn-route:hover {
-      color: #ffffff;
-      border-color: #00b4d8;
-      background: rgba(0, 180, 216, 0.15);
+
+    .card-krymsk .btn-route {
+      border: 1px solid rgba(200, 255, 61, 0.55);
     }
-    .card-krymsk .btn-route:hover { border-color: #c8ff3d; }
-    .card-novoross .btn-route:hover { border-color: #ff2d78; }
+    .card-krymsk .btn-route svg {
+      width: 10px;
+      height: 10px;
+      fill: #c8ff3d;
+      stroke: none;
+    }
+    .card-krymsk .btn-route:hover {
+      background: rgba(200, 255, 61, 0.15);
+      border-color: #c8ff3d;
+      color: #ffffff;
+    }
+
+    .card-novoross .btn-route {
+      border: 1px solid rgba(255, 45, 120, 0.55);
+    }
+    .card-novoross .btn-route svg {
+      width: 10px;
+      height: 10px;
+      fill: #ff2d78;
+      stroke: none;
+    }
+    .card-novoross .btn-route:hover {
+      background: rgba(255, 45, 120, 0.15);
+      border-color: #ff2d78;
+      color: #ffffff;
+    }
+
+    .card-krd .btn-route {
+      border: 1px solid rgba(0, 180, 216, 0.55);
+    }
+    .card-krd .btn-route svg {
+      width: 10px;
+      height: 10px;
+      fill: #00b4d8;
+      stroke: none;
+    }
+    .card-krd .btn-route:hover {
+      background: rgba(0, 180, 216, 0.15);
+      border-color: #00b4d8;
+      color: #ffffff;
+    }
 
     /* Map Box on Right */
     .clubs-map-col {
