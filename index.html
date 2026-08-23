@@ -687,6 +687,7 @@
       border-color: #c8ff3d;
     }
 
+    
     .game-card-img-box {
       width: 100%;
       border-radius: 12px;
@@ -694,6 +695,48 @@
       margin-bottom: 14px;
       position: relative;
     }
+
+    .game-card-img-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .game-card-badge-overlay {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(5, 7, 14, 0.5);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .badge-cyan {
+      border: 1.5px solid #00b4d8;
+      box-shadow: 0 0 10px rgba(0, 180, 216, 0.4);
+    }
+    .badge-magenta {
+      border: 1.5px solid #ff2d78;
+      box-shadow: 0 0 10px rgba(255, 45, 120, 0.4);
+    }
+    .badge-lime {
+      border: 1.5px solid #c8ff3d;
+      box-shadow: 0 0 10px rgba(200, 255, 61, 0.4);
+    }
+
+    .game-card-badge-overlay svg {
+      width: 22px;
+      height: 22px;
+    }
+
 
     .game-card-img-box img {
       width: 100%;
@@ -1562,6 +1605,9 @@
     <!-- ==========================================================================
        2. 5 ИГР. МНОГО ЭМОЦИЙ (SLIDE 2: EXACT 1-TO-1 MATCH)
        ========================================================================== -->
+    <!-- ==========================================================================
+       2. 5 ИГР. МНОГО ЭМОЦИЙ (SLIDE 2: EXACT 1-TO-1 MATCH)
+       ========================================================================== -->
   <section class="games-section" id="games">
     <div class="games-header">
       <div class="games-top-line">
@@ -1581,7 +1627,18 @@
       <!-- 1. PICKLEBALL -->
       <div class="game-card-exact game-card-cyan">
         <div class="game-card-img-box">
-          <img src="images/exact_sport_pickleball.jpg" alt="Pickleball">
+          <div class="game-card-badge-overlay badge-cyan">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="1.8">
+              <rect x="7" y="3" width="10" height="13" rx="3.5"/>
+              <path d="M12 16v5M10 21h4"/>
+              <circle cx="10" cy="7" r="0.8" fill="#00b4d8" stroke="none"/>
+              <circle cx="14" cy="7" r="0.8" fill="#00b4d8" stroke="none"/>
+              <circle cx="12" cy="10" r="0.8" fill="#00b4d8" stroke="none"/>
+              <circle cx="10" cy="13" r="0.8" fill="#00b4d8" stroke="none"/>
+              <circle cx="14" cy="13" r="0.8" fill="#00b4d8" stroke="none"/>
+            </svg>
+          </div>
+          <img src="images/clean_sport_pickleball.jpg" alt="Pickleball">
         </div>
         <div class="game-card-body">
           <h3 class="game-card-title" style="color: #00b4d8;">Pickleball</h3>
@@ -1592,7 +1649,15 @@
       <!-- 2. ТУРТИ -->
       <div class="game-card-exact game-card-magenta">
         <div class="game-card-img-box">
-          <img src="images/exact_sport_turti.jpg" alt="Турти">
+          <div class="game-card-badge-overlay badge-magenta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="1.8">
+              <ellipse cx="12" cy="8.5" rx="6.5" ry="5.5"/>
+              <path d="M12 14v7M10 21h4"/>
+              <line x1="8.5" y1="8.5" x2="15.5" y2="8.5" stroke-dasharray="1.5 1.5"/>
+              <line x1="12" y1="5" x2="12" y2="12" stroke-dasharray="1.5 1.5"/>
+            </svg>
+          </div>
+          <img src="images/clean_sport_turti.jpg" alt="Турти">
         </div>
         <div class="game-card-body">
           <h3 class="game-card-title" style="color: #ff2d78;">ТУРТИ</h3>
@@ -1603,7 +1668,15 @@
       <!-- 3. БАДМИНТОН -->
       <div class="game-card-exact game-card-lime">
         <div class="game-card-img-box">
-          <img src="images/exact_sport_badminton.jpg" alt="Бадминтон">
+          <div class="game-card-badge-overlay badge-lime">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="1.8">
+              <circle cx="12" cy="6" r="2.8"/>
+              <path d="M9 9L6 20h12l-3-11"/>
+              <line x1="12" y1="9" x2="12" y2="20"/>
+              <line x1="7.5" y1="14.5" x2="16.5" y2="14.5"/>
+            </svg>
+          </div>
+          <img src="images/clean_sport_badminton.jpg" alt="Бадминтон">
         </div>
         <div class="game-card-body">
           <h3 class="game-card-title" style="color: #c8ff3d;">Бадминтон</h3>
@@ -1617,7 +1690,14 @@
       <!-- 4. НАСТОЛЬНЫЙ ТЕННИС -->
       <div class="game-card-exact game-card-cyan">
         <div class="game-card-img-box">
-          <img src="images/exact_sport_pingpong.jpg" alt="Настольный теннис">
+          <div class="game-card-badge-overlay badge-cyan">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="1.8">
+              <circle cx="10" cy="10" r="6"/>
+              <path d="M15 15l5 5M18 22l2-2"/>
+              <circle cx="18" cy="8" r="1.8" fill="#00b4d8" stroke="none"/>
+            </svg>
+          </div>
+          <img src="images/clean_sport_pingpong.jpg" alt="Настольный теннис">
         </div>
         <div class="game-card-body">
           <h3 class="game-card-title" style="color: #00b4d8;">Настольный теннис</h3>
@@ -1628,7 +1708,19 @@
       <!-- 5. ТЕННИС -->
       <div class="game-card-exact game-card-magenta">
         <div class="game-card-img-box">
-          <img src="images/exact_sport_tennis.jpg" alt="Теннис">
+          <div class="game-card-badge-overlay badge-magenta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="1.8">
+              <ellipse cx="12" cy="9" rx="6.5" ry="7"/>
+              <path d="M12 16v6M10 22h4"/>
+              <line x1="8" y1="7" x2="16" y2="7" stroke-width="0.8"/>
+              <line x1="7" y1="9.5" x2="17" y2="9.5" stroke-width="0.8"/>
+              <line x1="8" y1="12" x2="16" y2="12" stroke-width="0.8"/>
+              <line x1="10" y1="3" x2="10" y2="15" stroke-width="0.8"/>
+              <line x1="12" y1="2.5" x2="12" y2="15.5" stroke-width="0.8"/>
+              <line x1="14" y1="3" x2="14" y2="15" stroke-width="0.8"/>
+            </svg>
+          </div>
+          <img src="images/clean_sport_tennis.jpg" alt="Теннис">
         </div>
         <div class="game-card-body">
           <h3 class="game-card-title" style="color: #ff2d78;">Теннис</h3>
