@@ -1428,13 +1428,14 @@
       letter-spacing: 0.5px;
     }
 
+    
     /* ==========================================================================
-       5. АТМОСФЕРА НОЧИ / NIGHT EVENT (SEAMLESS BACKGROUND + VIGNETTE)
+       5. НОЧНЫЕ ИГРЫ (SLIDE 5: EXACT 1-TO-1 MATCH)
        ========================================================================== */
     .night-section {
       position: relative;
       background-color: #05070e;
-      padding: 60px 20px 70px;
+      padding: 50px 20px 60px;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -1442,12 +1443,12 @@
     .night-hero-banner {
       position: relative;
       min-height: 480px;
-      border-radius: 20px;
+      border-radius: 18px;
       overflow: hidden;
       display: flex;
       align-items: center;
-      padding: 50px 40px;
-      margin-bottom: 30px;
+      padding: 40px 30px 40px;
+      margin-bottom: 24px;
       background-color: #05070e;
     }
 
@@ -1455,7 +1456,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      width: 68%;
+      width: 65%;
       height: 100%;
       object-fit: cover;
       object-position: center right;
@@ -1469,136 +1470,218 @@
       inset: 0;
       z-index: 2;
       background: 
-        linear-gradient(to right, #05070e 0%, #05070e 38%, rgba(5,7,14,0.65) 60%, rgba(5,7,14,0.15) 80%, #05070e 100%),
-        linear-gradient(to bottom, #05070e 0%, transparent 18%, transparent 82%, #05070e 100%),
-        radial-gradient(ellipse at 75% 50%, transparent 30%, rgba(5,7,14,0.7) 70%, #05070e 100%);
+        linear-gradient(to right, #05070e 0%, #05070e 38%, rgba(5,7,14,0.65) 58%, rgba(5,7,14,0.1) 80%, #05070e 100%),
+        linear-gradient(to bottom, #05070e 0%, transparent 15%, transparent 85%, #05070e 100%),
+        radial-gradient(ellipse at 75% 50%, transparent 35%, rgba(5,7,14,0.75) 75%, #05070e 100%);
       pointer-events: none;
     }
 
     .night-hero-content {
       position: relative;
       z-index: 3;
-      max-width: 520px;
+      max-width: 480px;
     }
 
-    .night-tag-wrap {
+    /* Mini Logo */
+    .night-mini-logo {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
+      gap: 8px;
+      margin-bottom: 18px;
     }
-    .night-tag-text {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 13px;
-      font-weight: 800;
-      color: #ff2d78;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .night-mini-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5px;
     }
-    .night-tag-line {
-      width: 60px;
+    .night-mini-bar {
+      width: 18px;
       height: 2.5px;
-      background: linear-gradient(90deg, #ff2d78 0%, #00b4d8 100%);
-      border-radius: 2px;
+      border-radius: 1px;
+    }
+    .night-mini-bar.b-cyan { background: #00b4d8; }
+    .night-mini-bar.b-pink { background: #ff2d78; }
+    .night-mini-bar.b-lime { background: #c8ff3d; }
+    .night-mini-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .night-mini-logo-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+    }
+    .night-mini-logo-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      color: #9ca3af;
+      letter-spacing: 0.5px;
     }
 
     .night-main-title {
       font-family: 'Unbounded', sans-serif;
-      font-size: 38px;
+      font-size: 42px;
       font-weight: 900;
       font-style: italic;
       text-transform: uppercase;
-      line-height: 1.12;
-      color: #ffffff;
-      margin-bottom: 20px;
+      line-height: 1.08;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
     }
-    .night-main-title .txt-grad-magenta {
-      background: linear-gradient(90deg, #ff2d78 0%, #ff8800 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .night-main-title .txt-grad-lime {
-      background: linear-gradient(90deg, #e6ff00 0%, #c8ff3d 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+    .night-main-title .txt-pink-word { color: #ff2d78; }
+    .night-main-title .txt-lime-word { color: #c8ff3d; }
 
-    .night-pills-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .night-sub-slogan {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
       margin-bottom: 22px;
     }
-    .night-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 12px;
-      color: #e2e8f0;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 600;
-      backdrop-filter: blur(8px);
+
+    /* 4 Feature Icons Row */
+    .night-features-4-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
     }
-    .night-pill svg {
-      width: 14px;
-      height: 14px;
-      flex-shrink: 0;
+    .night-feat-mini-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .night-feat-mini-icon {
+      width: 26px;
+      height: 26px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+    .night-feat-mini-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+    .night-feat-mini-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 9.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 1.2;
+      margin-bottom: 2px;
+    }
+    .night-feat-mini-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9px;
+      color: #9ca3af;
+      line-height: 1.25;
     }
 
     .night-hero-desc {
       font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
+      font-size: 12.5px;
       color: #cbd5e1;
-      line-height: 1.55;
-      margin-bottom: 28px;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .night-hero-desc .txt-lime-highlight {
+      color: #c8ff3d;
+      font-weight: 600;
     }
 
-    .night-cta-btn {
+    /* Action bar with time badge and pink border button */
+    .night-action-bar {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .night-time-card {
+      background: #060913;
+      border: 1px solid rgba(200, 255, 61, 0.45);
+      border-radius: 8px;
+      padding: 10px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .night-time-val {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14.5px;
+      font-weight: 900;
+      color: #c8ff3d;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    .night-time-lbl {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 8px;
+      font-weight: 700;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 3px;
+    }
+
+    .night-btn-book {
+      background: #060913;
+      border: 1.5px solid #ff2d78;
+      border-radius: 8px;
+      padding: 12px 22px;
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: linear-gradient(135deg, #ff2d78 0%, #ff8800 100%);
-      color: #ffffff;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .night-btn-book:hover {
+      background: rgba(255, 45, 120, 0.15);
+      box-shadow: 0 0 16px rgba(255, 45, 120, 0.35);
+      transform: translateY(-2px);
+    }
+    .night-btn-book-text {
       font-family: 'Unbounded', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
+      color: #ffffff;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      padding: 14px 26px;
-      border-radius: 10px;
-      text-decoration: none;
-      box-shadow: 0 4px 20px rgba(255, 45, 120, 0.35);
-      transition: all 0.25s ease;
     }
-    .night-cta-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 28px rgba(255, 45, 120, 0.55);
+    .night-btn-book-icon {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* 5 Feature Cards Grid */
+    /* 5 Night Feature Cards Row */
     .night-cards-5-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
+      gap: 10px;
+      margin-bottom: 30px;
     }
 
     .night-feat-card {
       background: #060913;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 12px 10px 14px;
+      border-radius: 12px;
+      padding: 10px 8px 14px;
       display: flex;
       flex-direction: column;
       transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .night-feat-card:hover {
       transform: translateY(-3px);
-      border-color: rgba(255, 45, 120, 0.4);
-      box-shadow: 0 4px 18px rgba(255, 45, 120, 0.15);
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
     .night-feat-img-wrap {
@@ -1617,18 +1700,39 @@
 
     .night-feat-title {
       font-family: 'Unbounded', sans-serif;
-      font-size: 11.5px;
+      font-size: 10px;
       font-weight: 800;
-      font-style: italic;
       text-transform: uppercase;
+      color: #ffffff;
       margin-bottom: 4px;
-      line-height: 1.2;
+      line-height: 1.25;
     }
     .night-feat-desc {
       font-family: 'Montserrat', sans-serif;
-      font-size: 10px;
+      font-size: 9.5px;
       color: #9ca3af;
       line-height: 1.35;
+    }
+
+    /* Bottom Centered Slogan */
+    .night-bottom-slogan-wrap {
+      text-align: center;
+      padding-top: 10px;
+    }
+    .night-bottom-slogan-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .night-bottom-slogan-title .txt-pink { color: #ff2d78; }
+    .night-bottom-slogan-title .txt-lime { color: #c8ff3d; }
+    .night-bottom-slogan-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      color: #cbd5e1;
     }
 
     /* ==========================================================================
@@ -3627,6 +3731,9 @@
     <!-- ==========================================================================
        5. АТМОСФЕРА НОЧИ / NIGHT EVENT (SEAMLESS BACKGROUND + VIGNETTE)
        ========================================================================== -->
+    <!-- ==========================================================================
+       5. НОЧНЫЕ ИГРЫ (SLIDE 5: EXACT 1-TO-1 MATCH)
+       ========================================================================== -->
   <section class="night-section" id="night">
     <!-- Top Hero Banner with Background Image & Soft Edge Vignette -->
     <div class="night-hero-banner">
@@ -3634,91 +3741,167 @@
       <div class="night-hero-vignette"></div>
       
       <div class="night-hero-content">
-        <div class="night-tag-wrap">
-          <span class="night-tag-text">АТМОСФЕРА НОЧИ</span>
-          <span class="night-tag-line"></span>
-        </div>
-        <h2 class="night-main-title">
-          <span class="txt-grad-magenta">ТВОЙ СПОРТ.</span><br>
-          <span class="txt-grad-lime">ТВОЯ НОЧЬ.</span>
-        </h2>
-        
-        <div class="night-pills-row">
-          <div class="night-pill">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            <span>22:00 — 03:00</span>
+        <!-- Mini Logo -->
+        <div class="night-mini-logo">
+          <div class="night-mini-bars">
+            <span class="night-mini-bar b-cyan"></span>
+            <span class="night-mini-bar b-pink"></span>
+            <span class="night-mini-bar b-lime"></span>
           </div>
-          <div class="night-pill">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
-            <span>УФ-СВЕТ</span>
-          </div>
-          <div class="night-pill">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
-            <span>DJ-СЕТЫ</span>
-          </div>
-          <div class="night-pill">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#ff8800" stroke-width="2"><path d="M8 22h8M12 15v7M19 3l-7 8-7-8h14z"/></svg>
-            <span>СПОРТ-БАР</span>
+          <div class="night-mini-logo-text">
+            <span class="night-mini-logo-title">EVOSPORT</span>
+            <span class="night-mini-logo-sub">RACKET CLUB</span>
           </div>
         </div>
 
+        <!-- Main Title -->
+        <h2 class="night-main-title">
+          <span class="txt-pink-word">НОЧНЫЕ</span> <span class="txt-lime-word">ИГРЫ</span>
+        </h2>
+        <div class="night-sub-slogan">ИГРАЙ. СВЕТИСЬ. ТУСУЙСЯ.</div>
+
+        <!-- 4 Mini Features Row -->
+        <div class="night-features-4-row">
+          <!-- 1. НОЧНЫЕ ИГРЫ -->
+          <div class="night-feat-mini-col">
+            <div class="night-feat-mini-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="1.8">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                <circle cx="19" cy="5" r="0.8" fill="#c8ff3d"/>
+                <circle cx="17" cy="9" r="0.8" fill="#c8ff3d"/>
+              </svg>
+            </div>
+            <div class="night-feat-mini-title" style="color: #c8ff3d;">НОЧНЫЕ ИГРЫ</div>
+            <div class="night-feat-mini-sub">22:00 – 03:00</div>
+          </div>
+
+          <!-- 2. БАТЛЫ -->
+          <div class="night-feat-mini-col">
+            <div class="night-feat-mini-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#ff2d78" stroke-width="1.8">
+                <ellipse cx="8" cy="8" rx="5" ry="6"/>
+                <path d="M8 14v6M5 20h6"/>
+                <ellipse cx="16" cy="8" rx="5" ry="6"/>
+                <path d="M16 14v6M13 20h6"/>
+              </svg>
+            </div>
+            <div class="night-feat-mini-title" style="color: #ff2d78;">БАТЛЫ</div>
+            <div class="night-feat-mini-sub">И ТУРНИРЫ</div>
+          </div>
+
+          <!-- 3. DJ СЕТЫ -->
+          <div class="night-feat-mini-col">
+            <div class="night-feat-mini-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#00b4d8" stroke-width="1.8">
+                <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
+                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+              </svg>
+            </div>
+            <div class="night-feat-mini-title" style="color: #00b4d8;">DJ СЕТЫ</div>
+            <div class="night-feat-mini-sub">и атмосфера</div>
+          </div>
+
+          <!-- 4. ФИРМЕННЫЕ КОКТЕЙЛИ -->
+          <div class="night-feat-mini-col">
+            <div class="night-feat-mini-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#ff8800" stroke-width="1.8">
+                <path d="M8 22h8M12 15v7M19 3l-7 8-7-8h14z"/>
+                <line x1="16" y1="3" x2="19" y2="7"/>
+              </svg>
+            </div>
+            <div class="night-feat-mini-title" style="color: #ff8800;">ФИРМЕННЫЕ</div>
+            <div class="night-feat-mini-sub" style="color: #ff8800;">КОКТЕЙЛИ</div>
+          </div>
+        </div>
+
+        <!-- Description -->
         <p class="night-hero-desc">
-          Мы полностью перевернули представление о спорте. Ночные игры под ультрафиолетом, неоновые линии кортов, драйвовый саунд и авторские коктейли. Атмосфера настоящего ночного клуба на спортивном корте.
+          EVOSPORT — это вечерние тусовочные игры<br>
+          под люминесцентным светом.<br>
+          Здесь светится всё: одежда, мячи и разметка.<br>
+          <span class="txt-lime-highlight">Энергия спорта. Атмосфера ночи.</span>
         </p>
 
-        <a href="#contacts" class="night-cta-btn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          ЗАБРОНИРОВАТЬ НОЧНУЮ ИГРУ
-        </a>
+        <!-- CTA Action Bar -->
+        <div class="night-action-bar">
+          <div class="night-time-card">
+            <span class="night-time-val">22:00 – 03:00</span>
+            <span class="night-time-lbl">КАЖДУЮ НОЧЬ</span>
+          </div>
+          <a href="#contacts" class="night-btn-book">
+            <span class="night-btn-book-text">ЗАБРОНИРОВАТЬ ИГРУ</span>
+            <span class="night-btn-book-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8ff3d" stroke-width="1.8">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+                <circle cx="8" cy="14" r="0.8" fill="#c8ff3d"/>
+                <circle cx="12" cy="14" r="0.8" fill="#c8ff3d"/>
+                <circle cx="16" cy="14" r="0.8" fill="#c8ff3d"/>
+                <circle cx="8" cy="18" r="0.8" fill="#c8ff3d"/>
+              </svg>
+            </span>
+          </a>
+        </div>
       </div>
     </div>
 
-    <!-- 5 Night Feature Cards -->
+    <!-- 5 Night Feature Cards Row -->
     <div class="night-cards-5-grid">
-      <!-- 1. НЕОНОВАЯ ФОРМА -->
+      <!-- 1. СВЕТЯЩАЯСЯ ОДЕЖДА -->
       <div class="night-feat-card">
         <div class="night-feat-img-wrap">
-          <img src="images/night_feat_uniform.jpg" alt="Неоновая форма">
+          <img src="images/night_feat_uniform.jpg" alt="Светящаяся одежда">
         </div>
-        <div class="night-feat-title" style="color: #ff2d78;">НЕОНОВАЯ ФОРМА</div>
-        <div class="night-feat-desc">Светится в ультрафиолете и создает неповторимый стиль</div>
+        <div class="night-feat-title">СВЕТЯЩАЯСЯ ОДЕЖДА</div>
+        <div class="night-feat-desc">Выделяйся на корте</div>
       </div>
 
-      <!-- 2. СВЕТЯЩИЕСЯ КОРТЫ -->
+      <!-- 2. СВЕТЯЩИЕСЯ МЯЧИ -->
       <div class="night-feat-card">
         <div class="night-feat-img-wrap">
-          <img src="images/night_feat_court.jpg" alt="Светящиеся корты">
+          <img src="images/night_feat_ball.jpg" alt="Светящиеся мячи">
         </div>
-        <div class="night-feat-title" style="color: #00b4d8;">СВЕТЯЩИЕСЯ КОРТЫ</div>
-        <div class="night-feat-desc">Неоновая разметка линий и подсветка сетки</div>
+        <div class="night-feat-title">СВЕТЯЩИЕСЯ МЯЧИ</div>
+        <div class="night-feat-desc">Максимум драйва</div>
       </div>
 
-      <!-- 3. DJ И МУЗЫКА -->
+      <!-- 3. ЛЮМИНЕСЦЕНТНАЯ РАЗМЕТКА -->
       <div class="night-feat-card">
         <div class="night-feat-img-wrap">
-          <img src="images/night_feat_dj.jpg" alt="DJ и музыка">
+          <img src="images/night_feat_court.jpg" alt="Люминесцентная разметка">
         </div>
-        <div class="night-feat-title" style="color: #c8ff3d;">DJ И МУЗЫКА</div>
-        <div class="night-feat-desc">Живые сеты от топовых DJ для идеального ритма игры</div>
+        <div class="night-feat-title">ЛЮМИНЕСЦЕНТНАЯ РАЗМЕТКА</div>
+        <div class="night-feat-desc">Корт, который сияет</div>
       </div>
 
-      <!-- 4. НЕОНОВЫЕ МЯЧИ -->
+      <!-- 4. DJ СЕТЫ -->
       <div class="night-feat-card">
         <div class="night-feat-img-wrap">
-          <img src="images/night_feat_ball.jpg" alt="Неоновые мячи">
+          <img src="images/night_feat_dj.jpg" alt="DJ сеты">
         </div>
-        <div class="night-feat-title" style="color: #e6ff00;">НЕОНОВЫЕ МЯЧИ</div>
-        <div class="night-feat-desc">Специальные мячи EVOSPORT с ярким свечением в УФ</div>
+        <div class="night-feat-title">DJ СЕТЫ</div>
+        <div class="night-feat-desc">Лучшие диджеи каждый вечер</div>
       </div>
 
-      <!-- 5. СПОРТ-БАР И КОКТЕЙЛИ -->
+      <!-- 5. ФИРМЕННЫЕ КОКТЕЙЛИ -->
       <div class="night-feat-card">
         <div class="night-feat-img-wrap">
-          <img src="images/night_feat_cocktail.jpg" alt="Спорт-бар и коктейли">
+          <img src="images/night_feat_cocktail.jpg" alt="Фирменные коктейли">
         </div>
-        <div class="night-feat-title" style="color: #ff8800;">СПОРТ-БАР</div>
-        <div class="night-feat-desc">Авторские безалкогольные и спортивные коктейли</div>
+        <div class="night-feat-title">ФИРМЕННЫЕ КОКТЕЙЛИ</div>
+        <div class="night-feat-desc">Заряжают атмосферу</div>
       </div>
+    </div>
+
+    <!-- Bottom Centered Slogan -->
+    <div class="night-bottom-slogan-wrap">
+      <div class="night-bottom-slogan-title">
+        <span class="txt-pink">НОЧЬ. СПОРТ. МУЗЫКА.</span> <span class="txt-lime">ТВОЙ ДВИЖ.</span>
+      </div>
+      <div class="night-bottom-slogan-sub">Присоединяйся к ночному движению EVOSPORT!</div>
     </div>
   </section>
 
