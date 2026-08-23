@@ -1133,6 +1133,297 @@
     .hotspot-krd1::after { background: radial-gradient(circle, #00b4d8 0%, transparent 70%); }
 
     .hotspot-krd2 { top: 39%; left: 68%; }
+
+    /* ==========================================================================
+       4. СТОИМОСТЬ И АБОНЕМЕНТЫ (SLIDE 4: EXACT 1-TO-1 MATCH)
+       ========================================================================== */
+    .pricing-dual-section {
+      position: relative;
+      background-color: #05070e;
+      padding: 50px 20px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pricing-dual-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .pricing-panel {
+      background: #05070e;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 22px 16px 22px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-panel-title {
+      font-family: var(--font-body), sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .games-price-grid, .subs-price-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      flex: 1;
+    }
+
+    /* Column Cards */
+    .price-card-col {
+      background: #060913;
+      border-radius: 10px;
+      padding: 14px 8px 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      min-width: 0;
+    }
+    .price-card-col:hover {
+      transform: translateY(-3px);
+    }
+
+    .card-theme-lime { border: 1.2px solid #c8ff3d; }
+    .card-theme-lime:hover { box-shadow: 0 0 16px rgba(200, 255, 61, 0.25); }
+
+    .card-theme-magenta { border: 1.2px solid #ff2d78; }
+    .card-theme-magenta:hover { box-shadow: 0 0 16px rgba(255, 45, 120, 0.25); }
+
+    .card-theme-cyan { border: 1.2px solid #00b4d8; }
+    .card-theme-cyan:hover { box-shadow: 0 0 16px rgba(0, 180, 216, 0.25); }
+
+    .card-theme-orange { border: 1.2px solid #ff8800; }
+    .card-theme-orange:hover { box-shadow: 0 0 16px rgba(255, 136, 0, 0.25); }
+
+    /* Titles inside cards */
+    .card-head-title-ru {
+      font-family: var(--font-body), sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 2px;
+      text-align: center;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .card-theme-lime .card-head-title-ru { color: #c8ff3d; }
+    .card-theme-magenta .card-head-title-ru { color: #ff2d78; }
+    .card-theme-cyan .card-head-title-ru { color: #00b4d8; }
+    .card-theme-orange .card-head-title-ru { color: #ff8800; }
+
+    .card-head-title-en {
+      font-family: var(--font-body), sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .subs-price-grid .card-head-title-en {
+      color: #ffffff;
+    }
+
+    /* Left Panel: Image Box */
+    .game-col-img-box {
+      width: 100%;
+      height: 240px;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .game-col-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .game-col-cap-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      font-size: 10.5px;
+      color: #9ca3af;
+      margin-bottom: 12px;
+      white-space: nowrap;
+    }
+    .game-col-cap-box svg {
+      width: 13px !important;
+      height: 13px !important;
+      fill: none;
+      stroke: #9ca3af;
+      stroke-width: 1.8;
+      flex-shrink: 0;
+    }
+
+    .game-col-price-box {
+      margin-top: auto;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .game-price-number {
+      font-family: var(--font-body), sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    .game-price-per-hour {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 2px;
+    }
+
+    /* Right Panel: Subscription Icons & Features */
+    .sub-col-icon-box {
+      width: 100%;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .sub-col-icon-box svg {
+      width: 30px !important;
+      height: 30px !important;
+      max-width: 30px;
+      max-height: 30px;
+      flex-shrink: 0;
+    }
+
+    .sub-col-features {
+      list-style: none;
+      padding: 0 4px;
+      margin: 0 0 auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+    .sub-feat-line {
+      font-size: 10px;
+      color: #d1d5db;
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+      line-height: 1.35;
+      text-align: left;
+    }
+    .sub-feat-line svg {
+      width: 11px !important;
+      height: 11px !important;
+      max-width: 11px;
+      max-height: 11px;
+      flex-shrink: 0;
+      margin-top: 1.5px;
+    }
+
+    .sub-col-price-box {
+      margin-top: auto;
+      text-align: center;
+      margin-bottom: 14px;
+      padding-top: 14px;
+    }
+    .sub-price-number {
+      font-family: var(--font-body), sans-serif;
+      font-size: 19px;
+      font-weight: 800;
+      line-height: 1.1;
+      white-space: nowrap;
+    }
+    .card-theme-lime .sub-price-number { color: #c8ff3d; }
+    .card-theme-magenta .sub-price-number { color: #ff2d78; }
+    .card-theme-cyan .sub-price-number { color: #00b4d8; }
+    .card-theme-orange .sub-price-number { color: #ff8800; }
+
+    .sub-price-subtext {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 2px;
+    }
+
+    /* Buttons */
+    .btn-slide4 {
+      width: 100%;
+      padding: 8px 0;
+      border-radius: 6px;
+      background: #05070e;
+      font-family: var(--font-body), sans-serif;
+      font-size: 8.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: block;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .card-theme-lime .btn-slide4 {
+      border: 1.2px solid #c8ff3d;
+      color: #ffffff;
+    }
+    .card-theme-lime .btn-slide4:hover {
+      background: rgba(200, 255, 61, 0.2);
+    }
+
+    .card-theme-magenta .btn-slide4 {
+      border: 1.2px solid #ff2d78;
+      color: #ffffff;
+    }
+    .card-theme-magenta .btn-slide4:hover {
+      background: rgba(255, 45, 120, 0.2);
+    }
+
+    .card-theme-cyan .btn-slide4 {
+      border: 1.2px solid #00b4d8;
+      color: #ffffff;
+    }
+    .card-theme-cyan .btn-slide4:hover {
+      background: rgba(0, 180, 216, 0.2);
+    }
+
+    .card-theme-orange .btn-slide4 {
+      border: 1.2px solid #ff8800;
+      color: #ffffff;
+    }
+    .card-theme-orange .btn-slide4:hover {
+      background: rgba(255, 136, 0, 0.2);
+    }
+
+    /* VIGODNO Badge */
+    .sub-badge-vigodno {
+      position: absolute;
+      top: -9px;
+      right: 6px;
+      background: #ff8800;
+      color: #05070e;
+      font-family: var(--font-body), sans-serif;
+      font-size: 8px;
+      font-weight: 900;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
     .hotspot-krd2::after { background: radial-gradient(circle, #00b4d8 0%, transparent 70%); }
 
     /* ==========================================================================
