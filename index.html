@@ -355,6 +355,12 @@
       flex-wrap: wrap;
     }
 
+    .hero-image-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
     .hero-image-wrap {
       position: relative;
       border-radius: var(--radius-xl);
@@ -367,6 +373,25 @@
       height: 100%;
       object-fit: cover;
       display: block;
+    }
+
+    .hero-thumbnails-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .hero-thumb-item {
+      height: 80px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+
+    .hero-thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .hero-sports-bar {
@@ -1475,8 +1500,21 @@
           </div>
         </div>
 
-        <div class="hero-image-wrap">
-          <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/exact_hero_players.jpg" alt="EVOSPORT Игроки на корте под неоновым светом">
+        <div class="hero-image-col">
+          <div class="hero-image-wrap">
+            <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/exact_hero_players.jpg" alt="EVOSPORT Игроки на корте под неоновым светом">
+          </div>
+          <div class="hero-thumbnails-row">
+            <div class="hero-thumb-item">
+              <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/hero_mini_lines.jpg" alt="Неоновые линии корта">
+            </div>
+            <div class="hero-thumb-item">
+              <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/hero_mini_dj.jpg" alt="DJ пульты">
+            </div>
+            <div class="hero-thumb-item">
+              <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/hero_mini_cocktail.jpg" alt="Коктейли">
+            </div>
+          </div>
         </div>
 
       </div>
@@ -2067,7 +2105,7 @@
         <div class="market-col-card c-lime">
           <div class="market-icon">🟦</div>
           <div class="market-cat-name" style="color:var(--lime);">ПОКРЫТИЕ</div>
-          <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/img_16.jpg" alt="Покрытие" class="market-prod-img">
+          <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/exact_market_flooring.jpg" alt="Покрытие" class="market-prod-img">
           <button class="market-btn" onclick="openLeadModal('Маркет: Заказ покрытия корта')">ПЕРЕЙТИ</button>
         </div>
 
@@ -2075,7 +2113,7 @@
         <div class="market-col-card c-pink">
           <div class="market-icon">🥅</div>
           <div class="market-cat-name" style="color:var(--pink);">СЕТКИ</div>
-          <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/img_17.jpg" alt="Сетки" class="market-prod-img">
+          <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/exact_market_nets.jpg" alt="Сетки" class="market-prod-img">
           <button class="market-btn" onclick="openLeadModal('Маркет: Заказ сеток')">ПЕРЕЙТИ</button>
         </div>
 
@@ -2083,7 +2121,7 @@
         <div class="market-col-card c-cyan">
           <div class="market-icon">🎾</div>
           <div class="market-cat-name" style="color:var(--cyan);">РАКЕТКИ</div>
-          <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/img_18.jpg" alt="Ракетки" class="market-prod-img">
+          <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/exact_market_rackets.jpg" alt="Ракетки" class="market-prod-img">
           <button class="market-btn" onclick="openLeadModal('Маркет: Заказ ракеток')">ПЕРЕЙТИ</button>
         </div>
 
@@ -2091,7 +2129,7 @@
         <div class="market-col-card c-orange">
           <div class="market-icon">👕</div>
           <div class="market-cat-name" style="color:var(--orange);">ОДЕЖДА</div>
-          <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/img_28.jpg" alt="Одежда" class="market-prod-img">
+          <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/exact_market_clothes.jpg" alt="Одежда" class="market-prod-img">
           <button class="market-btn" onclick="openLeadModal('Маркет: Заказ спортивной одежды')">ПЕРЕЙТИ</button>
         </div>
 
@@ -2099,7 +2137,7 @@
         <div class="market-col-card c-yellow">
           <div class="market-icon">🛒</div>
           <div class="market-cat-name" style="color:var(--yellow);">ОБОРУДОВАНИЕ<br>И АКСЕССУАРЫ</div>
-          <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/img_29.jpg" alt="Оборудование" class="market-prod-img">
+          <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/exact_market_equipment.jpg" alt="Оборудование" class="market-prod-img">
           <button class="market-btn" onclick="openLeadModal('Маркет: Заказ оборудования и аксессуаров')">ПЕРЕЙТИ</button>
         </div>
 
@@ -2157,10 +2195,10 @@
 
         <!-- Правая колонка с фотографиями -->
         <div class="china-images-grid">
-          <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/img_25.jpg" alt="EVOSPORT Фасад" class="china-main-img">
+          <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/exact_china_main.jpg" alt="EVOSPORT Фасад" class="china-main-img">
           <div class="china-sub-imgs">
-            <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/img_30.jpg" alt="Производство ракеток" class="china-sub-img">
-            <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/img_31.jpg" alt="Производство мячей" class="china-sub-img">
+            <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/exact_china_sub1.jpg" alt="Производство ракеток" class="china-sub-img">
+            <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/exact_china_sub2.jpg" alt="Производство мячей" class="china-sub-img">
           </div>
         </div>
 
