@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EVOSPORT RACKET CLUB — Твоя игра. Твои правила.</title>
+  <title>EVOSPORT — Центр ракеточного спорта</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,7 +27,7 @@
       --pink-dim: rgba(255, 45, 120, 0.15);
       --cyan: #00f2fe;
       --cyan-dim: rgba(0, 242, 254, 0.15);
-      --blue: #3c6bff;
+      --blue: #0072ce;
       --orange: #ff7a00;
       --yellow: #ffd000;
       
@@ -177,17 +177,17 @@
     }
 
     /* ==========================================================================
-       HEADER & NAVIGATION
+       HEADER & NAVIGATION (WITH OFFICIAL LOGO)
        ========================================================================== */
     .header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(5, 7, 14, 0.88);
+      background: rgba(5, 7, 14, 0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--card-border);
-      padding: 16px 0;
+      padding: 14px 0;
     }
 
     .header-inner {
@@ -196,46 +196,11 @@
       align-items: center;
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .logo-bars {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .logo-bar {
-      width: 22px;
-      height: 4px;
-      border-radius: 2px;
-    }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .logo-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 18px;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      color: #fff;
-    }
-
-    .logo-sub {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 8px;
-      font-weight: 800;
-      letter-spacing: 0.22em;
-      color: var(--txt-sub);
-      margin-top: 3px;
+    .brand-logo-img {
+      height: 38px;
+      width: auto;
+      display: block;
+      border-radius: 6px;
     }
 
     .nav-links {
@@ -1411,20 +1376,12 @@
 <body>
 
   <!-- ==========================================================================
-       HEADER
+       HEADER (OFFICIAL BRAND LOGO)
        ========================================================================== -->
   <header class="header">
     <div class="container header-inner">
       <a href="#" class="logo">
-        <div class="logo-bars">
-          <span class="logo-bar" style="background:#00f2fe;"></span>
-          <span class="logo-bar" style="background:#ff2d78;"></span>
-          <span class="logo-bar" style="background:#c8ff3d;"></span>
-        </div>
-        <div class="logo-text">
-          <span class="logo-title">EVOSPORT</span>
-          <span class="logo-sub">RACKET CLUB</span>
-        </div>
+        <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/evosport_official_logo.png" alt="EVOSPORT Центр ракеточного спорта" class="brand-logo-img">
       </a>
 
       <ul class="nav-links">
@@ -2237,15 +2194,7 @@
         
         <div>
           <a href="#" class="logo" style="margin-bottom:16px;">
-            <div class="logo-bars">
-              <span class="logo-bar" style="background:#00f2fe;"></span>
-              <span class="logo-bar" style="background:#ff2d78;"></span>
-              <span class="logo-bar" style="background:#c8ff3d;"></span>
-            </div>
-            <div class="logo-text">
-              <span class="logo-title">EVOSPORT</span>
-              <span class="logo-sub">RACKET CLUB</span>
-            </div>
+            <img src="https://cdn.jsdelivr.net/gh/ReyPris/evosport-presentation@master/images/evosport_official_logo.png" alt="EVOSPORT Центр ракеточного спорта" style="height:36px; width:auto; border-radius:4px;">
           </a>
           <p style="font-size:12px; color:var(--txt-dim); line-height:1.6; max-width:280px;">
             Сеть премиальных ракеточных клубов на юге России. Падел, пиклбол, бадминтон, настольный теннис и теннис.
@@ -2286,7 +2235,7 @@
       </div>
 
       <div style="border-top:1px solid rgba(255,255,255,0.06); padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:11.5px; color:var(--txt-dim);">
-        <div>© 2026 EVOSPORT Racket Club. Все права защищены.</div>
+        <div>© 2026 EVOSPORT Центр ракеточного спорта. Все права защищены.</div>
         <div style="display:flex; gap:16px;">
           <a href="#">Telegram</a>
           <a href="#">ВКонтакте</a>
