@@ -137,7 +137,7 @@
     }
 
     /* ==========================================================================
-       0. HEADER (EXACT 1-TO-1)
+       0. HEADER (EXACT 1-TO-1 OFFICIAL LOGO ON DARK BG)
        ========================================================================== */
     .header {
       position: sticky;
@@ -159,11 +159,10 @@
     .brand-logo {
       display: flex;
       align-items: center;
-      gap: 12px;
     }
 
-    .brand-logo svg {
-      height: 36px;
+    .brand-logo img {
+      height: 38px;
       width: auto;
     }
 
@@ -249,33 +248,45 @@
     }
 
     /* ==========================================================================
-       1. HERO SECTION (SLIDE 1: FULL-BLEED SEAMLESS COURT BG + CORNER SPLASHES)
+       1. HERO SECTION (SLIDE 1: 100% SEAMLESS FULL-BLEED BACKGROUND)
        ========================================================================== */
     .hero-section {
       position: relative;
       background-color: #05070e;
-      background-image: 
-        linear-gradient(to right, #05070e 0%, #05070e 38%, rgba(5, 7, 14, 0.4) 62%, rgba(5, 7, 14, 0) 100%),
-        url('images/hero_court_bg_pristine.jpg');
-      background-position: right center;
-      background-repeat: no-repeat;
-      background-size: auto 100%;
       min-height: 640px;
-      padding: 60px 0 40px;
+      padding: 50px 0 35px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+    }
+
+    /* The court background spans the right 65% with a soft fade to the left */
+    .hero-court-backdrop {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 65%;
+      height: 100%;
+      background-image: url('images/hero_court_raw.jpg');
+      background-size: cover;
+      background-position: center right;
+      z-index: 1;
+      pointer-events: none;
+      mask-image: linear-gradient(to right, transparent 0%, #000000 25%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, #000000 25%);
     }
 
     .hero-content {
       max-width: 580px;
       position: relative;
       z-index: 3;
+      margin-bottom: 30px;
     }
 
     .hero-title {
       font-family: var(--font-heading);
-      font-size: 58px;
+      font-size: 56px;
       font-weight: 900;
       line-height: 1.02;
       margin-bottom: 18px;
@@ -326,7 +337,6 @@
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 30px;
       flex-wrap: wrap;
     }
 
@@ -387,32 +397,31 @@
       transform: translateY(-2px);
     }
 
-    /* Bottom 5 Sports Bar with Corner Splashes */
+    /* Bottom 5 Sports Bar with Exact Corner Splashes */
     .hero-bottom-container {
       position: relative;
       margin-top: 20px;
+      z-index: 4;
     }
 
     .splash-left {
       position: absolute;
-      left: -25px;
-      bottom: -12px;
-      width: 110px;
+      left: -40px;
+      bottom: -15px;
+      width: 140px;
       height: auto;
       pointer-events: none;
       z-index: 1;
-      opacity: 0.9;
     }
 
     .splash-right {
       position: absolute;
-      right: -25px;
-      bottom: -12px;
-      width: 110px;
+      right: -40px;
+      bottom: -15px;
+      width: 140px;
       height: auto;
       pointer-events: none;
       z-index: 1;
-      opacity: 0.9;
     }
 
     .sports-bar {
@@ -470,6 +479,8 @@
        ========================================================================== */
     .games-section {
       padding: 90px 0;
+      position: relative;
+      z-index: 2;
     }
 
     .games-grid-top {
@@ -1460,7 +1471,7 @@
        RESPONSIVE
        ========================================================================== */
     @media (max-width: 1024px) {
-      .hero-section { background-size: cover; }
+      .hero-court-backdrop { width: 100%; opacity: 0.35; mask-image: none; -webkit-mask-image: none; }
       .sports-bar { grid-template-columns: repeat(3, 1fr); }
       .games-grid-top { grid-template-columns: repeat(2, 1fr); }
       .games-grid-bot { grid-template-columns: 1fr; }
@@ -1499,12 +1510,12 @@
 <body>
 
   <!-- ==========================================================================
-       0. HEADER (EXACT 1-TO-1 VECTOR LOGO + TRANSPARENT NAVBAR)
+       0. HEADER (EXACT 1-TO-1 OFFICIAL LOGO ON DARK BG)
        ========================================================================== -->
   <header class="header">
     <div class="container header-inner">
       <a href="#" class="brand-logo">
-        <img src="images/evosport_logo_darkbg.png" alt="EVOSPORT" style="height: 38px; width: auto; display: block;">
+        <img src="images/evosport_logo_darkbg.png" alt="EVOSPORT">
       </a>
 
       <ul class="nav-links">
@@ -1545,9 +1556,12 @@
   </header>
 
   <!-- ==========================================================================
-       1. HERO SECTION (SLIDE 1: SEAMLESS COURT BACKGROUND + CORNER SPLASHES)
+       1. HERO SECTION (SLIDE 1: 100% SEAMLESS FULL-BLEED BACKGROUND)
        ========================================================================== -->
   <section class="hero-section" id="hero">
+    <!-- Seamless Full-Bleed Court Backdrop -->
+    <div class="hero-court-backdrop"></div>
+
     <div class="container">
       <div class="hero-content">
         <h1 class="hero-title">
@@ -1605,7 +1619,7 @@
         </div>
       </div>
 
-      <!-- Bottom Bar with Pure Corner Splashes -->
+      <!-- Bottom Bar with Exact Corner Splashes -->
       <div class="hero-bottom-container">
         <img src="images/splash_cyan_final.png" alt="Cyan Brush Splash" class="splash-left">
         <img src="images/splash_magenta_final.png" alt="Magenta Brush Splash" class="splash-right">
