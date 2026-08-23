@@ -36,7 +36,15 @@
       --border-subtle: rgba(255, 255, 255, 0.1);
       --font-heading: 'Unbounded', sans-serif;
       --font-body: 'Inter', sans-serif;
-      --container-max: 1240px;
+      --container-max: 1200px;
+    }
+
+    .page-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      background-color: var(--bg-dark);
+      overflow-x: hidden;
     }
 
     * {
@@ -1526,6 +1534,7 @@
   </style>
 </head>
 <body>
+<div class="page-wrapper">
 
   <!-- ==========================================================================
        0. HEADER (EXACT 1-TO-1 OFFICIAL LOGO ON DARK BG)
@@ -2651,5 +2660,6 @@
       });
     }
   </script>
+</div>
 </body>
 </html>
